@@ -1,0 +1,283 @@
+"use client";
+
+import { useRef, useState, useEffect } from "react";
+import dynamic from 'next/dynamic';
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import SplitText from '@/components/ui/SplitText';
+
+const Grainient = dynamic(() => import('@/components/ui/Grainient'), { ssr: false });
+
+const steps = [
+    {
+        num: "01",
+        title: "Audit The Revenue Leaks",
+        desc: "Every missed call and forgotten follow-up costs you money. We connect to your existing tools—calculating exactly where you're losing hours and revenue—and deploy an autonomous system to recover it instantly.",
+        image: "/images/tirionapp/v2/6_resultado.webp",
+        bgColor: "#E8DDD3",
+        highlights: ["No software to configure", "Zero-downtime integration", "Instant ROI discovery"],
+        grainient: { color1: "#A07830", color2: "#2A5045", color3: "#1A2018" }
+    },
+    {
+        num: "02",
+        title: "The Strategy Mapping Interview",
+        desc: "Instead of complex visual builders, you simply talk to our AI Strategy Agent. It interviews you about your business objectives, maps your operational bottlenecks, and autonomously drafts the required prompt sequences and tool access policies.",
+        image: "/images/tirionapp/v2/9_resultado.webp",
+        bgColor: "#D3DEE8",
+        highlights: ["Conversational Setup", "Automated Playbook Generation", "Actionable Execution Plans"],
+        grainient: { color1: "#8A6E30", color2: "#285848", color3: "#141E18" }
+    },
+    {
+        num: "03",
+        title: "Sandbox Simulation & Alignment",
+        desc: "Unshakeable trust is built through verification. Before deployment, your custom agent swarm is placed in an isolated sandbox. It runs dry on 10,000 historical scenarios. You interact with AI-generated Phase Cards and deploy with a zero-friction approval process.",
+        image: "/images/tirionapp/v2/8_resultado.webp",
+        bgColor: "#D8E8D3",
+        highlights: ["Isolated Dry-Runs", "Human-in-the-loop Alignment", "10k+ Scenario Testing"],
+        grainient: { color1: "#9B7835", color2: "#2E5A4A", color3: "#162218" }
+    },
+    {
+        num: "04",
+        title: "Live Autonomous Execution",
+        desc: "Once unchained, your agents begin processing live inbound data streams. They qualify leads in milliseconds, draft hyper-personalized outbound campaigns, and resolve tier-1 support tickets contextually, all while feeding you real-time executive summaries.",
+        image: "/images/tirionapp/v2/7_resultado.webp",
+        bgColor: "#E3D3E8",
+        highlights: ["Sub-second Latency", "Infinite Horizontal Scaling", "Universal Inbox Hand-off"],
+        grainient: { color1: "#B08032", color2: "#264C3E", color3: "#182420" }
+    }
+];
+
+interface StepData {
+    num: string;
+    title: string;
+    desc: string;
+    image: string;
+    bgColor: string;
+    highlights: string[];
+    grainient: { color1: string; color2: string; color3: string };
+}
+
+function StepItem({ step, index, setActiveIndex }: { step: StepData; index: number; setActiveIndex: (idx: number) => void }) {
+    const ref = useRef<HTMLDivElement>(null);
+    const isInView = useInView(ref, { margin: "-50% 0px -50% 0px" });
+
+    useEffect(() => {
+        if (isInView) {
+            setActiveIndex(index);
+        }
+    }, [isInView, index, setActiveIndex]);
+
+    return (
+        <div ref={ref} className="py-[5vh] md:py-[10vh] min-h-[50vh] md:min-h-[60vh] flex flex-col justify-center relative">
+            <motion.div
+                animate={{ opacity: isInView ? 1 : 0.4, y: 0 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            >
+                <div className="flex items-center gap-4 mb-6">
+                    <span className="text-[1.8rem] md:text-[2.4rem] font-bold text-black tracking-[0.1em] font-outfit">{step.num}</span>
+                    <div className="h-[2px] bg-black w-12 md:w-20 rounded-full" />
+                </div>
+                <div className="mb-6">
+                    <SplitText
+                        text={step.title}
+                        className="text-[clamp(2rem,3vw,3rem)] font-semibold text-agency-text-main leading-[1.1] font-outfit tracking-[-0.02em]"
+                        delay={20}
+                        duration={0.8}
+                        ease="power3.out"
+                        splitType="words"
+                        from={{ opacity: 0, y: 30 }}
+                        to={{ opacity: 1, y: 0 }}
+                        threshold={0.1}
+                        rootMargin="-100px"
+                        textAlign="left"
+                        tag="h3"
+                    />
+                </div>
+                <div className="mb-8 max-w-[95%]">
+                    <SplitText
+                        text={step.desc}
+                        className="text-[1.15rem] md:text-[1.3rem] text-agency-text-muted leading-[1.7] font-light"
+                        delay={8}
+                        duration={0.6}
+                        ease="power3.out"
+                        splitType="words"
+                        from={{ opacity: 0, y: 15 }}
+                        to={{ opacity: 1, y: 0 }}
+                        threshold={0.1}
+                        rootMargin="-80px"
+                        textAlign="left"
+                        tag="p"
+                    />
+                </div>
+                <div className="flex flex-col gap-3">
+                    {step.highlights.map((highlight: string, hIdx: number) => (
+                        <div key={hIdx} className="flex items-center gap-3 text-agency-text-secondary text-[1.1rem]">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px] text-agency-text-main flex-shrink-0">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <SplitText
+                                text={highlight}
+                                className="text-agency-text-secondary text-[1.1rem]"
+                                delay={15}
+                                duration={0.6}
+                                ease="power3.out"
+                                splitType="chars"
+                                from={{ opacity: 0, y: 10 }}
+                                to={{ opacity: 1, y: 0 }}
+                                threshold={0.1}
+                                rootMargin="-60px"
+                                textAlign="left"
+                                tag="span"
+                            />
+                        </div>
+                    ))}
+                </div>
+
+                {/* Mobile Image (hidden on desktop) */}
+                <div className="block lg:hidden mt-8 w-full aspect-[3/4] rounded-[32px] shadow-[0_16px_32px_rgba(0,0,0,0.1)] overflow-hidden relative border border-agency-border-light/50 bg-agency-bg-surface">
+                    <div className="absolute inset-0 w-full h-full rounded-[32px] overflow-hidden mask-image-rounded transition-opacity duration-[1500ms] ease-[cubic-bezier(0.2,0.8,0.2,1)]">
+                        {/* Grainient Background */}
+                        <div className="absolute inset-0 rounded-[32px]">
+                            <Grainient
+                                color1={step.grainient.color1}
+                                color2={step.grainient.color2}
+                                color3={step.grainient.color3}
+                                timeSpeed={0.5}
+                                grainAmount={0.06}
+                                grainScale={3.0}
+                                grainAnimated={true}
+                                warpStrength={1.0}
+                                warpFrequency={3.0}
+                                warpSpeed={3.5}
+                                warpAmplitude={50.0}
+                                contrast={1.6}
+                                gamma={1.0}
+                                saturation={0.75}
+                                zoom={0.75}
+                                className="rounded-[32px]"
+                            />
+                        </div>
+
+                        {/* Inner Image */}
+                        <div className="absolute inset-0 bg-cover bg-center rounded-[32px]" style={{ backgroundImage: `url(${step.image})` }} />
+
+                        {/* Noise overlay */}
+                        <div className="absolute inset-0 rounded-[32px] z-10 pointer-events-none opacity-40 mix-blend-overlay"
+                            style={{
+                                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+                                backgroundSize: '128px 128px',
+                            }}
+                        />
+                    </div>
+                </div>
+            </motion.div>
+        </div>
+    );
+}
+export function HowItWorks() {
+    const [activeIndex, setActiveIndex] = useState(0);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "end start"]
+    });
+
+    // Animate border radius based on scroll position - highly rounded in middle, flat at edges
+    const borderRadius = useTransform(
+        scrollYProgress,
+        [0, 0.1, 0.9, 1],
+        ["0vw", "6vw", "6vw", "0vw"]
+    );
+
+    return (
+        <motion.div
+            ref={containerRef}
+            className="w-full relative bg-agency-bg-surface py-20 md:py-[120px]"
+            id="how-it-works"
+            style={{ borderRadius }}
+        >
+            <div className="max-w-[1400px] mx-auto px-4 md:px-12">
+
+                {/* Header Section */}
+                <div className="mb-[8vh] border-b border-agency-border-light pb-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
+                    <div>
+                        <div className="text-[1.2rem] text-black/60 font-semibold tracking-[0.15em] mb-4 uppercase font-outfit">Implementation</div>
+                        <h2 className="text-[clamp(3.5rem,5vw,5.5rem)] font-outfit text-agency-text-main font-semibold leading-[1] tracking-[-0.03em] max-w-[800px]">
+                            How We Give Your Time Back.
+                        </h2>
+                    </div>
+                    <p className="text-[1.3rem] text-agency-text-muted max-w-[400px] font-light leading-[1.6]">
+                        We don't give you software to figure out. We deploy a fully autonomous agency tailored to your business in under 48 hours.
+                    </p>
+                </div>
+
+                <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 relative items-start">
+                    {/* Left side: Scrollable List */}
+                    <div className="flex-1 pb-[10vh]">
+                        {steps.map((step, index) => (
+                            <StepItem key={index} step={step} index={index} setActiveIndex={setActiveIndex} />
+                        ))}
+                    </div>
+
+                    {/* Right side: Sticky Image/Visual */}
+                    <div className="flex-1 hidden lg:block sticky top-[12vh] mb-[12vh]">
+                        <div className="aspect-[3/4] w-full rounded-[48px] shadow-[0_32px_64px_rgba(0,0,0,0.1)] border border-agency-border-light/50 bg-agency-bg-surface relative z-0 mx-auto max-w-[500px]">
+                            <div className="absolute inset-0 w-full h-full rounded-[48px] overflow-hidden mask-image-rounded">
+                                {/* Grainient backgrounds */}
+                                {steps.map((step, index) => (
+                                    <div
+                                        key={`grain-${index}`}
+                                        className="absolute inset-0 rounded-[48px] transition-opacity duration-[1500ms] ease-[cubic-bezier(0.2,0.8,0.2,1)]"
+                                        style={{
+                                            opacity: activeIndex === index ? 1 : 0,
+                                        }}
+                                    >
+                                        {activeIndex === index && (
+                                            <Grainient
+                                                color1={step.grainient.color1}
+                                                color2={step.grainient.color2}
+                                                color3={step.grainient.color3}
+                                                timeSpeed={0.5}
+                                                grainAmount={0.06}
+                                                grainScale={3.0}
+                                                grainAnimated={true}
+                                                warpStrength={1.0}
+                                                warpFrequency={3.0}
+                                                warpSpeed={3.5}
+                                                warpAmplitude={50.0}
+                                                contrast={1.6}
+                                                gamma={1.0}
+                                                saturation={0.75}
+                                                zoom={0.75}
+                                                className="rounded-[48px]"
+                                            />
+                                        )}
+                                    </div>
+                                ))}
+                                {/* Inner images cross-fading */}
+                                {steps.map((step, index) => (
+                                    <div
+                                        key={index}
+                                        className="absolute inset-0 bg-cover bg-center transition-all duration-[1500ms] ease-[cubic-bezier(0.2,0.8,0.2,1)] rounded-[48px]"
+                                        style={{
+                                            backgroundImage: `url(${step.image})`,
+                                            opacity: activeIndex === index ? 1 : 0,
+                                            transform: activeIndex === index ? 'scale(1)' : 'scale(1.05)',
+                                            filter: activeIndex === index ? 'blur(0px)' : 'blur(10px)',
+                                        }}
+                                    />
+                                ))}
+                                {/* Noise overlay on top of images */}
+                                <div className="absolute inset-0 rounded-[48px] z-10 pointer-events-none opacity-40 mix-blend-overlay"
+                                    style={{
+                                        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+                                        backgroundSize: '128px 128px',
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </motion.div>
+    );
+}

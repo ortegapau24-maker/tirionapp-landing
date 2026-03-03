@@ -15,7 +15,7 @@ const steps = [
         image: "/images/tirionapp/v2/6_resultado.webp",
         bgColor: "#E8DDD3",
         highlights: ["No software to configure", "Zero-downtime integration", "Instant ROI discovery"],
-        grainient: { color1: "#A07830", color2: "#2A5045", color3: "#1A2018" }
+        grainient: { color1: "#F8FAFC", color2: "#2563EB", color3: "#1E40AF" }
     },
     {
         num: "02",
@@ -24,7 +24,7 @@ const steps = [
         image: "/images/tirionapp/v2/9_resultado.webp",
         bgColor: "#D3DEE8",
         highlights: ["Conversational Setup", "Automated Playbook Generation", "Actionable Execution Plans"],
-        grainient: { color1: "#8A6E30", color2: "#285848", color3: "#141E18" }
+        grainient: { color1: "#F8FAFC", color2: "#2563EB", color3: "#1E40AF" }
     },
     {
         num: "03",
@@ -33,7 +33,7 @@ const steps = [
         image: "/images/tirionapp/v2/8_resultado.webp",
         bgColor: "#D8E8D3",
         highlights: ["Isolated Dry-Runs", "Human-in-the-loop Alignment", "10k+ Scenario Testing"],
-        grainient: { color1: "#9B7835", color2: "#2E5A4A", color3: "#162218" }
+        grainient: { color1: "#F8FAFC", color2: "#2563EB", color3: "#1E40AF" }
     },
     {
         num: "04",
@@ -42,7 +42,7 @@ const steps = [
         image: "/images/tirionapp/v2/7_resultado.webp",
         bgColor: "#E3D3E8",
         highlights: ["Sub-second Latency", "Infinite Horizontal Scaling", "Universal Inbox Hand-off"],
-        grainient: { color1: "#B08032", color2: "#264C3E", color3: "#182420" }
+        grainient: { color1: "#F8FAFC", color2: "#2563EB", color3: "#1E40AF" }
     }
 ];
 
@@ -158,7 +158,7 @@ function StepItem({ step, index, setActiveIndex }: { step: StepData; index: numb
                         </div>
 
                         {/* Inner Image */}
-                        <div className="absolute inset-0 bg-cover bg-center rounded-[32px]" style={{ backgroundImage: `url(${step.image})` }} />
+                        <div className="absolute inset-0 bg-cover bg-center rounded-[32px] mix-blend-multiply opacity-90" style={{ backgroundImage: `url(${step.image})`, transform: 'scale(1.15)' }} />
 
                         {/* Noise overlay */}
                         <div className="absolute inset-0 rounded-[32px] z-10 pointer-events-none opacity-40 mix-blend-overlay"
@@ -210,17 +210,17 @@ export function HowItWorks() {
                     </p>
                 </div>
 
-                <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 relative items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 relative items-start">
                     {/* Left side: Scrollable List */}
-                    <div className="flex-1 pb-[10vh]">
+                    <div className="pb-[10vh]">
                         {steps.map((step, index) => (
                             <StepItem key={index} step={step} index={index} setActiveIndex={setActiveIndex} />
                         ))}
                     </div>
 
                     {/* Right side: Sticky Image/Visual */}
-                    <div className="flex-1 hidden lg:block sticky top-[12vh] mb-[12vh]">
-                        <div className="aspect-[3/4] w-full rounded-[48px] shadow-[0_32px_64px_rgba(0,0,0,0.1)] border border-agency-border-light/50 bg-agency-bg-surface relative z-0 mx-auto max-w-[500px]">
+                    <div className="hidden lg:block sticky top-[8vh] h-[84vh] w-full mb-[8vh]">
+                        <div className="h-full w-full rounded-[48px] shadow-[0_32px_64px_rgba(0,0,0,0.1)] border border-agency-border-light/50 bg-agency-bg-surface relative z-0 overflow-hidden">
                             <div className="absolute inset-0 w-full h-full rounded-[48px] overflow-hidden mask-image-rounded">
                                 {/* Grainient backgrounds */}
                                 {steps.map((step, index) => (
@@ -257,11 +257,11 @@ export function HowItWorks() {
                                 {steps.map((step, index) => (
                                     <div
                                         key={index}
-                                        className="absolute inset-0 bg-cover bg-center transition-all duration-[1500ms] ease-[cubic-bezier(0.2,0.8,0.2,1)] rounded-[48px]"
+                                        className="absolute inset-0 bg-cover bg-center transition-all duration-[1500ms] ease-[cubic-bezier(0.2,0.8,0.2,1)] rounded-[48px] mix-blend-multiply opacity-90"
                                         style={{
                                             backgroundImage: `url(${step.image})`,
                                             opacity: activeIndex === index ? 1 : 0,
-                                            transform: activeIndex === index ? 'scale(1)' : 'scale(1.05)',
+                                            transform: activeIndex === index ? 'scale(1.15)' : 'scale(1.2)',
                                             filter: activeIndex === index ? 'blur(0px)' : 'blur(10px)',
                                         }}
                                     />

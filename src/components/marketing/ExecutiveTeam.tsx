@@ -267,9 +267,9 @@ export function ExecutiveTeam() {
                     }}
                 >
                     <Grainient
-                        color1="#A07830"
-                        color2="#2A5045"
-                        color3="#1A2018"
+                        color1="#F8FAFC"
+                        color2="#2563EB"
+                        color3="#1E40AF"
                         timeSpeed={0.5}
                         grainAmount={0.06}
                         grainScale={3.0}

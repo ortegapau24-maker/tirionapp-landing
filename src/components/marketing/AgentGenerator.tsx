@@ -2,15 +2,10 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
-import { PricingParticles } from './PricingParticles';
+import { cn } from '@/lib/utils';
+import PricingParticles from './PricingParticles';
 import { WorkflowDemo } from './WorkflowDemo';
 import SplitText from '@/components/ui/SplitText';
-
-function cn(...inputs: (string | undefined | null | false)[]) {
-    return twMerge(clsx(inputs));
-}
 
 export function AgentGenerator() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -220,7 +215,7 @@ export function AgentGenerator() {
                         </div>
 
                         {/* Right Side: Workflow Canvas (Dynamic Width) */}
-                        <div className="w-full lg:flex-1 shrink-0 h-[350px] sm:h-[450px] lg:h-full bg-white/20 backdrop-blur-sm relative">
+                        <div className="w-full lg:flex-1 min-h-[350px] sm:min-h-[450px] relative overflow-hidden flex">
                             <WorkflowDemo step={step} />
                         </div>
                     </div>

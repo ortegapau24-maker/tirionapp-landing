@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { hexToRgb, debounce } from '@/lib/utils';
 
 interface Particle {
     x: number;
@@ -16,18 +17,10 @@ interface Props {
     blendMode?: string;
 }
 
-export function PricingParticles({ activeColor, targetSelector = '.pricing-card', blendMode = 'mix-blend-multiply opacity-60' }: Props) {
+export default function PricingParticles({ activeColor, targetSelector = '.pricing-card', blendMode = 'mix-blend-multiply opacity-60' }: Props) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
-    // Parse hex to rgb
-    const hexToRgb = (hex: string) => {
-        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-        return result ? {
-            r: parseInt(result[1], 16),
-            g: parseInt(result[2], 16),
-            b: parseInt(result[3], 16)
-        } : { r: 0, g: 0, b: 0 };
-    };
+
 
     const targetRgbRef = useRef(hexToRgb(activeColor));
     const currentRgbRef = useRef(hexToRgb(activeColor));
@@ -46,6 +39,14 @@ export function PricingParticles({ activeColor, targetSelector = '.pricing-card'
         let particles: Particle[] = [];
         const mouse = { x: -1000, y: -1000 };
         let cards: { cx: number; cy: number; width: number; height: number; }[] = [];
+        let isVisible = true;
+
+        // IntersectionObserver: only animate when visible
+        const observer = new IntersectionObserver(
+            ([entry]) => { isVisible = entry.isIntersecting; },
+            { threshold: 0.05 }
+        );
+        observer.observe(canvas);
 
         const updateCards = () => {
             const cardElements = document.querySelectorAll(targetSelector);
@@ -132,6 +133,9 @@ export function PricingParticles({ activeColor, targetSelector = '.pricing-card'
 
         const draw = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            animationFrameId = requestAnimationFrame(draw);
+            if (!isVisible) return;
 
             if (cards.length === 0) {
                 updateCards();
@@ -259,7 +263,7 @@ export function PricingParticles({ activeColor, targetSelector = '.pricing-card'
                 ctx.fill();
             });
 
-            animationFrameId = requestAnimationFrame(draw);
+
         };
 
         const handleMouseMove = (e: MouseEvent) => {
@@ -273,7 +277,7 @@ export function PricingParticles({ activeColor, targetSelector = '.pricing-card'
             mouse.y = -1000;
         };
 
-        window.addEventListener('resize', resize);
+        window.addEventListener('resize', debounce(resize, 150));
         const parent = canvasRef.current?.parentElement;
         if (parent) {
             parent.addEventListener('mousemove', handleMouseMove);
@@ -290,6 +294,7 @@ export function PricingParticles({ activeColor, targetSelector = '.pricing-card'
                 parent.removeEventListener('mouseleave', handleMouseLeave);
             }
             cancelAnimationFrame(animationFrameId);
+            observer.disconnect();
         };
     }, [targetSelector]);
 

@@ -2,7 +2,9 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { PricingParticles } from "./PricingParticles";
+import dynamic from 'next/dynamic';
+
+const PricingParticles = dynamic(() => import('./PricingParticles'), { ssr: false });
 
 export function Pricing() {
     const [hoveredTier, setHoveredTier] = useState<string | null>(null);

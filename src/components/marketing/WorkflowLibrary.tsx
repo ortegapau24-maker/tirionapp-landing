@@ -1,216 +1,173 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ParticleSphere } from './ParticleSphere';
-import { ParticleCard } from './ParticleCard';
-import SplitText from '@/components/ui/SplitText';
+import Image from 'next/image';
+import dynamic from 'next/dynamic';
+
+const Grainient = dynamic(() => import('@/components/ui/Grainient'), { ssr: false });
 
 const categories = [
     {
         title: "Sales",
-        icon: (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-            </svg>
-        ),
-        items: ["Lead Qualification", "Follow-Up", "Proposals", "Contracts"]
+        items: ["Lead Qualification", "Follow-Up", "Proposals", "Contracts"],
+        image: "/images/tirionapp/v2/1_resultado.webp",
+        color: "from-blue-500/10 to-[#1E40AF]/20"
     },
     {
         title: "Operations",
-        icon: (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="3"></circle>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
-            </svg>
-        ),
-        items: ["Meetings", "Reports", "Support", "Onboarding"]
+        items: ["Meetings", "Reports", "Support", "Onboarding"],
+        image: "/images/tirionapp/v2/5_resultado.webp",
+        color: "from-purple-500/10 to-[#1E40AF]/20"
     },
     {
         title: "Communication",
-        icon: (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-            </svg>
-        ),
-        items: ["AI Phone Calls", "WhatsApp", "Emails", "Web Chat"]
+        items: ["AI Phone Calls", "WhatsApp", "Emails", "Web Chat"],
+        image: "/images/tirionapp/v2/2_resultado.webp",
+        color: "from-emerald-500/10 to-[#1E40AF]/20"
     },
     {
         title: "Reputation",
-        icon: (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-            </svg>
-        ),
-        items: ["Reviews", "Responses", "Monitoring"]
+        items: ["Reviews", "Responses", "Monitoring"],
+        image: "/images/tirionapp/v2/6_resultado.webp",
+        color: "from-amber-500/10 to-[#1E40AF]/20"
     },
     {
         title: "Payments",
-        icon: (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="12" y1="1" x2="12" y2="23"></line>
-                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-            </svg>
-        ),
-        items: ["Automated Billing", "Invoicing", "Reminders", "Recovery"]
+        items: ["Automated Billing", "Invoicing", "Reminders", "Recovery"],
+        image: "/images/tirionapp/v2/3_resultado.webp",
+        color: "from-rose-500/10 to-[#1E40AF]/20"
     },
     {
         title: "Content",
-        icon: (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                <polyline points="17 8 12 3 7 8"></polyline>
-                <line x1="12" y1="3" x2="12" y2="15"></line>
-            </svg>
-        ),
-        items: ["Social Media", "Repurposing", "Scheduling"]
+        items: ["Social Media", "Repurposing", "Scheduling"],
+        image: "/images/tirionapp/v2/8_resultado.webp",
+        color: "from-cyan-500/10 to-[#1E40AF]/20"
     },
     {
         title: "Retention",
-        icon: (
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path>
-            </svg>
-        ),
-        items: ["Churn Risk", "Referrals", "Loyalty"]
+        items: ["Churn Risk", "Referrals", "Loyalty"],
+        image: "/images/tirionapp/v2/4_resultado.webp",
+        color: "from-indigo-500/10 to-[#1E40AF]/20"
     }
 ];
 
 export function WorkflowLibrary() {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const trackRef = useRef<HTMLDivElement>(null);
+    const targetRef = useRef<HTMLDivElement>(null);
+    const scrollTrackRef = useRef<HTMLDivElement>(null);
+    const [maxTranslate, setMaxTranslate] = useState(0);
 
-    // Track scrolling progress in the sticky container
     const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end end"]
+        target: targetRef,
+        offset: ["start start", "end end"],
     });
-
-    // Border radius progress (tracks when section enters/leaves the viewport)
-    const { scrollYProgress: borderProgress } = useScroll({
-        target: containerRef,
-        offset: ["start end", "end start"]
-    });
-
-    const borderRadius = useTransform(
-        borderProgress,
-        [0, 0.05, 0.95, 1],
-        ["0vw", "6vw", "6vw", "0vw"]
-    );
-
-    // Scroll-triggered zoom: scale up when entering, shrink when exiting
-    const sectionScale = useTransform(
-        borderProgress,
-        [0, 0.15, 0.85, 1],
-        [0.75, 1, 1, 0.75]
-    );
-
-    const sectionOpacity = useTransform(
-        borderProgress,
-        [0, 0.1, 0.9, 1],
-        [0, 1, 1, 0]
-    );
-
-    // Sphere construction/deconstruction: builds during early scroll, deconstructs during late scroll
-    const sphereConstruction = useTransform(
-        scrollYProgress,
-        [0, 0.15, 0.85, 1],
-        [0, 1, 1, 0]
-    );
-
-    // Map the scroll progress from 0% to 100% to a rotation of 0 to -360 degrees
-    const rotationY = useTransform(scrollYProgress, [0, 1], ["0deg", "-360deg"]);
 
     useEffect(() => {
-        const track = trackRef.current;
-        if (!track) return;
-
-        const blocks = Array.from(track.children) as HTMLElement[];
-        const totalBlocks = blocks.length;
-        const radius = window.innerWidth < 640 ? 240 : window.innerWidth < 1024 ? 300 : 450;
-        const angleStep = 360 / totalBlocks;
-
-        // Position blocks in 3D circle statically
-        blocks.forEach((block, index) => {
-            const angle = index * angleStep;
-            block.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
-        });
+        const updateSize = () => {
+            if (scrollTrackRef.current) {
+                const viewportWidth = document.documentElement.clientWidth || window.innerWidth;
+                setMaxTranslate(scrollTrackRef.current.scrollWidth - viewportWidth);
+            }
+        };
+        updateSize();
+        window.addEventListener("resize", updateSize);
+        return () => window.removeEventListener("resize", updateSize);
     }, []);
 
+    const x = useTransform(scrollYProgress, [0, 1], [0, -maxTranslate]);
+
     return (
-        <motion.div ref={containerRef} className="w-full h-[500vh] relative bg-agency-bg-surface" style={{ borderRadius }} id="library">
-            <motion.div className="sticky top-0 w-full h-screen flex flex-col items-center justify-center overflow-hidden will-change-transform" style={{ scale: sectionScale, opacity: sectionOpacity }}>
-                <div className="text-center mb-16 px-4">
-                    <h2 className="text-[clamp(3rem,5vw,5rem)] font-outfit font-semibold mb-6 leading-[1.1] text-agency-text-main">
+        <section
+            id="library"
+            ref={targetRef}
+            className="relative w-full bg-white text-agency-text-main"
+            style={{ height: `${categories.length * 100}vh` }}
+        >
+            <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
+                {/* Background ambient color */}
+                <div className="absolute inset-0 bg-white pointer-events-none z-0" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.03)_0,transparent_70%)] pointer-events-none z-0" />
+
+                {/* Fixed Header */}
+                <div className="absolute top-6 sm:top-10 w-full px-4 md:px-10 z-20 pointer-events-none">
+                    <h2 className="text-[clamp(2.5rem,4vw,4rem)] font-outfit font-semibold leading-[1.1] text-agency-text-main">
                         The Automation Library.
                     </h2>
-                    <div className="max-w-[600px] mx-auto">
-                        <SplitText
-                            text="Deploy 1-click autonomous agents natively tailored for every department in your business. Scroll to explore."
-                            className="text-[1.25rem] text-agency-text-muted"
-                            delay={12}
-                            duration={0.8}
-                            ease="power3.out"
-                            splitType="words"
-                            from={{ opacity: 0, y: 15 }}
-                            to={{ opacity: 1, y: 0 }}
-                            threshold={0.1}
-                            rootMargin="-80px"
-                            textAlign="center"
-                            tag="p"
-                        />
-                    </div>
                 </div>
 
-                {/* 3D Carousel extracted from original HTML */}
-                <div className="relative w-full h-[400px] sm:h-[500px] lg:h-[700px] flex items-center justify-center overflow-hidden" style={{ perspective: '1200px', WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)', maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)' }}>
-
-                    {/* The 3D Scroll-reactive background sphere */}
-                    <ParticleSphere scrollYProgress={scrollYProgress} constructionProgress={sphereConstruction} />
-
-                    <motion.div
-                        ref={trackRef}
-                        style={{ rotateY: rotationY, transformStyle: 'preserve-3d' }}
-                        className="absolute w-0 h-0"
-                    >
-                        {categories.map((cat, i) => (
+                {/* Horizontal Scroll Track */}
+                <motion.div
+                    ref={scrollTrackRef}
+                    style={{ x }}
+                    className="flex w-max h-full items-center relative z-10 gap-8 sm:gap-16 lg:gap-24 pt-24 pb-12"
+                >
+                    {/* Start Spacer */}
+                    <div className="w-4 md:w-10 shrink-0" />
+                    {categories.map((cat, index) => {
+                        return (
                             <div
-                                key={i}
-                                className="absolute top-1/2 left-1/2 -mt-[140px] -ml-[120px] sm:-mt-[160px] sm:-ml-[140px] lg:-mt-[180px] lg:-ml-[160px] w-[240px] h-[280px] sm:w-[280px] sm:h-[320px] lg:w-[320px] lg:h-[360px] select-none pointer-events-none"
-                                style={{ transformStyle: 'preserve-3d', WebkitUserDrag: 'none' } as React.CSSProperties}
+                                key={index}
+                                className="w-[85vw] max-w-[1200px] h-full max-h-[600px] sm:max-h-[700px] flex-shrink-0 flex flex-col md:flex-row gap-4 sm:gap-6 rounded-[32px] sm:rounded-[48px]"
                             >
-                                {/* Front Face (Content) */}
-                                <div className="absolute inset-0 rounded-[32px] sm:rounded-[48px] p-4 sm:p-6 lg:p-8 overflow-hidden bg-transparent"
-                                    style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'translateZ(15px)' }}
-                                >
-                                    <div className="relative z-10 w-full h-full flex flex-col justify-center">
-                                        <div className="text-[1.5rem] sm:text-[2rem] font-bold text-agency-text-main mb-4 sm:mb-8 text-center font-outfit">
-                                            {cat.title}
-                                        </div>
-                                        <div className="flex flex-col gap-2 sm:gap-4">
-                                            {cat.items.map((item, j) => (
-                                                <span key={j} className="px-3 sm:px-5 py-2 sm:py-4 bg-white/40 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.08)] rounded-xl sm:rounded-2xl text-agency-text-main text-[0.9rem] sm:text-[1.1rem] font-medium flex items-center justify-center transition-all duration-300 font-inter hover:bg-white/60 hover:scale-[1.02]">
+                                {/* Left Text Content */}
+                                <div className="relative z-10 w-full md:w-[45%] lg:w-[45%] bg-white rounded-[32px] sm:rounded-[48px] shadow-[0_24px_48px_rgba(0,0,0,0.06)] p-8 sm:p-12 lg:p-16 flex flex-col justify-center">
+                                    <div className="text-slate-400 font-outfit text-sm sm:text-lg mb-2 sm:mb-4 tracking-widest uppercase font-semibold">
+                                        0{index + 1} // System Module
+                                    </div>
+                                    <h3 className="text-3xl sm:text-5xl lg:text-5xl font-outfit font-bold text-slate-900 mb-8 sm:mb-12">
+                                        {cat.title}
+                                    </h3>
+
+                                    <div className="flex flex-col gap-3 sm:gap-4">
+                                        {cat.items.map((item, j) => (
+                                            <div key={j} className="flex items-center gap-4 group">
+                                                <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center transition-colors group-hover:bg-[#2563EB]/10">
+                                                    <svg className="w-4 h-4 text-slate-400 group-hover:text-[#2563EB]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                                    </svg>
+                                                </div>
+                                                <span className="text-slate-600 text-lg sm:text-xl font-medium transition-colors group-hover:text-slate-900">
                                                     {item}
                                                 </span>
-                                            ))}
-                                        </div>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
 
-                                {/* Back Face (Empty for pure 3D rotation) */}
-                                <div className="absolute inset-0 rounded-[32px] sm:rounded-[48px] overflow-hidden bg-transparent"
-                                    style={{
-                                        backfaceVisibility: 'hidden',
-                                        WebkitBackfaceVisibility: 'hidden',
-                                        transform: 'rotateY(180deg) translateZ(15px)'
-                                    }}
-                                >
+                                {/* Right Image Content */}
+                                <div className="relative z-0 w-full md:w-[55%] lg:w-[55%] flex-1 min-h-[300px] md:min-h-0 bg-white rounded-[32px] sm:rounded-[48px] shadow-[0_24px_48px_rgba(0,0,0,0.06)] overflow-hidden">
+                                    {/* Grainient Background */}
+                                    <div className="absolute inset-0 z-0">
+                                        <Grainient
+                                            key={`grainient-${index}`}
+                                            color1="#F8FAFC"
+                                            color2="#2563EB"
+                                            color3="#1E40AF"
+                                        />
+                                    </div>
+
+                                    {/* 3D Image Overlay */}
+                                    <Image
+                                        src={cat.image}
+                                        alt={cat.title}
+                                        fill
+                                        className="object-cover object-center relative z-10 mix-blend-multiply opacity-90"
+                                    />
+                                    {/* Light gradient overlay to ensure the image blends perfectly if it has white edges */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent pointer-events-none relative z-20" />
                                 </div>
+
                             </div>
-                        ))}
-                    </motion.div>
-                </div>
-            </motion.div>
-        </motion.div>
+                        );
+                    })}
+
+                    {/* End Spacer */}
+                    <div className="w-[30px] shrink-0" />
+                </motion.div>
+
+                {/* Removed Scroll Progress Indicator entirely */}
+
+            </div>
+        </section>
     );
 }

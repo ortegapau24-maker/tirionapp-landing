@@ -1,7 +1,6 @@
 'use client';
 
 import { ClerkProvider } from '@clerk/nextjs';
-import { dark } from '@clerk/themes';
 
 /**
  * ClerkProviderWrapper — only renders ClerkProvider when valid Clerk keys are present.

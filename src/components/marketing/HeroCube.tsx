@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { debounce } from '@/lib/utils';
 
 interface Dot {
     lx: number; ly: number; lz: number;
@@ -73,6 +74,10 @@ export function HeroCube() {
         );
         observer.observe(canvas);
 
+        // Cache scroll position via passive listener to avoid rAF reflow
+        let cachedScrollY = window.scrollY || 0;
+        const onScroll = () => { cachedScrollY = window.scrollY; };
+        window.addEventListener('scroll', onScroll, { passive: true });
 
 
         const draw = () => {
@@ -80,7 +85,7 @@ export function HeroCube() {
             if (!isVisible) return;
 
             // Map scroll to vertical rotation (angleX)
-            const scrollY = window.scrollY || document.documentElement.scrollTop;
+            const scrollY = cachedScrollY;
             const vh = window.innerHeight;
             // Base angle is -0.55. Rotate roughly PI/2 (1.5) over 150vh.
             targetAngleX = -0.55 + (scrollY / vh) * 1.5;
@@ -145,12 +150,13 @@ export function HeroCube() {
             }
         };
 
-        window.addEventListener('resize', resize);
+        window.addEventListener('resize', debounce(resize, 150));
         resize();
         draw();
 
         return () => {
             window.removeEventListener('resize', resize);
+            window.removeEventListener('scroll', onScroll);
             observer.disconnect();
             cancelAnimationFrame(animationFrameId);
         };

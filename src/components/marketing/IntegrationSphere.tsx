@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { hexToRgb, debounce } from '@/lib/utils';
 
 interface Integration {
     name: string;
@@ -46,14 +47,9 @@ interface Particle {
     baseSize: number;
 }
 
-function hexToRgb(hex: string) {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result
-        ? { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) }
-        : { r: 100, g: 100, b: 100 };
-}
 
-export function IntegrationSphere() {
+
+export default function IntegrationSphere() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const currentIndexRef = useRef(0);
@@ -75,6 +71,14 @@ export function IntegrationSphere() {
         const SPHERE_RADIUS = 160;
         const PARTICLE_COUNT = 600;
         let rotationAngle = 0;
+        let isVisible = true;
+
+        // IntersectionObserver: only animate when visible
+        const observer = new IntersectionObserver(
+            ([entry]) => { isVisible = entry.isIntersecting; },
+            { threshold: 0.05 }
+        );
+        observer.observe(canvas);
 
         const resize = () => {
             const dpr = window.devicePixelRatio || 1;
@@ -269,9 +273,10 @@ export function IntegrationSphere() {
             });
 
             animId = requestAnimationFrame(draw);
+            if (!isVisible) return;
         };
 
-        window.addEventListener('resize', resize);
+        window.addEventListener('resize', debounce(resize, 150));
         resize();
         initParticles();
         morphTimerRef.current = 0;
@@ -280,6 +285,7 @@ export function IntegrationSphere() {
 
         return () => {
             window.removeEventListener('resize', resize);
+            observer.disconnect();
             cancelAnimationFrame(animId);
         };
     }, []);

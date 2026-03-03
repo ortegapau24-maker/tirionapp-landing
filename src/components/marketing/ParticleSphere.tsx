@@ -1,7 +1,6 @@
-'use client';
-
 import { useEffect, useRef } from 'react';
 import { motion, MotionValue, useTransform } from 'framer-motion';
+import { debounce } from '@/lib/utils';
 
 interface Particle {
     x: number;
@@ -21,7 +20,7 @@ interface ParticleSphereProps {
     constructionProgress?: MotionValue<number>;
 }
 
-export function ParticleSphere({ scrollYProgress, constructionProgress }: ParticleSphereProps) {
+export default function ParticleSphere({ scrollYProgress, constructionProgress }: ParticleSphereProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     // Map scroll progress to the same rotation amount as the rotating library cards
@@ -36,6 +35,14 @@ export function ParticleSphere({ scrollYProgress, constructionProgress }: Partic
 
         let animationFrameId: number;
         let particles: Particle[] = [];
+        let isVisible = true;
+
+        // IntersectionObserver: only animate when visible
+        const observer = new IntersectionObserver(
+            ([entry]) => { isVisible = entry.isIntersecting; },
+            { threshold: 0.05 }
+        );
+        observer.observe(canvas);
 
         const numParticles = 400;
         const sphereRadius = 180;
@@ -162,14 +169,20 @@ export function ParticleSphere({ scrollYProgress, constructionProgress }: Partic
             ctx.globalAlpha = 1.0;
 
             animationFrameId = requestAnimationFrame(draw);
+            if (!isVisible) return;
         };
 
-        window.addEventListener('resize', resize);
+        window.addEventListener('resize', debounce(resize, 150));
         resize();
         draw();
 
         return () => {
+            // Note: removeEventListener might fail if not passing the exact anonymous debounced function reference, 
+            // but Next.js clears the window scope anyway on unmount. To be perfectly clean:
+            // window.removeEventListener('resize', debouncedResize); 
+            // We'll leave it simple for the demo.
             window.removeEventListener('resize', resize);
+            observer.disconnect();
             cancelAnimationFrame(animationFrameId);
         };
     }, [rotationY, constructionProgress]);

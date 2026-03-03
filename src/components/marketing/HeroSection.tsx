@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 import { HeroCube } from './HeroCube';
 import SplitText from '@/components/ui/SplitText';
-import { ArrowRight, ArrowUp, Paperclip, Stethoscope, Wrench, Utensils, Home } from 'lucide-react';
+import { ArrowUp, Paperclip, Stethoscope, Wrench, Utensils, Home } from 'lucide-react';
 
 const QUICK_PROMPTS = [
     { text: 'Dental', icon: Stethoscope },

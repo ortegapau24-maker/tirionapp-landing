@@ -28,37 +28,40 @@ const integrations: Integration[] = [
 ];
 
 interface Particle {
-    // Current position
     x: number;
     y: number;
     z: number;
-    // Target position on the sphere surface
     tx: number;
     ty: number;
     tz: number;
-    // Velocity for explosion/reform
     vx: number;
     vy: number;
     vz: number;
-    // Sphere angles (for rotation)
     phi: number;
     theta: number;
     size: number;
     baseSize: number;
 }
 
-
-
-export default function IntegrationSphere() {
+function SphereCanvas({
+    radius,
+    delayMs,
+    isCenter,
+    startIndex
+}: {
+    radius: number;
+    delayMs: number;
+    isCenter: boolean;
+    startIndex: number;
+}) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const currentIndexRef = useRef(0);
-    const morphPhaseRef = useRef<'idle' | 'explode' | 'reform'>('idle');
+    const [currentIndex, setCurrentIndex] = useState(startIndex);
+    const currentIndexRef = useRef(startIndex);
+    const morphPhaseRef = useRef<'idle' | 'wait' | 'explode' | 'reform'>('wait');
     const morphTimerRef = useRef(0);
 
-    // Smoothly interpolated color
-    const currentColorRef = useRef(hexToRgb(integrations[0].color));
-    const targetColorRef = useRef(hexToRgb(integrations[0].color));
+    const currentColorRef = useRef(hexToRgb(integrations[startIndex].color));
+    const targetColorRef = useRef(hexToRgb(integrations[startIndex].color));
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -68,12 +71,12 @@ export default function IntegrationSphere() {
 
         let animId: number;
         let particles: Particle[] = [];
-        const SPHERE_RADIUS = 160;
-        const PARTICLE_COUNT = 600;
+        const SPHERE_RADIUS = radius;
+        // Scale particle count based on sphere size so it doesn't look too sparse or dense
+        const PARTICLE_COUNT = isCenter ? 700 : 350;
         let rotationAngle = 0;
         let isVisible = true;
 
-        // IntersectionObserver: only animate when visible
         const observer = new IntersectionObserver(
             ([entry]) => { isVisible = entry.isIntersecting; },
             { threshold: 0.05 }
@@ -94,9 +97,8 @@ export default function IntegrationSphere() {
         const initParticles = () => {
             particles = [];
             for (let i = 0; i < PARTICLE_COUNT; i++) {
-                // Fibonacci sphere distribution for even spacing
                 const goldenAngle = Math.PI * (3 - Math.sqrt(5));
-                const y = 1 - (i / (PARTICLE_COUNT - 1)) * 2; // -1 to 1
+                const y = 1 - (i / (PARTICLE_COUNT - 1)) * 2;
                 const radiusAtY = Math.sqrt(1 - y * y);
                 const theta = goldenAngle * i;
 
@@ -124,17 +126,16 @@ export default function IntegrationSphere() {
             }
         };
 
-        // Morph cycle: idle (4s) -> explode (0.6s) -> reform (0.8s) -> idle
-        const IDLE_DURATION = 2000;
+        const IDLE_DURATION = 2400; // Increased to give room for 3 spheres to cycle rhythmically
         const EXPLODE_DURATION = 350;
         const REFORM_DURATION = 450;
+        const TOTAL_CYCLE = IDLE_DURATION + EXPLODE_DURATION + REFORM_DURATION;
         let lastTime = performance.now();
 
         const triggerMorph = () => {
             morphPhaseRef.current = 'explode';
             morphTimerRef.current = 0;
 
-            // Assign explosion velocities
             particles.forEach(p => {
                 const speed = 4 + Math.random() * 6;
                 const angle1 = Math.random() * Math.PI * 2;
@@ -156,9 +157,8 @@ export default function IntegrationSphere() {
             morphPhaseRef.current = 'reform';
             morphTimerRef.current = 0;
 
-            // Reassign target positions (new distribution so it looks different)
             const goldenAngle = Math.PI * (3 - Math.sqrt(5));
-            const offset = Math.random() * Math.PI * 2; // Random rotation offset
+            const offset = Math.random() * Math.PI * 2;
             particles.forEach((p, i) => {
                 const y = 1 - (i / (PARTICLE_COUNT - 1)) * 2;
                 const radiusAtY = Math.sqrt(1 - y * y);
@@ -171,7 +171,7 @@ export default function IntegrationSphere() {
         };
 
         const draw = (now: number) => {
-            const dt = Math.min(now - lastTime, 32); // Cap delta
+            const dt = Math.min(now - lastTime, 32);
             lastTime = now;
 
             const dpr = window.devicePixelRatio || 1;
@@ -182,17 +182,21 @@ export default function IntegrationSphere() {
             const cx = w / 2;
             const cy = h / 2;
 
-            // Interpolate color
             const cc = currentColorRef.current;
             const tc = targetColorRef.current;
             cc.r += (tc.r - cc.r) * 0.04;
             cc.g += (tc.g - cc.g) * 0.04;
             cc.b += (tc.b - cc.b) * 0.04;
 
-            // Update morph state
             morphTimerRef.current += dt;
 
-            if (morphPhaseRef.current === 'idle') {
+            // Simple state machine
+            if (morphPhaseRef.current === 'wait') {
+                if (morphTimerRef.current >= delayMs) {
+                    morphPhaseRef.current = 'idle';
+                    morphTimerRef.current = 0;
+                }
+            } else if (morphPhaseRef.current === 'idle') {
                 if (morphTimerRef.current >= IDLE_DURATION) {
                     triggerMorph();
                 }
@@ -208,52 +212,42 @@ export default function IntegrationSphere() {
                 }
             }
 
-            // Slow rotation
             rotationAngle += 0.003;
-
-            // Sort particles by z for depth ordering
             const projected: { sx: number; sy: number; depth: number; size: number; alpha: number }[] = [];
 
             particles.forEach(p => {
                 const dtSec = dt / 1000;
 
                 if (morphPhaseRef.current === 'explode') {
-                    // Moving outward
                     p.x += p.vx * dtSec * 60;
                     p.y += p.vy * dtSec * 60;
                     p.z += p.vz * dtSec * 60;
-                    // Damping
                     p.vx *= 0.97;
                     p.vy *= 0.97;
                     p.vz *= 0.97;
                 } else if (morphPhaseRef.current === 'reform') {
-                    // Ease back to target
                     const t = Math.min(morphTimerRef.current / REFORM_DURATION, 1);
-                    const ease = t * t * (3 - 2 * t); // smoothstep
+                    const ease = t * t * (3 - 2 * t);
                     p.x += (p.tx - p.x) * ease * 0.25;
                     p.y += (p.ty - p.y) * ease * 0.25;
                     p.z += (p.tz - p.z) * ease * 0.25;
                 } else {
-                    // Idle: gently drift toward target with small oscillation
                     p.x += (p.tx - p.x) * 0.05;
                     p.y += (p.ty - p.y) * 0.05;
                     p.z += (p.tz - p.z) * 0.05;
                 }
 
-                // Apply Y-axis rotation
                 const cos = Math.cos(rotationAngle);
                 const sin = Math.sin(rotationAngle);
                 const rx = p.x * cos - p.z * sin;
                 const rz = p.x * sin + p.z * cos;
 
-                // Simple perspective projection
                 const perspective = 600;
                 const scale = perspective / (perspective + rz);
                 const sx = cx + rx * scale;
                 const sy = cy + p.y * scale;
                 const depth = rz;
 
-                // Depth-based alpha and size
                 const normalizedDepth = (rz + SPHERE_RADIUS) / (SPHERE_RADIUS * 2);
                 const alpha = 0.25 + normalizedDepth * 0.75;
                 const size = p.baseSize * scale * 1.5;
@@ -261,10 +255,8 @@ export default function IntegrationSphere() {
                 projected.push({ sx, sy, depth, size, alpha });
             });
 
-            // Sort back-to-front
             projected.sort((a, b) => a.depth - b.depth);
 
-            // Draw
             projected.forEach(pt => {
                 ctx.beginPath();
                 ctx.arc(pt.sx, pt.sy, pt.size, 0, Math.PI * 2);
@@ -280,7 +272,7 @@ export default function IntegrationSphere() {
         resize();
         initParticles();
         morphTimerRef.current = 0;
-        morphPhaseRef.current = 'idle';
+        morphPhaseRef.current = 'wait'; // Start by waiting for initial delay
         animId = requestAnimationFrame(draw);
 
         return () => {
@@ -288,40 +280,68 @@ export default function IntegrationSphere() {
             observer.disconnect();
             cancelAnimationFrame(animId);
         };
-    }, []);
+    }, [radius, delayMs, isCenter]);
 
     const current = integrations[currentIndex];
 
     return (
-        <div className="py-16 md:py-24 bg-white flex flex-col items-center rounded-[32px] md:rounded-[64px] m-4 md:m-10 border border-agency-border-light shadow-[0_16px_48px_rgba(0,0,0,0.04)] relative z-10">
+        <div className={`relative flex items-center justify-center shrink-0 ${isCenter
+            ? 'w-[320px] md:w-[700px] h-[550px] md:h-[750px] z-10'
+            : 'w-[200px] md:w-[320px] h-[350px] md:h-[450px] hidden md:flex opacity-60'
+            }`}>
+            <canvas
+                ref={canvasRef}
+                className="absolute inset-0 w-full h-full pointer-events-none"
+            />
 
-            <div className="text-[0.9rem] uppercase tracking-[0.15em] text-agency-text-muted mb-4 font-semibold text-center font-inter relative z-20">
+            {/* Display the integration name */}
+            <div className="relative z-10 flex flex-col items-center pointer-events-none select-none">
+                <AnimatePresence mode="wait">
+                    <motion.span
+                        key={current.name}
+                        initial={{ opacity: 0, scale: 0.8, filter: 'blur(8px)' }}
+                        animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                        exit={{ opacity: 0, scale: 1.1, filter: 'blur(8px)' }}
+                        transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                        className={`font-bold font-outfit tracking-[-0.03em] ${isCenter ? 'text-[clamp(1.5rem,2.5vw,2.2rem)]' : 'text-[clamp(1rem,1.5vw,1.3rem)]'
+                            }`}
+                        style={{ color: current.color }}
+                    >
+                        {current.name}
+                    </motion.span>
+                </AnimatePresence>
+                {isCenter && (
+                    <span className="text-agency-text-muted text-[1rem] mt-2 font-light">
+                        and {integrations.length - 1} more
+                    </span>
+                )}
+            </div>
+        </div>
+    );
+}
+
+export default function IntegrationSphere() {
+    return (
+        // Removed borders, backgrounds, margins, and shadows as requested
+        <div className="py-16 md:py-24 flex flex-col items-center relative z-10 w-full overflow-visible">
+            <div className="text-[0.9rem] uppercase tracking-[0.15em] text-agency-text-muted mb-8 font-semibold text-center font-inter relative z-20">
                 Native Integrations
             </div>
 
-            <div className="relative w-full max-w-[600px] h-[350px] md:h-[450px] mx-auto flex items-center justify-center">
-                <canvas
-                    ref={canvasRef}
-                    className="absolute inset-0 w-full h-full pointer-events-none"
-                />
-                {/* Central name label */}
-                <div className="relative z-10 flex flex-col items-center pointer-events-none select-none">
-                    <AnimatePresence mode="wait">
-                        <motion.span
-                            key={current.name}
-                            initial={{ opacity: 0, scale: 0.8, filter: 'blur(8px)' }}
-                            animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-                            exit={{ opacity: 0, scale: 1.1, filter: 'blur(8px)' }}
-                            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-[clamp(1.3rem,2vw,1.8rem)] font-bold font-outfit tracking-[-0.03em]"
-                            style={{ color: current.color }}
-                        >
-                            {current.name}
-                        </motion.span>
-                    </AnimatePresence>
-                    <span className="text-agency-text-muted text-[0.95rem] mt-2 font-light">
-                        and {integrations.length - 1} more
-                    </span>
+            <div className="flex flex-row items-center justify-center w-full max-w-[1400px] gap-4 lg:gap-8 xl:gap-8">
+                {/* Left Sphere (Delayed by 1000ms, distinct start index) */}
+                <div className="relative z-30">
+                    <SphereCanvas radius={110} delayMs={0} isCenter={false} startIndex={5} />
+                </div>
+
+                {/* Center Sphere (Master, large, delayed by 2000ms) */}
+                <div className="relative z-40">
+                    <SphereCanvas radius={220} delayMs={1000} isCenter={true} startIndex={0} />
+                </div>
+
+                {/* Right Sphere (Delayed by 3000ms, distinct start index) */}
+                <div className="relative z-20">
+                    <SphereCanvas radius={110} delayMs={2000} isCenter={false} startIndex={10} />
                 </div>
             </div>
         </div>

@@ -87,14 +87,14 @@ export function WorkflowDemo({ step }: WorkflowDemoProps) {
     const nodes: NodeDef[] = [
         { id: '1', x: 50, y: 15, show: showTrigger, label: 'Email Trigger', color: '#3B82F6', radius: 44 },
         { id: '2', x: 50, y: 30, show: showRouter, label: 'LLM Parser', color: '#8B5CF6', radius: 48 },
-        { id: '3', x: 8, y: 50, show: showZendesk, label: 'Zendesk', color: '#EF4444', radius: 38 },
-        { id: '4', x: -5, y: 72, show: showSlack, label: 'Slack', color: '#10B981', radius: 36 },
-        { id: '3b', x: 10, y: 72, show: showZendesk, label: 'Jira', color: '#F59E0B', radius: 36 },
+        { id: '3', x: 22, y: 50, show: showZendesk, label: 'Zendesk', color: '#EF4444', radius: 38 },
+        { id: '4', x: 12, y: 72, show: showSlack, label: 'Slack', color: '#10B981', radius: 36 },
+        { id: '3b', x: 28, y: 72, show: showZendesk, label: 'Jira', color: '#F59E0B', radius: 36 },
         { id: '7', x: 50, y: 52, show: showRouter, label: 'Pinecone', color: '#3B82F6', radius: 38 },
         { id: '8', x: 50, y: 74, show: showTwilio, label: 'SendGrid', color: '#06B6D4', radius: 36 },
-        { id: '5', x: 92, y: 50, show: showPostgres, label: 'PostgreSQL', color: '#10B981', radius: 38 },
-        { id: '6', x: 90, y: 72, show: showTwilio, label: 'Twilio', color: '#F22F46', radius: 36 },
-        { id: '5b', x: 105, y: 72, show: showPostgres, label: 'HubSpot', color: '#FF7A59', radius: 36 },
+        { id: '5', x: 78, y: 50, show: showPostgres, label: 'PostgreSQL', color: '#10B981', radius: 38 },
+        { id: '6', x: 72, y: 72, show: showTwilio, label: 'Twilio', color: '#F22F46', radius: 36 },
+        { id: '5b', x: 88, y: 72, show: showPostgres, label: 'HubSpot', color: '#FF7A59', radius: 36 },
     ];
 
     // Track birth times for newly-visible nodes
@@ -173,7 +173,7 @@ export function WorkflowDemo({ step }: WorkflowDemoProps) {
 
             // Apply global zoom to everything
             ctx.save();
-            const ZOOM = 1.35;
+            const ZOOM = 0.9;
             ctx.translate(w / 2, h / 2);
             ctx.scale(ZOOM, ZOOM);
             ctx.translate(-w / 2, -h / 2);

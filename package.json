@@ -9,8 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^6.39.0",
-    "@clerk/themes": "^2.4.57",
     "@gsap/react": "^2.1.2",
     "@xyflow/react": "^12.6.0",
     "class-variance-authority": "^0.7.1",
@@ -25,6 +23,7 @@
     "radix-ui": "^1.4.3",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-error-boundary": "^6.1.1",
     "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {

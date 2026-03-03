@@ -20,12 +20,12 @@ export function BentoGrid() {
     const parallaxY = useTransform(scrollYProgress, [0, 1], [60, -60]);
 
     return (
-        <div className="py-20 md:py-[120px] px-4 md:px-10 bg-agency-bg-dark relative" id="features">
-            <div className="text-center mb-16 md:mb-20">
+        <div className="py-24 md:py-[clamp(6rem,10vw,10rem)] px-4 md:px-10 bg-agency-bg-dark relative" id="features">
+            <div className="text-center mb-16 md:mb-[clamp(3.5rem,5vw,5rem)] max-w-[1200px] mx-auto">
                 <div className="mb-4 md:mb-6">
                     <SplitText
                         text="We Don't Sell Software. We Return Your Hours."
-                        className="text-[clamp(3rem,5vw,5rem)] font-outfit font-semibold leading-[1.1] text-agency-text-main"
+                        className="text-[clamp(3rem,5vw,5rem)] font-outfit font-medium leading-[1.1] tracking-[-0.02em] text-agency-text-main"
                         delay={30}
                         duration={1}
                         ease="power3.out"
@@ -38,10 +38,10 @@ export function BentoGrid() {
                         tag="h2"
                     />
                 </div>
-                <div className="max-w-[600px] mx-auto">
+                <div className="max-w-[640px] mx-auto">
                     <SplitText
                         text="Your 24/7 autonomous agency. Stop losing revenue to missed calls and forgotten follow-ups. We operate your business while you focus on growing it."
-                        className="text-[1.25rem] text-agency-text-muted"
+                        className="text-[1.125rem] text-agency-text-muted leading-[1.65]"
                         delay={10}
                         duration={0.8}
                         ease="power3.out"
@@ -60,9 +60,9 @@ export function BentoGrid() {
                 {/* Feature 1: Never Lose Another Lead (2/3 width) */}
                 <div ref={card1Ref} className="md:col-span-2 bg-agency-bg-surface rounded-[24px] md:rounded-[32px] flex flex-col md:flex-row min-h-[350px] md:min-h-[420px] overflow-hidden md:overflow-visible relative">
                     <div className="flex-1 p-6 md:p-12 flex flex-col justify-center relative z-10 bg-agency-bg-surface md:bg-transparent">
-                        <span className="text-[0.8rem] font-semibold tracking-[0.2em] uppercase text-agency-text-muted/60 mb-3 block">Lead Recovery</span>
-                        <h3 className="text-[clamp(1.8rem,2.5vw,2.4rem)] font-semibold font-outfit mb-5 text-agency-text-main leading-[1.15]">Never Lose Another Lead</h3>
-                        <p className="text-agency-text-muted text-[1.15rem] leading-[1.7]">
+                        <span className="text-[0.75rem] font-semibold tracking-[0.2em] uppercase text-agency-text-muted/60 mb-3 block">Lead Recovery</span>
+                        <h3 className="text-[clamp(1.75rem,2.5vw,2.25rem)] font-medium font-outfit mb-5 text-agency-text-main leading-[1.15]">Never Lose Another Lead</h3>
+                        <p className="text-agency-text-muted text-[1.125rem] leading-[1.7]">
                             Every missed call is revenue handed to your competition. TirionApp instantly responds, qualifies, and books appointments while you&apos;re busy with work.
                         </p>
                     </div>
@@ -77,9 +77,9 @@ export function BentoGrid() {
                 {/* Feature 2: Zero Configuration (1/3 width) */}
                 <div className="bg-agency-bg-surface rounded-[24px] md:rounded-[32px] p-6 md:p-12 flex flex-col justify-between min-h-[350px] md:min-h-[420px] overflow-hidden">
                     <div>
-                        <span className="text-[0.8rem] font-semibold tracking-[0.2em] uppercase text-agency-text-muted/60 mb-3 block">Setup</span>
-                        <h3 className="text-[clamp(1.8rem,2.5vw,2.4rem)] font-semibold font-outfit mb-5 text-agency-text-main leading-[1.15]">Zero Configuration</h3>
-                        <p className="text-agency-text-muted text-[1.15rem] leading-[1.7]">
+                        <span className="text-[0.75rem] font-semibold tracking-[0.2em] uppercase text-agency-text-muted/60 mb-3 block">Setup</span>
+                        <h3 className="text-[clamp(1.75rem,2.5vw,2.25rem)] font-medium font-outfit mb-5 text-agency-text-main leading-[1.15]">Zero Configuration</h3>
+                        <p className="text-agency-text-muted text-[1.125rem] leading-[1.7]">
                             Don&apos;t spend 40 hours building workflows. Tell the AI your problem in plain English, and it deploys the solution automatically.
                         </p>
                     </div>
@@ -93,9 +93,9 @@ export function BentoGrid() {
                 {/* Feature 3: Done-For-You Execution (full width) — parallax image */}
                 <div ref={card3Ref} className="md:col-span-3 bg-agency-bg-surface rounded-[24px] md:rounded-[32px] flex flex-col md:flex-row min-h-[350px] md:min-h-[380px] overflow-hidden md:overflow-visible relative">
                     <div className="flex-1 p-6 md:p-12 flex flex-col justify-center max-w-full md:max-w-[50%] relative z-10 bg-agency-bg-surface md:bg-transparent">
-                        <span className="text-[0.8rem] font-semibold tracking-[0.2em] uppercase text-agency-text-muted/60 mb-3 block">Results</span>
-                        <h3 className="text-[clamp(1.8rem,2.5vw,2.4rem)] font-semibold font-outfit mb-5 text-agency-text-main leading-[1.15]">Done-For-You Execution</h3>
-                        <p className="text-agency-text-muted text-[1.15rem] leading-[1.7]">
+                        <span className="text-[0.75rem] font-semibold tracking-[0.2em] uppercase text-agency-text-muted/60 mb-3 block">Results</span>
+                        <h3 className="text-[clamp(1.75rem,2.5vw,2.25rem)] font-medium font-outfit mb-5 text-agency-text-main leading-[1.15]">Done-For-You Execution</h3>
+                        <p className="text-agency-text-muted text-[1.125rem] leading-[1.7]">
                             We don&apos;t give you another complex tool to learn. We give you results. Monitor daily appointments booked, messages sent, and leads captured in real-time.
                         </p>
                     </div>

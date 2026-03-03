@@ -2,7 +2,6 @@
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import Link from 'next/link';
 
 export function Footer() {
     const containerRef = useRef<HTMLElement>(null);
@@ -39,19 +38,20 @@ export function Footer() {
                 <div className="flex flex-col">
                     <h4 className="font-outfit font-semibold text-[1.1rem] mb-6 text-agency-text-main">Platform</h4>
                     <ul className="space-y-4">
-                        <li><Link href="/#agents" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">Agents</Link></li>
-                        <li><Link href="/#library" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">Workflows</Link></li>
-                        <li><Link href="/#pricing" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">Billing</Link></li>
-                        <li><Link href="/changelog" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">Changelog</Link></li>
+                        <li><a href="#features" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">Features</a></li>
+                        <li><a href="#agents" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">Agents</a></li>
+                        <li><a href="#library" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">Workflows</a></li>
+                        <li><a href="#pricing" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">Pricing</a></li>
                     </ul>
                 </div>
 
                 <div className="flex flex-col">
                     <h4 className="font-outfit font-semibold text-[1.1rem] mb-6 text-agency-text-main">Company</h4>
                     <ul className="space-y-4">
-                        <li><Link href="/about" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">About</Link></li>
-                        <li><Link href="/customers" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">Customers</Link></li>
-                        <li><Link href="/careers" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">Careers</Link></li>
+                        <li><a href="/about" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">About</a></li>
+                        <li><a href="/customers" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">Customers</a></li>
+                        <li><a href="/careers" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">Careers</a></li>
+                        <li><a href="/changelog" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">Changelog</a></li>
                     </ul>
                 </div>
             </div>
@@ -59,8 +59,8 @@ export function Footer() {
             <div className="border-t border-agency-border-light max-w-[1200px] mx-auto px-10 pt-8 pb-10 flex flex-col md:flex-row justify-between text-agency-text-muted text-sm gap-4">
                 <div>© 2026 TirionApp. All rights reserved.</div>
                 <div className="flex gap-6">
-                    <Link href="/privacy" className="hover:text-agency-accent-solid transition-colors">Privacy</Link>
-                    <Link href="/terms" className="hover:text-agency-accent-solid transition-colors">Terms</Link>
+                    <a href="/privacy" className="hover:text-agency-accent-solid transition-colors">Privacy</a>
+                    <a href="/terms" className="hover:text-agency-accent-solid transition-colors">Terms</a>
                 </div>
             </div>
 

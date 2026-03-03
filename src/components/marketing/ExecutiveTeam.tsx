@@ -25,6 +25,12 @@ const agents = [
         image: "/images/tirionapp/v2/5_resultado.webp",
         isComingSoon: true,
     },
+    {
+        title: "Call Center Agent",
+        subtitle: "Deploys human-like Voice AI to handle thousands of inbound/outbound calls simultaneously with <500ms latency. Integrates directly with n8n to check inventory, book appointments in your calendar, and update CRM records in real-time during the conversation.",
+        image: "/images/tirionapp/v2/2_resultado.webp",
+        isComingSoon: true,
+    },
 ];
 
 function AgentImage({ agent, index, progress, exitProgress, isLast, isFirst, borderProgress, isMobile }: { agent: any; index: number; progress: MotionValue<number>; exitProgress: MotionValue<number>; isLast: boolean; isFirst: boolean; borderProgress: MotionValue<number>; isMobile: boolean }) {
@@ -194,11 +200,11 @@ function AgentText({ agent, index, progress, isLast, isFirst, isMobile }: { agen
                         </span>
                     </div>
                 )}
-                <h3 className="text-[clamp(1.8rem,4vw,4rem)] font-outfit font-semibold leading-[1.1] mb-2 md:mb-4 text-agency-text-main">
+                <h3 className="text-[clamp(1.75rem,2.5vw,2.25rem)] font-outfit font-medium leading-[1.1] mb-2 md:mb-4 text-agency-text-main">
                     {agent.title}
                 </h3>
             </div>
-            <p className="text-[1rem] md:text-[1.2rem] text-agency-text-secondary font-light max-w-full md:max-w-[90%]">
+            <p className="text-[1.125rem] text-agency-text-secondary font-light max-w-full md:max-w-[90%] leading-[1.65]">
                 {agent.subtitle}
             </p>
         </motion.div>
@@ -268,8 +274,8 @@ export function ExecutiveTeam() {
                 >
                     <Grainient
                         color1="#F8FAFC"
-                        color2="#2563EB"
-                        color3="#1E40AF"
+                        color2="#333333"
+                        color3="#1a1a1a"
                         timeSpeed={0.5}
                         grainAmount={0.06}
                         grainScale={3.0}
@@ -287,7 +293,7 @@ export function ExecutiveTeam() {
 
                 {/* Static Section Title - starts behind image, rises up */}
                 <motion.div className="absolute top-[8vh] md:top-[4vh] left-0 right-0 flex justify-center z-20 pointer-events-none" style={{ y: sectionTitleY }}>
-                    <h2 className="text-[clamp(2rem,5.5vw,7rem)] font-outfit font-semibold text-agency-text-main tracking-tight text-center whitespace-normal md:whitespace-nowrap max-w-[90vw] md:max-w-none leading-[1.1]">
+                    <h2 className="text-[clamp(3.5rem,6vw,5.5rem)] font-outfit font-medium text-agency-text-main tracking-[-0.02em] text-center whitespace-normal md:whitespace-nowrap max-w-[90vw] md:max-w-none leading-[1.1]">
                         The Autonomous Executive Team.
                     </h2>
                 </motion.div>

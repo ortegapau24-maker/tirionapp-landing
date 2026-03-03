@@ -35,7 +35,7 @@ export function FAQs() {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     return (
-        <section className="py-24 md:py-[160px] px-4 md:px-10 bg-agency-bg-dark flex justify-center w-full relative overflow-hidden" id="faq">
+        <section className="py-24 md:py-[clamp(6rem,10vw,10rem)] px-4 md:px-10 bg-agency-bg-dark flex justify-center w-full relative overflow-hidden" id="faq">
             {/* Subtle background accent */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-gradient-to-b from-white/[0.02] to-transparent rounded-full blur-3xl pointer-events-none" />
 
@@ -43,12 +43,12 @@ export function FAQs() {
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
                     <div className="flex-1">
-                        <div className="text-[0.85rem] uppercase tracking-[0.2em] text-agency-text-muted/60 font-semibold mb-5 font-inter">
+                        <div className="text-[0.75rem] uppercase tracking-[0.2em] text-agency-text-muted/60 font-semibold mb-5 font-inter">
                             FAQ
                         </div>
                         <SplitText
                             text="Common Questions"
-                            className="text-[clamp(2.5rem,4.5vw,4rem)] font-outfit font-semibold leading-[1.05] tracking-[-0.03em] text-white"
+                            className="text-[clamp(3rem,5vw,5rem)] font-outfit font-medium leading-[1.05] tracking-[-0.02em] text-white"
                             delay={25}
                             duration={1}
                             ease="power3.out"
@@ -61,7 +61,7 @@ export function FAQs() {
                             tag="h2"
                         />
                     </div>
-                    <p className="text-[1.15rem] text-agency-text-muted max-w-[340px] font-light leading-[1.6]">
+                    <p className="text-[1.125rem] text-agency-text-muted max-w-[340px] font-light leading-[1.65]">
                         Quick answers to help you evaluate if TirionApp is the right fit for your operation.
                     </p>
                 </div>

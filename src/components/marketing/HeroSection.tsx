@@ -2,11 +2,15 @@
 
 import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRouter } from 'next/navigation';
-import { useUser } from '@clerk/nextjs';
-import { HeroCube } from './HeroCube';
+import dynamic from 'next/dynamic';
+import { ErrorBoundary } from 'react-error-boundary';
 import SplitText from '@/components/ui/SplitText';
 import { ArrowUp, Paperclip, Stethoscope, Wrench, Utensils, Home } from 'lucide-react';
+
+const HeroCube = dynamic(() => import('./HeroCube').then(mod => mod.HeroCube), {
+    ssr: false,
+    loading: () => <div className="w-full h-full bg-transparent" />
+});
 
 const QUICK_PROMPTS = [
     { text: 'Dental', icon: Stethoscope },
@@ -17,7 +21,6 @@ const QUICK_PROMPTS = [
 
 export function HeroSection() {
     const containerRef = useRef<HTMLDivElement>(null);
-    const router = useRouter();
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end start"]
@@ -27,20 +30,17 @@ export function HeroSection() {
     const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
     const titleOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-    const { user } = useUser();
     const [input, setInput] = useState("");
 
     const handleSend = (text?: string) => {
         const message = text || input.trim();
         if (!message) return;
 
-        if (!user) {
-            sessionStorage.setItem('tirion_pending_message', message);
-            router.push('/sign-up');
-            return;
-        }
-
-        router.push('/sign-up');
+        // Save the first prompt so the app subdomain can read it on load.
+        // We use localStorage instead of sessionStorage so it persists across domains (if sharing same root) or via URL params.
+        // The best way for cross-domain is standard URL parameters, let's append it to the redirect link:
+        const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://app.tirionapp.com';
+        window.location.href = `${appUrl}?prompt=${encodeURIComponent(message)}`;
     };
 
     return (
@@ -51,14 +51,16 @@ export function HeroSection() {
 
             {/* 3D Particle Cube */}
             <div className="absolute inset-0 z-0 opacity-60 mix-blend-multiply">
-                <HeroCube />
+                <ErrorBoundary fallback={<div className="w-full h-full bg-transparent" />}>
+                    <HeroCube />
+                </ErrorBoundary>
             </div>
 
             <motion.div style={{ y: contentY }} className="text-center z-10 w-full max-w-[1000px] px-4 md:px-6 flex flex-col items-center gap-8 md:gap-10 mb-20 md:mb-[8vw]">
                 <div className="max-w-[800px] mx-auto">
                     <SplitText
                         text="Your 24/7 autonomous agency. We don't sell software, we return your time. Recover lost leads and operate your business while you sleep."
-                        className="text-[clamp(1rem,4vw,1.5rem)] md:text-[clamp(1.2rem,2vw,1.5rem)] text-agency-text-muted font-light"
+                        className="text-[1.125rem] md:text-[1.25rem] text-agency-text-muted font-light leading-[1.65]"
                         delay={15}
                         duration={0.8}
                         ease="power3.out"

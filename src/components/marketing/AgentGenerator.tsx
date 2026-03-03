@@ -4,8 +4,15 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import PricingParticles from './PricingParticles';
-import { WorkflowDemo } from './WorkflowDemo';
 import SplitText from '@/components/ui/SplitText';
+import dynamic from 'next/dynamic';
+import { ErrorBoundary } from 'react-error-boundary';
+
+const WorkflowDemo = dynamic(() => import('./WorkflowDemo').then(mod => mod.WorkflowDemo), {
+    ssr: false,
+    loading: () => <div className="w-full h-full bg-transparent" />
+});
+
 
 export function AgentGenerator() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -58,20 +65,20 @@ export function AgentGenerator() {
     }, [isInView]);
 
     return (
-        <div className="relative overflow-hidden py-24 md:py-[160px] px-4 md:px-10 bg-agency-bg-dark flex justify-center w-full">
+        <div className="relative overflow-hidden py-24 md:py-[clamp(6rem,10vw,10rem)] px-4 md:px-10 bg-agency-bg-dark flex justify-center w-full">
             {/* Background Particles Layer */}
             <div className="absolute inset-0 z-0 pointer-events-none">
                 <PricingParticles activeColor="#FFFFFF" targetSelector=".chat-card-container" blendMode="mix-blend-normal opacity-60" />
             </div>
 
-            <div className="flex flex-col gap-[80px] max-w-[1200px] w-full items-center relative z-10 mt-10">
+            <div className="flex flex-col gap-[clamp(3.5rem,5vw,5rem)] max-w-[1200px] w-full items-center relative z-10 mt-10">
 
                 {/* Top: Copy */}
                 <div className="w-full text-center max-w-[800px] flex flex-col items-center">
                     <div className="mb-6">
                         <SplitText
                             text="Need something bespoke? Just ask in chat."
-                            className="text-[clamp(2.5rem,4vw,3.5rem)] font-outfit font-semibold leading-[1.1] tracking-[-0.02em] text-agency-text-main"
+                            className="text-[clamp(3rem,5vw,5rem)] font-outfit font-medium leading-[1.1] tracking-[-0.02em] text-agency-text-main"
                             delay={25}
                             duration={1}
                             ease="power3.out"
@@ -111,7 +118,7 @@ export function AgentGenerator() {
                     viewport={{ once: true, margin: "-10%" }}
                     transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                 >
-                    <div className="w-full max-w-[1920px] h-auto lg:h-[620px] bg-white/30 backdrop-blur-2xl overflow-hidden flex flex-col lg:flex-row rounded-[24px] md:rounded-[28px] border border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)]" style={{ transform: 'rotateX(4deg) rotateY(-2deg)', transformStyle: 'preserve-3d' }}>
+                    <div className="w-full max-w-[1920px] h-auto lg:h-[620px] relative bg-[#FAFAFA] overflow-hidden flex flex-col lg:flex-row rounded-[24px] md:rounded-[28px] border border-gray-200 shadow-[0_8px_32px_rgba(0,0,0,0.08)]">
 
                         {/* Left Side: Chat Sidebar (Fixed Width) */}
                         <div
@@ -216,7 +223,9 @@ export function AgentGenerator() {
 
                         {/* Right Side: Workflow Canvas (Dynamic Width) */}
                         <div className="w-full lg:flex-1 min-h-[350px] sm:min-h-[450px] relative overflow-hidden flex">
-                            <WorkflowDemo step={step} />
+                            <ErrorBoundary fallback={<div className="w-full h-full bg-transparent flex items-center justify-center text-gray-400">Loading visualization...</div>}>
+                                <WorkflowDemo step={step} />
+                            </ErrorBoundary>
                         </div>
                     </div>
                 </motion.div>

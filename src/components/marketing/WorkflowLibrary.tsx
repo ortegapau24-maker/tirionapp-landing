@@ -12,43 +12,43 @@ const categories = [
         title: "Sales",
         items: ["Lead Qualification", "Follow-Up", "Proposals", "Contracts"],
         image: "/images/tirionapp/v2/1_resultado.webp",
-        color: "from-blue-500/10 to-[#1E40AF]/20"
+        color: "from-neutral-400/10 to-neutral-900/20"
     },
     {
         title: "Operations",
         items: ["Meetings", "Reports", "Support", "Onboarding"],
         image: "/images/tirionapp/v2/5_resultado.webp",
-        color: "from-purple-500/10 to-[#1E40AF]/20"
+        color: "from-neutral-500/10 to-neutral-900/20"
     },
     {
         title: "Communication",
         items: ["AI Phone Calls", "WhatsApp", "Emails", "Web Chat"],
         image: "/images/tirionapp/v2/2_resultado.webp",
-        color: "from-emerald-500/10 to-[#1E40AF]/20"
+        color: "from-neutral-300/10 to-neutral-800/20"
     },
     {
         title: "Reputation",
         items: ["Reviews", "Responses", "Monitoring"],
         image: "/images/tirionapp/v2/6_resultado.webp",
-        color: "from-amber-500/10 to-[#1E40AF]/20"
+        color: "from-neutral-600/10 to-neutral-900/20"
     },
     {
         title: "Payments",
         items: ["Automated Billing", "Invoicing", "Reminders", "Recovery"],
         image: "/images/tirionapp/v2/3_resultado.webp",
-        color: "from-rose-500/10 to-[#1E40AF]/20"
+        color: "from-neutral-400/10 to-neutral-800/20"
     },
     {
         title: "Content",
         items: ["Social Media", "Repurposing", "Scheduling"],
         image: "/images/tirionapp/v2/8_resultado.webp",
-        color: "from-cyan-500/10 to-[#1E40AF]/20"
+        color: "from-cyan-500/10 to-[#1a1a1a]/20"
     },
     {
         title: "Retention",
         items: ["Churn Risk", "Referrals", "Loyalty"],
         image: "/images/tirionapp/v2/4_resultado.webp",
-        color: "from-indigo-500/10 to-[#1E40AF]/20"
+        color: "from-indigo-500/10 to-[#1a1a1a]/20"
     }
 ];
 
@@ -66,6 +66,9 @@ export function WorkflowLibrary() {
         const updateSize = () => {
             if (scrollTrackRef.current) {
                 const viewportWidth = document.documentElement.clientWidth || window.innerWidth;
+                // scrollWidth inherently includes the 30px start and 30px end spacers.
+                // To stop perfectly at the end of the track (leaving the end spacer visible),
+                // we translate by exactly scrollWidth - viewportWidth.
                 setMaxTranslate(scrollTrackRef.current.scrollWidth - viewportWidth);
             }
         };
@@ -86,11 +89,11 @@ export function WorkflowLibrary() {
             <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
                 {/* Background ambient color */}
                 <div className="absolute inset-0 bg-white pointer-events-none z-0" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(37,99,235,0.03)_0,transparent_70%)] pointer-events-none z-0" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.03)_0,transparent_70%)] pointer-events-none z-0" />
 
                 {/* Fixed Header */}
                 <div className="absolute top-6 sm:top-10 w-full px-4 md:px-10 z-20 pointer-events-none">
-                    <h2 className="text-[clamp(2.5rem,4vw,4rem)] font-outfit font-semibold leading-[1.1] text-agency-text-main">
+                    <h2 className="text-[clamp(3rem,5vw,5rem)] font-outfit font-medium leading-[1.1] tracking-[-0.02em] text-agency-text-main">
                         The Automation Library.
                     </h2>
                 </div>
@@ -102,7 +105,7 @@ export function WorkflowLibrary() {
                     className="flex w-max h-full items-center relative z-10 gap-8 sm:gap-16 lg:gap-24 pt-24 pb-12"
                 >
                     {/* Start Spacer */}
-                    <div className="w-4 md:w-10 shrink-0" />
+                    <div className="w-[30px] shrink-0" />
                     {categories.map((cat, index) => {
                         return (
                             <div
@@ -121,8 +124,8 @@ export function WorkflowLibrary() {
                                     <div className="flex flex-col gap-3 sm:gap-4">
                                         {cat.items.map((item, j) => (
                                             <div key={j} className="flex items-center gap-4 group">
-                                                <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center transition-colors group-hover:bg-[#2563EB]/10">
-                                                    <svg className="w-4 h-4 text-slate-400 group-hover:text-[#2563EB]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center transition-colors group-hover:bg-[#333333]/10">
+                                                    <svg className="w-4 h-4 text-slate-400 group-hover:text-[#333333]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                                                     </svg>
                                                 </div>
@@ -141,8 +144,8 @@ export function WorkflowLibrary() {
                                         <Grainient
                                             key={`grainient-${index}`}
                                             color1="#F8FAFC"
-                                            color2="#2563EB"
-                                            color3="#1E40AF"
+                                            color2="#333333"
+                                            color3="#1a1a1a"
                                         />
                                     </div>
 

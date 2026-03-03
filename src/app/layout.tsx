@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
-import { ClerkProviderWrapper } from '@/components/providers/ClerkProviderWrapper';
 
 const TITLE = "TirionApp — AI Automation Platform";
 const DESCRIPTION = "The cinematic operating system for the AI-first agency. Deploy autonomous workflows in minutes. Connect your CRM, scale execution, and recover lost time.";
@@ -72,17 +71,15 @@ export default function RootLayout({
   };
 
   return (
-    <ClerkProviderWrapper>
-      <html lang="en">
-        <body className={`${GeistSans.variable} antialiased`}>
-          {children}
-          {/* Inject JSON-LD Scripts for SEO/GEO */}
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-          />
-        </body>
-      </html>
-    </ClerkProviderWrapper>
+    <html lang="en">
+      <body className={`${GeistSans.variable} antialiased`}>
+        {children}
+        {/* Inject JSON-LD Scripts for SEO/GEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </body>
+    </html>
   );
 }

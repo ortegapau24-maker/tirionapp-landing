@@ -15,7 +15,7 @@ const steps = [
         image: "/images/tirionapp/v2/6_resultado.webp",
         bgColor: "#E8DDD3",
         highlights: ["No software to configure", "Zero-downtime integration", "Instant ROI discovery"],
-        grainient: { color1: "#F8FAFC", color2: "#2563EB", color3: "#1E40AF" }
+        grainient: { color1: "#F8FAFC", color2: "#333333", color3: "#1a1a1a" }
     },
     {
         num: "02",
@@ -24,7 +24,7 @@ const steps = [
         image: "/images/tirionapp/v2/9_resultado.webp",
         bgColor: "#D3DEE8",
         highlights: ["Conversational Setup", "Automated Playbook Generation", "Actionable Execution Plans"],
-        grainient: { color1: "#F8FAFC", color2: "#2563EB", color3: "#1E40AF" }
+        grainient: { color1: "#F8FAFC", color2: "#333333", color3: "#1a1a1a" }
     },
     {
         num: "03",
@@ -33,7 +33,7 @@ const steps = [
         image: "/images/tirionapp/v2/8_resultado.webp",
         bgColor: "#D8E8D3",
         highlights: ["Isolated Dry-Runs", "Human-in-the-loop Alignment", "10k+ Scenario Testing"],
-        grainient: { color1: "#F8FAFC", color2: "#2563EB", color3: "#1E40AF" }
+        grainient: { color1: "#F8FAFC", color2: "#333333", color3: "#1a1a1a" }
     },
     {
         num: "04",
@@ -42,7 +42,7 @@ const steps = [
         image: "/images/tirionapp/v2/7_resultado.webp",
         bgColor: "#E3D3E8",
         highlights: ["Sub-second Latency", "Infinite Horizontal Scaling", "Universal Inbox Hand-off"],
-        grainient: { color1: "#F8FAFC", color2: "#2563EB", color3: "#1E40AF" }
+        grainient: { color1: "#F8FAFC", color2: "#333333", color3: "#1a1a1a" }
     }
 ];
 
@@ -79,7 +79,7 @@ function StepItem({ step, index, setActiveIndex }: { step: StepData; index: numb
                 <div className="mb-6">
                     <SplitText
                         text={step.title}
-                        className="text-[clamp(2rem,3vw,3rem)] font-semibold text-agency-text-main leading-[1.1] font-outfit tracking-[-0.02em]"
+                        className="text-[clamp(1.75rem,2.5vw,2.25rem)] font-medium text-agency-text-main leading-[1.1] font-outfit tracking-[-0.02em]"
                         delay={20}
                         duration={0.8}
                         ease="power3.out"
@@ -158,7 +158,7 @@ function StepItem({ step, index, setActiveIndex }: { step: StepData; index: numb
                         </div>
 
                         {/* Inner Image */}
-                        <div className="absolute inset-0 bg-cover bg-center rounded-[32px] mix-blend-multiply opacity-90" style={{ backgroundImage: `url(${step.image})`, transform: 'scale(1.15)' }} />
+                        <div className="absolute inset-0 bg-cover bg-center rounded-[32px] z-10" style={{ backgroundImage: `url(${step.image})`, transform: 'scale(1.15)' }} />
 
                         {/* Noise overlay */}
                         <div className="absolute inset-0 rounded-[32px] z-10 pointer-events-none opacity-40 mix-blend-overlay"
@@ -200,8 +200,8 @@ export function HowItWorks() {
                 {/* Header Section */}
                 <div className="mb-[8vh] border-b border-agency-border-light pb-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
                     <div>
-                        <div className="text-[1.2rem] text-black/60 font-semibold tracking-[0.15em] mb-4 uppercase font-outfit">Implementation</div>
-                        <h2 className="text-[clamp(3.5rem,5vw,5.5rem)] font-outfit text-agency-text-main font-semibold leading-[1] tracking-[-0.03em] max-w-[800px]">
+                        <div className="text-[0.75rem] text-black/60 font-semibold tracking-[0.2em] mb-4 uppercase font-outfit">Implementation</div>
+                        <h2 className="text-[clamp(3.5rem,6vw,5.5rem)] font-outfit text-agency-text-main font-medium leading-[1] tracking-[-0.02em] max-w-[800px]">
                             How We Give Your Time Back.
                         </h2>
                     </div>
@@ -257,7 +257,7 @@ export function HowItWorks() {
                                 {steps.map((step, index) => (
                                     <div
                                         key={index}
-                                        className="absolute inset-0 bg-cover bg-center transition-all duration-[1500ms] ease-[cubic-bezier(0.2,0.8,0.2,1)] rounded-[48px] mix-blend-multiply opacity-90"
+                                        className="absolute inset-0 bg-cover bg-center transition-all duration-[1500ms] ease-[cubic-bezier(0.2,0.8,0.2,1)] rounded-[48px] z-[5]"
                                         style={{
                                             backgroundImage: `url(${step.image})`,
                                             opacity: activeIndex === index ? 1 : 0,

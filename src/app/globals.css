@@ -60,6 +60,24 @@
 
 :root {
   --radius: 0.625rem;
+
+  /* ── Swiss Design System ── */
+  /* Typographic Scale (Major Third — 1.25 ratio) */
+  --swiss-text-xs: 0.75rem;
+  --swiss-text-sm: 0.875rem;
+  --swiss-text-base: 1.125rem;
+  --swiss-text-lg: 1.25rem;
+  --swiss-text-h3: clamp(1.75rem, 2.5vw, 2.25rem);
+  --swiss-text-h2: clamp(3rem, 5vw, 5rem);
+  --swiss-text-display: clamp(3.5rem, 6vw, 5.5rem);
+
+  /* Spacing Scale (8px base unit) */
+  --swiss-section-py: clamp(6rem, 10vw, 10rem);
+  --swiss-section-gap: clamp(3.5rem, 5vw, 5rem);
+  --swiss-card-padding: clamp(1.5rem, 3vw, 3rem);
+  --swiss-grid-max: 1200px;
+  --swiss-grid-gutter: clamp(1rem, 2.5vw, 2.5rem);
+
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);

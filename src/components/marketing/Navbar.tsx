@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
+
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://app.tirionapp.com';
 
 const navLinks = [
     { href: '/#features', label: 'Features' },
     { href: '/#library', label: 'Library' },
     { href: '/#agents', label: 'Agents' },
     { href: '/#pricing', label: 'Pricing' },
-    { href: '/about', label: 'About' },
 ];
 
 export function Navbar() {
@@ -48,9 +48,9 @@ export function Navbar() {
                     className={`${pill} h-[56px] px-4 pl-6 gap-4 hidden md:flex`}
                 >
                     <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="font-outfit font-semibold text-[1.4rem] tracking-tight text-[#050505] no-underline whitespace-nowrap cursor-pointer">TirionApp</a>
-                    <Link href="/sign-up" className="bg-[#050505] text-white rounded-full font-medium text-sm px-6 py-2.5 transition-all duration-300 hover:bg-[#222] hover:scale-105 whitespace-nowrap text-center no-underline">
+                    <a href={`${APP_URL}`} className="bg-[#050505] text-white rounded-full font-medium text-sm px-6 py-2.5 transition-all duration-300 hover:bg-[#222] hover:scale-105 whitespace-nowrap text-center no-underline">
                         Start Building
-                    </Link>
+                    </a>
                 </motion.nav>
 
                 {/* Desktop Menu pill (hidden on mobile) */}
@@ -200,9 +200,9 @@ export function Navbar() {
                                     transition={{ duration: 0.3, delay: 0.4, ease: "easeOut" }}
                                     className="mt-8 w-full max-w-[300px]"
                                 >
-                                    <Link href="/sign-up" className="flex justify-center w-full bg-[#050505] text-white rounded-full font-medium text-[1.1rem] px-8 py-4 transition-all duration-300 hover:scale-105 no-underline">
+                                    <a href={`${APP_URL}`} className="flex justify-center w-full bg-[#050505] text-white rounded-full font-medium text-[1.1rem] px-8 py-4 transition-all duration-300 hover:scale-105 no-underline">
                                         Start Building
-                                    </Link>
+                                    </a>
                                 </motion.div>
                             </div>
                         </motion.div>

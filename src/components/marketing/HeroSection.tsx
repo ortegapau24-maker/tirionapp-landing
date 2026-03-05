@@ -73,7 +73,7 @@ export function HeroSection() {
             >
                 <SplitText
                     text="Recover lost leads and operate your business while you sleep."
-                    className="text-[0.9rem] text-[#0032A0] font-medium leading-[1.7]"
+                    className="text-[1.05rem] text-[#0032A0] font-medium leading-[1.7]"
                     delay={15}
                     duration={0.8}
                     ease="power3.out"

@@ -133,7 +133,7 @@ function AgentImage({ agent, index, progress, exitProgress, isLast, isFirst, bor
     return (
         <motion.div
             style={{ x, y, width, height, zIndex, opacity, borderRadius: imageBorderRadius }}
-            className="absolute overflow-hidden flex items-center justify-center pointer-events-auto bg-transparent"
+            className="absolute overflow-visible flex items-center justify-center pointer-events-auto bg-transparent"
         >
             <motion.div
                 className="w-full h-full bg-contain bg-center bg-no-repeat shrink-0 origin-center relative z-20"

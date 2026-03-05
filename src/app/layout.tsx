@@ -15,14 +15,14 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     url: "https://www.tirionapp.com",
     siteName: "TirionApp",
-    images: [{ url: "/images/og-image.jpg", width: 1200, height: 630 }],
+    images: [{ url: "/images/og-image.webp", width: 1200, height: 630 }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: ["/images/og-image.jpg"],
+    images: ["/images/og-image.webp"],
   }
 };
 

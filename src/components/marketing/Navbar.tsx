@@ -6,9 +6,9 @@ import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://app.tirionapp.com';
 
 const navLinks = [
-    { href: '/#features', label: 'Features' },
     { href: '/#library', label: 'Library' },
     { href: '/#agents', label: 'Agents' },
+    { href: '/#how-it-works', label: 'How it Works' },
     { href: '/#pricing', label: 'Pricing' },
 ];
 

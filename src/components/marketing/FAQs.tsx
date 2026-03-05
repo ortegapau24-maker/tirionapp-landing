@@ -83,7 +83,8 @@ export function FAQs() {
                         return (
                             <motion.div
                                 key={index}
-                                className="overflow-hidden rounded-2xl border border-white/10 transition-colors duration-300"
+                                layout
+                                className="overflow-hidden rounded-2xl border border-white/10 transition-colors duration-300 transform-gpu"
                                 style={{ backgroundColor: active ? '#0032A0' : '#1c1c1e' }}
                                 initial={false}
                                 onMouseEnter={() => setHoveredIndex(index)}
@@ -119,7 +120,11 @@ export function FAQs() {
                                             initial={{ height: 0, opacity: 0 }}
                                             animate={{ height: 'auto', opacity: 1 }}
                                             exit={{ height: 0, opacity: 0 }}
-                                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                                            transition={{
+                                                height: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
+                                                opacity: { duration: 0.3, delay: 0.1 }
+                                            }}
+                                            className="overflow-hidden"
                                         >
                                             <div className="px-4 md:px-6 pb-4 md:pb-6 pl-10 md:pl-[4.5rem] pr-6 md:pr-10 text-[1rem] md:text-[1.05rem] text-white/75 leading-[1.75] font-inter font-light">
                                                 {faq.answer}

@@ -48,11 +48,11 @@ export function HeroSection() {
             {/* Left text — absolutely pinned to left margin */}
             <motion.div
                 style={{ y: contentY }}
-                className="hidden md:flex absolute left-0 bottom-[calc(50%-120px)] w-[clamp(160px,14vw,220px)] px-6 md:px-10 z-20 pointer-events-none"
+                className="hidden md:flex absolute left-0 bottom-[calc(50%-120px)] w-[clamp(200px,18vw,280px)] px-6 md:px-10 z-20 pointer-events-none"
             >
                 <SplitText
                     text="Your 24/7 autonomous agency. We don't sell software, we return your time."
-                    className="text-[0.9rem] text-[#0032A0] font-medium leading-[1.7]"
+                    className="text-[1.05rem] text-[#0032A0] font-medium leading-[1.7]"
                     delay={15}
                     duration={0.8}
                     ease="power3.out"
@@ -69,7 +69,7 @@ export function HeroSection() {
             {/* Right text — absolutely pinned to right margin */}
             <motion.div
                 style={{ y: contentY }}
-                className="hidden md:flex absolute right-0 bottom-[calc(50%-120px)] w-[clamp(160px,14vw,220px)] px-6 md:px-10 z-20 pointer-events-none"
+                className="hidden md:flex absolute right-0 bottom-[calc(50%-120px)] w-[clamp(200px,18vw,280px)] px-6 md:px-10 z-20 pointer-events-none"
             >
                 <SplitText
                     text="Recover lost leads and operate your business while you sleep."

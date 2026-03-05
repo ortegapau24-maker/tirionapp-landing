@@ -11,37 +11,37 @@ const steps = [
     {
         num: "01",
         title: "Audit The Revenue Leaks",
-        desc: "Every missed call and forgotten follow-up costs you money. We connect to your existing tools—calculating exactly where you're losing hours and revenue—and deploy an autonomous system to recover it instantly.",
-        image: "/images/tirionapp/v2/6_resultado.webp",
+        desc: "Every missed call is revenue handed to your competition. We connect to your existing tools and calculate exactly where you're losing hours and revenue — then deploy a system to recover it instantly.",
+        image: "/images/tirionapp/retro/6_resultado.webp",
         bgColor: "#E8DDD3",
-        highlights: ["No software to configure", "Zero-downtime integration", "Instant ROI discovery"],
+        highlights: ["No software to configure", "Works with your existing tools", "See ROI immediately"],
         grainient: { color1: "#F8FAFC", color2: "#333333", color3: "#1a1a1a" }
     },
     {
         num: "02",
-        title: "The Strategy Mapping Interview",
-        desc: "Instead of complex visual builders, you simply talk to our AI Strategy Agent. It interviews you about your business objectives, maps your operational bottlenecks, and autonomously drafts the required prompt sequences and tool access policies.",
-        image: "/images/tirionapp/v2/9_resultado.webp",
+        title: "Tell Us What You Need",
+        desc: "No complicated drag-and-drop builders. Just describe what you need in plain English — our AI interviews you about your business, maps your bottlenecks, and builds the solution automatically.",
+        image: "/images/tirionapp/retro/9_resultado.webp",
         bgColor: "#D3DEE8",
-        highlights: ["Conversational Setup", "Automated Playbook Generation", "Actionable Execution Plans"],
+        highlights: ["Plain English setup", "AI builds it for you", "Ready in minutes"],
         grainient: { color1: "#F8FAFC", color2: "#333333", color3: "#1a1a1a" }
     },
     {
         num: "03",
-        title: "Sandbox Simulation & Alignment",
-        desc: "Unshakeable trust is built through verification. Before deployment, your custom agent swarm is placed in an isolated sandbox. It runs dry on 10,000 historical scenarios. You interact with AI-generated Phase Cards and deploy with a zero-friction approval process.",
-        image: "/images/tirionapp/v2/8_resultado.webp",
+        title: "We Test Everything First",
+        desc: "Before anything goes live, your automations run through sandbox simulations. You review the results, approve with one click, and deploy with confidence — no surprises.",
+        image: "/images/tirionapp/retro/8_resultado.webp",
         bgColor: "#D8E8D3",
-        highlights: ["Isolated Dry-Runs", "Human-in-the-loop Alignment", "10k+ Scenario Testing"],
+        highlights: ["Safe sandbox testing", "One-click approval", "Full transparency"],
         grainient: { color1: "#F8FAFC", color2: "#333333", color3: "#1a1a1a" }
     },
     {
         num: "04",
-        title: "Live Autonomous Execution",
-        desc: "Once unchained, your agents begin processing live inbound data streams. They qualify leads in milliseconds, draft hyper-personalized outbound campaigns, and resolve tier-1 support tickets contextually, all while feeding you real-time executive summaries.",
-        image: "/images/tirionapp/v2/7_resultado.webp",
+        title: "Your Business Runs Itself",
+        desc: "Your agents start working 24/7 — answering calls, qualifying leads, booking appointments, and sending you a daily summary. You focus on what matters while TirionApp handles the rest.",
+        image: "/images/tirionapp/retro/7_resultado.webp",
         bgColor: "#E3D3E8",
-        highlights: ["Sub-second Latency", "Infinite Horizontal Scaling", "Universal Inbox Hand-off"],
+        highlights: ["24/7 autonomous operation", "Daily executive summaries", "Always in control"],
         grainient: { color1: "#F8FAFC", color2: "#333333", color3: "#1a1a1a" }
     }
 ];

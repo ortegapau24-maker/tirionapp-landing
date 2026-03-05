@@ -6,28 +6,36 @@ import SplitText from '@/components/ui/SplitText';
 
 const faqs = [
     {
-        question: "How does TirionApp integrate with our existing stack?",
-        answer: "TirionApp acts as an intelligence layer above your current tools. Using event-driven durable orchestration, you can connect to your existing CRM, ERP, and communication platforms (like Salesforce, Zendesk, and Slack) via standard API integrations without migrating your data."
+        question: "How does TirionApp work with the tools I already use?",
+        answer: "TirionApp connects to your existing CRM, email, calendar, and communication platforms through standard integrations. You don't need to migrate anything — we work on top of what you already have."
     },
     {
-        question: "Is our proprietary data used to train your models?",
-        answer: "No. We enforce strict enterprise data boundaries. Your data is routed through isolated, zero-retention API endpoints. We do not use any customer data, logs, or fine-tuning artifacts to train our base foundation models."
+        question: "Is my business data safe?",
+        answer: "Yes. Your data is encrypted at every step and never shared with anyone. We don't use your data to train our AI models. Your business information stays yours."
     },
     {
-        question: "What happens if an autonomous agent encounters an edge case?",
-        answer: "TirionApp features a deterministic 'Human-in-the-Loop' failover mechanism. If an agent detects a scenario outside its confidence threshold (set by you), it immediately halts execution and routes the context to a designated human operator via the Universal Inbox for resolution."
+        question: "What happens if an automation doesn't know how to handle something?",
+        answer: "It stops immediately and sends you a notification with full context. You're always in control — no automation will ever make a decision it's not confident about."
     },
     {
-        question: "How quickly can we deploy our first autonomous workflow?",
-        answer: "Most enterprise clients deploy their first production-ready workflow within 48 hours. Our conversational interface generates the structural logic instantly, leaving only API credential mapping and confidence testing before you go live."
+        question: "How quickly can I get started?",
+        answer: "Most businesses have their first automation running within 48 hours. Our AI interviews you about your needs and builds the solution — no technical setup required on your end."
     },
     {
-        question: "Are we locked into a specific LLM provider?",
-        answer: "No. TirionApp is built with an LLM-agnostic routing architecture. You can dynamically switch between OpenAI, Anthropic, Google, or even your own self-hosted local models on a per-agent or per-workflow basis to optimize for cost, speed, or compliance."
+        question: "What is a credit and how much do they cost?",
+        answer: "1 credit = 1 AI workflow execution. For example: processing an email, qualifying a lead, or handling a phone call each uses 1 credit. A typical dental clinic uses about 800 credits/month, a plumbing company about 500, and a restaurant about 1,200."
     },
     {
-        question: "What security certifications does TirionApp hold?",
-        answer: "TirionApp is SOC 2 Type II certified with end-to-end encryption at rest and in transit. We support SSO via SAML 2.0, role-based access control, and maintain full audit logs for every agent action. Enterprise plans include dedicated infrastructure isolation."
+        question: "Is there a free trial?",
+        answer: "Yes! 14 days free with 200 credits and 1 active automation — no credit card required. That's enough to fully experience how TirionApp can transform your operations."
+    },
+    {
+        question: "Am I locked into a specific AI provider?",
+        answer: "No. TirionApp automatically uses the best AI model for each task — you don't need to choose or manage AI providers. We handle the technology so you can focus on your business."
+    },
+    {
+        question: "Can I use TirionApp if I have a larger team or enterprise needs?",
+        answer: "Absolutely. Our Scale plan includes dedicated infrastructure, unlimited automations, and priority support. Contact our sales team for custom solutions."
     }
 ];
 

@@ -19,7 +19,7 @@ export default function MarketingPage() {
             {/* --- Workflow Automation Library --- */}
             <WorkflowLibrary />
 
-            {/* --- Native Integrations Morphing Sphere (below library) --- */}
+            {/* --- Native Integrations Morphing Sphere --- */}
             <IntegrationSphere />
 
             {/* --- Agent Generator / Workflow Simulation --- */}

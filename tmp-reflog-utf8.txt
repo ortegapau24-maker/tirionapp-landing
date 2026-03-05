@@ -1,0 +1,3 @@
+﻿7c75160 HEAD@{0}: commit: feat: Swiss design system, credit-based pricing, footer pages, grey grainients
+06a0579 HEAD@{1}: commit: update: refined WorkflowDemo UI, AgentGenerator UI canvas sizes, HowItWorks image scaling & mix-blends, and fix Grainient rendering keys
+702437a HEAD@{2}: commit (initial): Initial commit: TirionApp landing/marketing site

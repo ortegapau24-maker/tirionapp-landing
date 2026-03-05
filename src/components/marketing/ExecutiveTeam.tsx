@@ -8,27 +8,27 @@ const Grainient = dynamic(() => import('@/components/ui/Grainient'), { ssr: fals
 
 const agents = [
     {
+        title: "Call Center Agent",
+        subtitle: "Your AI receptionist answers every call, books appointments, checks availability, and updates your CRM — all in real-time. Never miss a lead again.",
+        image: "/images/tirionapp/retro/2_resultado.webp",
+        isComingSoon: false,
+    },
+    {
         title: "SDR Agent",
-        subtitle: "Autonomously prospects, qualifies, and books meetings 24/7. Mines intent signals across LinkedIn, email, and CRM data with built-in GDPR/CCPA geographic shielding and strict negative-intent filtering protocols. Converts at 3× the industry average.",
-        image: "/images/tirionapp/v2/3_resultado.webp",
+        subtitle: "Finds and qualifies leads from your existing contacts, sends personalized follow-ups, and books meetings on your calendar — automatically.",
+        image: "/images/tirionapp/retro/3_resultado.webp",
         isComingSoon: true,
     },
     {
         title: "Marketing Agent",
-        subtitle: "Orchestrates multi-channel content distribution with AEO-optimized copy. Protected by economic triage logic and strict anti-hallucination guardrails, requiring 1-click approval before major campaign spend. Scales pipeline growth without human bottlenecks.",
-        image: "/images/tirionapp/v2/4_resultado.webp",
+        subtitle: "Creates and distributes content across your channels, optimized for each platform. Grows your pipeline without hiring a marketing team.",
+        image: "/images/tirionapp/retro/4_resultado.webp",
         isComingSoon: true,
     },
     {
         title: "CFO Agent",
-        subtitle: "Delivers real-time financial intelligence across invoicing, cash flow forecasting, and burn-rate analysis. Actively monitors cash runway and triggers asynchronous SMS alerts for capital leaks, protected by strict cooldown policies. Auto-generates board-ready reports.",
-        image: "/images/tirionapp/v2/5_resultado.webp",
-        isComingSoon: true,
-    },
-    {
-        title: "Call Center Agent",
-        subtitle: "Deploys human-like Voice AI to handle thousands of inbound/outbound calls simultaneously with <500ms latency. Integrates directly with n8n to check inventory, book appointments in your calendar, and update CRM records in real-time during the conversation.",
-        image: "/images/tirionapp/v2/2_resultado.webp",
+        subtitle: "Tracks invoices, monitors cash flow, and alerts you to financial risks before they become problems. Board-ready reports on demand.",
+        image: "/images/tirionapp/retro/5_resultado.webp",
         isComingSoon: true,
     },
 ];
@@ -188,7 +188,7 @@ function AgentText({ agent, index, progress, isLast, isFirst, isMobile }: { agen
                 {agent.isComingSoon && (
                     <div className="absolute top-[-36px] left-0">
                         <span className="relative overflow-hidden flex items-center justify-center text-[0.75rem] font-bold px-4 py-1 rounded-full text-agency-text-main/80 uppercase tracking-widest whitespace-nowrap border border-black/10 shadow-[0_4px_24px_rgba(0,0,0,0.06),inset_0_1px_1px_rgba(255,255,255,0.8)] bg-white/40 backdrop-blur-lg">
-                            <span className="relative z-10">Coming Soon</span>
+                            <span className="relative z-10">Coming Next</span>
                             {/* Glass static highlight (top rim) */}
                             <div className="absolute top-0 left-0 w-full h-[50%] bg-gradient-to-b from-white/60 to-transparent pointer-events-none" />
                             {/* Animated shimmering light sweep */}

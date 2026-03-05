@@ -1,0 +1,126 @@
+{
+  "hero": {
+    "subtitle": "Your 24/7 autonomous agency. We don't sell software — we return your time. Recover lost leads and run your business while you sleep.",
+    "placeholder": "Tell me about your business...",
+    "tagline": "Automate Everything.",
+    "prompts": {
+      "dental": "Dental Clinic",
+      "plumbing": "Plumbing / HVAC",
+      "restaurant": "Restaurant",
+      "realEstate": "Real Estate"
+    }
+  },
+  "howItWorks": {
+    "label": "Implementation",
+    "title": "How We Give Your Time Back.",
+    "subtitle": "We don't give you software to figure out. We set up a fully automated system tailored to your business in under 48 hours.",
+    "steps": {
+      "01": {
+        "title": "Audit The Revenue Leaks",
+        "desc": "Every missed call and forgotten follow-up costs you money. We connect to your existing tools — calculating exactly where you're losing hours and revenue — and deploy a system to recover it instantly.",
+        "highlights": ["No software to configure", "Works with your existing tools", "See results in 48 hours"]
+      },
+      "02": {
+        "title": "Tell Us What You Need",
+        "desc": "No complex setup screens or visual editors. Just tell our AI what your business does, what's not working, and what you want automated. It interviews you, understands your needs, and builds the solution.",
+        "highlights": ["Plain English setup", "Automated solution design", "Ready in minutes, not weeks"]
+      },
+      "03": {
+        "title": "Test Everything First",
+        "desc": "We don't go live until you're confident. Your automations run through a sandbox simulation against real scenarios. Review the results, adjust if needed, and deploy with one click.",
+        "highlights": ["Safe sandbox testing", "Human approval before going live", "Thousands of simulated scenarios"]
+      },
+      "04": {
+        "title": "Your Business Runs Itself",
+        "desc": "Once live, your automations handle calls, qualify leads, follow up with prospects, and resolve common requests — all while sending you a clear daily summary of everything that happened.",
+        "highlights": ["24/7 autonomous operation", "Scales with your business", "Daily executive summaries"]
+      }
+    }
+  },
+  "agents": {
+    "title": "The Autonomous Executive Team.",
+    "comingNext": "Coming Next",
+    "callCenter": {
+      "title": "Call Center Agent",
+      "subtitle": "Deploys human-like Voice AI to handle thousands of inbound and outbound calls simultaneously with sub-second response times. Checks your inventory, books appointments in your calendar, and updates your CRM — all during a live phone conversation."
+    },
+    "sdr": {
+      "title": "SDR Agent",
+      "subtitle": "Autonomously prospects, qualifies, and books meetings around the clock. Mines intent signals across email and CRM data to find your best leads and converts them at rates far above the industry average."
+    },
+    "marketing": {
+      "title": "Marketing Agent",
+      "subtitle": "Orchestrates multi-channel content distribution with AI-optimized copy. Scales your pipeline growth by automating campaigns across email, social, and ads — with a single approval click before any major spend."
+    },
+    "cfo": {
+      "title": "CFO Agent",
+      "subtitle": "Delivers real-time financial intelligence across invoicing, cash flow forecasting, and expense tracking. Monitors your runway, alerts you to anomalies, and auto-generates clean reports for your accountant."
+    }
+  },
+  "agentGenerator": {
+    "title": "Need something bespoke? Just ask in chat.",
+    "subtitle": "Forget complex visual editors. TirionApp AI builds and deploys autonomous agents based solely on your description. Conversational. Instant. Scalable."
+  },
+  "pricing": {
+    "title": "Architect your scale.",
+    "subtitle": "Start free. Upgrade when you're ready. Every plan includes credits for AI workflow executions — buy more only if you need them.",
+    "monthly": "Monthly",
+    "annually": "Annually",
+    "save": "Save 10%",
+    "billedAnnually": "(billed annually)",
+    "perMonth": "per month",
+    "noCardRequired": "no credit card required",
+    "trial": {
+      "name": "Free Trial",
+      "badge": "14 days",
+      "features": ["1 Active Automation", "200 credits included", "Full platform access"],
+      "cta": "Start Free — No Card"
+    },
+    "starter": {
+      "name": "Starter",
+      "features": ["3 Active Automations", "1,000 credits included / month", "Extra credits at $0.05 each", "Standard Support"],
+      "cta": "Get Started"
+    },
+    "growth": {
+      "name": "Growth",
+      "features": ["10 Active Automations", "5,000 credits included / month", "Extra credits at $0.03 each", "Priority Support"],
+      "cta": "Get Started"
+    },
+    "scale": {
+      "name": "Scale",
+      "features": ["Unlimited Active Automations", "20,000 credits included / month", "Extra credits at $0.02 each", "Dedicated Infrastructure"],
+      "cta": "Contact Sales"
+    },
+    "creditExplainer": {
+      "title": "What is a credit?",
+      "description": "1 credit = 1 AI workflow execution. Every time your automation processes an email, qualifies a lead, answers a phone call, or runs any task — it uses 1 credit. Your plan includes credits each month. If you run out, buy more at a discount.",
+      "usageLabel": "Typical monthly usage by business type"
+    }
+  },
+  "faqs": {
+    "label": "FAQ",
+    "title": "Common Questions",
+    "subtitle": "Quick answers to help you evaluate if TirionApp is the right fit for your operation.",
+    "stillHave": "Still have questions?",
+    "talkToTeam": "Talk to our team"
+  },
+  "cta": {
+    "title": "Start automating.",
+    "title2": "Stop operating.",
+    "subtitle": "Try TirionApp free for 14 days. 200 credits included, no credit card required.",
+    "button": "Start Free Trial"
+  },
+  "footer": {
+    "tagline": "AI automation for service businesses. Recover lost leads and run your business 24/7.",
+    "platform": "Platform",
+    "company": "Company",
+    "copyright": "© 2026 TirionApp. All rights reserved."
+  },
+  "nav": {
+    "features": "Features",
+    "library": "Library",
+    "agents": "Agents",
+    "pricing": "Pricing",
+    "startBuilding": "Start Building"
+  }
+}

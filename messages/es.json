@@ -1,0 +1,161 @@
+{
+    "hero": {
+        "subtitle": "Tu agencia autónoma 24/7. No vendemos software — te devolvemos tu tiempo. Recupera leads perdidos y opera tu negocio mientras duermes.",
+        "placeholder": "Cuéntame sobre tu negocio...",
+        "tagline": "Automatiza Todo.",
+        "prompts": {
+            "dental": "Clínica Dental",
+            "plumbing": "Fontanería / HVAC",
+            "restaurant": "Restaurante",
+            "realEstate": "Inmobiliaria"
+        }
+    },
+    "howItWorks": {
+        "label": "Implementación",
+        "title": "Cómo Te Devolvemos Tu Tiempo.",
+        "subtitle": "No te damos software que descifrar. Configuramos un sistema totalmente automatizado para tu negocio en menos de 48 horas.",
+        "steps": {
+            "01": {
+                "title": "Audita Las Fugas de Ingresos",
+                "desc": "Cada llamada perdida y cada seguimiento olvidado te cuesta dinero. Nos conectamos a tus herramientas actuales — calculamos exactamente dónde pierdes horas e ingresos — y desplegamos un sistema para recuperarlo al instante.",
+                "highlights": [
+                    "Sin software que configurar",
+                    "Funciona con tus herramientas actuales",
+                    "Resultados en 48 horas"
+                ]
+            },
+            "02": {
+                "title": "Cuéntanos Qué Necesitas",
+                "desc": "Sin pantallas de configuración complejas ni editores visuales. Simplemente dile a nuestra IA qué hace tu negocio, qué no funciona y qué quieres automatizar. Te entrevista, entiende tus necesidades y construye la solución.",
+                "highlights": [
+                    "Configuración en español llano",
+                    "Diseño automático de soluciones",
+                    "Listo en minutos, no semanas"
+                ]
+            },
+            "03": {
+                "title": "Probamos Todo Primero",
+                "desc": "No activamos nada hasta que estés seguro. Tus automatizaciones pasan por una simulación en sandbox contra escenarios reales. Revisa los resultados, ajusta si es necesario y despliega con un clic.",
+                "highlights": [
+                    "Pruebas seguras en sandbox",
+                    "Aprobación humana antes de activar",
+                    "Miles de escenarios simulados"
+                ]
+            },
+            "04": {
+                "title": "Tu Negocio Se Opera Solo",
+                "desc": "Una vez activo, tus automatizaciones atienden llamadas, califican leads, hacen seguimiento a prospectos y resuelven consultas comunes — todo mientras te envían un resumen diario de lo que pasó.",
+                "highlights": [
+                    "Operación autónoma 24/7",
+                    "Escala con tu negocio",
+                    "Resúmenes ejecutivos diarios"
+                ]
+            }
+        }
+    },
+    "agents": {
+        "title": "El Equipo Ejecutivo Autónomo.",
+        "comingNext": "Próximamente",
+        "callCenter": {
+            "title": "Agente Call Center",
+            "subtitle": "Despliega IA de Voz similar a la humana para atender miles de llamadas entrantes y salientes simultáneamente con tiempos de respuesta inferiores al segundo. Consulta tu inventario, agenda citas en tu calendario y actualiza tu CRM — todo durante una conversación telefónica en vivo."
+        },
+        "sdr": {
+            "title": "Agente SDR",
+            "subtitle": "Prospecta, califica y agenda reuniones de forma autónoma las 24 horas. Analiza señales de intención en email y CRM para encontrar tus mejores leads y convertirlos a tasas muy superiores al promedio de la industria."
+        },
+        "marketing": {
+            "title": "Agente de Marketing",
+            "subtitle": "Orquesta distribución de contenido multicanal con copy optimizado por IA. Escala el crecimiento de tu pipeline automatizando campañas en email, redes sociales y anuncios — con un solo clic de aprobación antes de cualquier gasto importante."
+        },
+        "cfo": {
+            "title": "Agente CFO",
+            "subtitle": "Ofrece inteligencia financiera en tiempo real sobre facturación, previsión de flujo de caja y seguimiento de gastos. Monitoriza tu runway, te alerta de anomalías y genera reportes limpios automáticamente para tu contador."
+        }
+    },
+    "agentGenerator": {
+        "title": "¿Necesitas algo a medida? Solo pídeselo al chat.",
+        "subtitle": "Olvída los editores visuales complejos. La IA de TirionApp construye y despliega agentes autónomos basándose únicamente en tu descripción. Conversacional. Instantáno. Escalable."
+    },
+    "pricing": {
+        "title": "Diseña tu escala.",
+        "subtitle": "Empieza gratis. Mejora cuando estés listo. Cada plan incluye créditos para ejecuciones de flujos de IA — compra más solo si los necesitas.",
+        "monthly": "Mensual",
+        "annually": "Anual",
+        "save": "Ahorra 10%",
+        "billedAnnually": "(facturación anual)",
+        "perMonth": "al mes",
+        "noCardRequired": "sin tarjeta de crédito",
+        "trial": {
+            "name": "Prueba Gratuita",
+            "badge": "14 días",
+            "features": [
+                "1 Automatización Activa",
+                "200 créditos incluidos",
+                "Acceso completo a la plataforma"
+            ],
+            "cta": "Empieza Gratis"
+        },
+        "starter": {
+            "name": "Starter",
+            "features": [
+                "3 Automatizaciones Activas",
+                "1,000 créditos incluidos / mes",
+                "Créditos extra a $0.05 c/u",
+                "Soporte Estándar"
+            ],
+            "cta": "Comenzar"
+        },
+        "growth": {
+            "name": "Growth",
+            "features": [
+                "10 Automatizaciones Activas",
+                "5,000 créditos incluidos / mes",
+                "Créditos extra a $0.03 c/u",
+                "Soporte Prioritario"
+            ],
+            "cta": "Comenzar"
+        },
+        "scale": {
+            "name": "Scale",
+            "features": [
+                "Automatizaciones Ilimitadas",
+                "20,000 créditos incluidos / mes",
+                "Créditos extra a $0.02 c/u",
+                "Infraestructura Dedicada"
+            ],
+            "cta": "Contactar Ventas"
+        },
+        "creditExplainer": {
+            "title": "¿Qué es un crédito?",
+            "description": "1 crédito = 1 ejecución de flujo de IA. Cada vez que tu automatización procesa un email, califica un lead, atiende una llamada o ejecuta cualquier tarea — usa 1 crédito. Tu plan incluye créditos cada mes. Si se acaban, compra más con descuento.",
+            "usageLabel": "Uso mensual típico por tipo de negocio"
+        }
+    },
+    "faqs": {
+        "label": "FAQ",
+        "title": "Preguntas Frecuentes",
+        "subtitle": "Respuestas rápidas para evaluar si TirionApp es la opción correcta para tu operación.",
+        "stillHave": "¿Aún tienes preguntas?",
+        "talkToTeam": "Habla con nuestro equipo"
+    },
+    "cta": {
+        "title": "Empieza a automatizar.",
+        "title2": "Deja de operar.",
+        "subtitle": "Prueba TirionApp gratis por 14 días. 200 créditos incluidos, sin tarjeta de crédito.",
+        "button": "Prueba Gratuita"
+    },
+    "footer": {
+        "tagline": "Automatización con IA para negocios de servicios. Recupera leads perdidos y opera tu negocio 24/7.",
+        "platform": "Plataforma",
+        "company": "Compañía",
+        "copyright": "© 2026 TirionApp. Todos los derechos reservados."
+    },
+    "nav": {
+        "features": "Funcionalidades",
+        "library": "Biblioteca",
+        "agents": "Agentes",
+        "pricing": "Precios",
+        "startBuilding": "Empieza Ya"
+    }
+}

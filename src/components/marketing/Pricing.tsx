@@ -65,10 +65,44 @@ export function Pricing() {
                 </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-[1200px] mx-auto relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[1400px] mx-auto relative z-10">
+                {/* Free Trial */}
+                <div
+                    className="pricing-card bg-transparent p-6 md:p-10 rounded-[24px] md:rounded-[32px] relative transition-all duration-400 ease-[cubic-bezier(0.2,0.8,0.2,1)] group ring-2 ring-green-500/30"
+                    onMouseEnter={() => setHoveredTier("core")}
+                    onMouseLeave={() => setHoveredTier(null)}
+                >
+                    <div className="relative z-10 pointer-events-none flex flex-col h-full">
+                        <div className="flex items-center gap-2 mb-4">
+                            <div className="text-[1.5rem] font-semibold font-outfit text-agency-text-main">Free Trial</div>
+                            <span className="text-[0.65rem] px-2 py-0.5 rounded-full font-bold bg-green-500/10 text-green-600 uppercase tracking-wider">14 Days</span>
+                        </div>
+                        <div className="flex items-baseline gap-1 mb-2">
+                            <div className="text-[4rem] font-bold leading-none font-outfit tracking-[-0.04em] text-agency-text-main">
+                                $0
+                            </div>
+                        </div>
+                        <div className="text-agency-text-muted mb-8">no credit card required</div>
+                        <ul className="list-none mb-12 space-y-4 text-agency-text-main">
+                            <li className="flex items-start gap-3 mb-4 text-[0.95rem]">
+                                <Check /> 1 Active Automation
+                            </li>
+                            <li className="flex items-start gap-3 mb-4 text-[0.95rem]">
+                                <Check /> <span><strong>200 credits</strong> included</span>
+                            </li>
+                            <li className="flex items-start gap-3 mb-4 text-[0.95rem]">
+                                <Check /> Full platform access
+                            </li>
+                        </ul>
+                        <a href={APP_URL} className="mt-auto block w-full text-center py-4 rounded-full font-semibold text-[1.1rem] transition-all duration-300 bg-green-600 text-white hover:bg-green-700 pointer-events-auto">
+                            Start Free — No Card Required
+                        </a>
+                    </div>
+                </div>
+
                 {/* Starter */}
                 <div
-                    className="pricing-card bg-transparent p-6 md:p-12 rounded-[24px] md:rounded-[32px] relative transition-all duration-400 ease-[cubic-bezier(0.2,0.8,0.2,1)] group"
+                    className="pricing-card bg-transparent p-6 md:p-10 rounded-[24px] md:rounded-[32px] relative transition-all duration-400 ease-[cubic-bezier(0.2,0.8,0.2,1)] group"
                     onMouseEnter={() => setHoveredTier("core")}
                     onMouseLeave={() => setHoveredTier(null)}
                 >
@@ -102,7 +136,7 @@ export function Pricing() {
 
                 {/* Growth */}
                 <div
-                    className="pricing-card bg-transparent p-6 md:p-12 rounded-[24px] md:rounded-[32px] relative transition-all duration-400 ease-[cubic-bezier(0.2,0.8,0.2,1)] group"
+                    className="pricing-card bg-transparent p-6 md:p-10 rounded-[24px] md:rounded-[32px] relative transition-all duration-400 ease-[cubic-bezier(0.2,0.8,0.2,1)] group"
                     onMouseEnter={() => setHoveredTier("scale")}
                     onMouseLeave={() => setHoveredTier(null)}
                 >
@@ -129,14 +163,14 @@ export function Pricing() {
                             </li>
                         </ul>
                         <a href={APP_URL} className="mt-auto block w-full text-center py-4 rounded-full font-semibold text-[1.1rem] transition-all duration-300 bg-[#050505] text-white hover:bg-[#222] pointer-events-auto">
-                            Start 14-Day Trial
+                            Get Started
                         </a>
                     </div>
                 </div>
 
                 {/* Scale */}
                 <div
-                    className="pricing-card bg-transparent p-6 md:p-12 rounded-[24px] md:rounded-[32px] relative transition-all duration-400 ease-[cubic-bezier(0.2,0.8,0.2,1)] group"
+                    className="pricing-card bg-transparent p-6 md:p-10 rounded-[24px] md:rounded-[32px] relative transition-all duration-400 ease-[cubic-bezier(0.2,0.8,0.2,1)] group"
                     onMouseEnter={() => setHoveredTier("enterprise")}
                     onMouseLeave={() => setHoveredTier(null)}
                 >
@@ -169,11 +203,28 @@ export function Pricing() {
                 </div>
             </div>
 
-            {/* Cost Estimator Note */}
-            <div className="max-w-[640px] mx-auto text-center mt-16 relative z-10">
-                <p className="text-[0.875rem] text-agency-text-muted/60 leading-[1.65]">
-                    Need help estimating your usage? A cost calculator is available inside the app once you create your account. No surprises — you always see your estimated cost before deploying.
-                </p>
+            {/* Credit Explainer */}
+            <div className="max-w-[800px] mx-auto mt-16 relative z-10">
+                <div className="bg-agency-bg-surface/50 rounded-[24px] border border-agency-border-light p-8 md:p-10">
+                    <h3 className="text-[1.25rem] font-outfit font-semibold text-agency-text-main mb-3">What is a credit?</h3>
+                    <p className="text-agency-text-muted text-[0.95rem] leading-[1.65] mb-6">
+                        1 credit = 1 AI workflow execution. Processing an email, qualifying a lead, or handling a phone call each uses 1 credit.
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-[0.875rem]">
+                        <div className="bg-white/5 rounded-xl p-4 border border-agency-border-light">
+                            <div className="font-semibold text-agency-text-main mb-1">🦷 Dental Clinic</div>
+                            <div className="text-agency-text-muted">~800 credits/month</div>
+                        </div>
+                        <div className="bg-white/5 rounded-xl p-4 border border-agency-border-light">
+                            <div className="font-semibold text-agency-text-main mb-1">🔧 Plumbing Company</div>
+                            <div className="text-agency-text-muted">~500 credits/month</div>
+                        </div>
+                        <div className="bg-white/5 rounded-xl p-4 border border-agency-border-light">
+                            <div className="font-semibold text-agency-text-main mb-1">🍽️ Restaurant</div>
+                            <div className="text-agency-text-muted">~1,200 credits/month</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );

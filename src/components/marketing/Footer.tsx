@@ -31,7 +31,7 @@ export function Footer() {
                         <span className="font-outfit">TirionApp</span>
                     </div>
                     <p className="text-agency-text-muted text-base max-w-sm">
-                        AI-native operating system for modern performance agencies.
+                        AI automation for service businesses. Recover lost leads and run your business 24/7.
                     </p>
                 </div>
 

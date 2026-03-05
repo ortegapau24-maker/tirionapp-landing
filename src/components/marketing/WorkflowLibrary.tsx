@@ -1,175 +1,129 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import Image from 'next/image';
-import dynamic from 'next/dynamic';
-
-const Grainient = dynamic(() => import('@/components/ui/Grainient'), { ssr: false });
+import { motion } from 'framer-motion';
 
 const categories = [
     {
         title: "Sales",
-        items: ["Lead Qualification", "Follow-Up", "Proposals", "Contracts"],
-        image: "/images/tirionapp/v2/1_resultado.webp",
-        color: "from-neutral-400/10 to-neutral-900/20"
+        image: "/images/tirionapp/retro/1_resultado.webp",
+        description: (
+            <>
+                Every interaction is a chance to close. TirionApp handles <strong>lead qualification</strong> the moment a prospect reaches out, sends personalized <strong>follow-up sequences</strong> that feel human, generates <strong>proposals</strong> tailored to each client, and manages <strong>contracts</strong> from draft to signature — all without you lifting a finger.
+            </>
+        ),
     },
     {
         title: "Operations",
-        items: ["Meetings", "Reports", "Support", "Onboarding"],
-        image: "/images/tirionapp/v2/5_resultado.webp",
-        color: "from-neutral-500/10 to-neutral-900/20"
+        image: "/images/tirionapp/retro/5_resultado.webp",
+        description: (
+            <>
+                The invisible backbone of your business, running on autopilot. Your <strong>meetings</strong> schedule themselves around everyone&apos;s availability, <strong>reports</strong> compile overnight and land in your inbox by morning, <strong>support tickets</strong> are triaged and resolved before they pile up, and new client <strong>onboarding</strong> flows happen without a single manual step.
+            </>
+        ),
     },
     {
         title: "Communication",
-        items: ["AI Phone Calls", "WhatsApp", "Emails", "Web Chat"],
-        image: "/images/tirionapp/v2/2_resultado.webp",
-        color: "from-neutral-300/10 to-neutral-800/20"
+        image: "/images/tirionapp/retro/2_resultado.webp",
+        description: (
+            <>
+                Be everywhere your customers are, without being tied to a screen. <strong>AI phone calls</strong> answer and qualify leads 24/7 in a natural voice, <strong>WhatsApp</strong> conversations convert inquiries into bookings, <strong>emails</strong> nurture relationships at scale, and <strong>web chat</strong> captures visitors the moment they land on your site.
+            </>
+        ),
     },
     {
         title: "Reputation",
-        items: ["Reviews", "Responses", "Monitoring"],
-        image: "/images/tirionapp/v2/6_resultado.webp",
-        color: "from-neutral-600/10 to-neutral-900/20"
+        image: "/images/tirionapp/retro/6_resultado.webp",
+        description: (
+            <>
+                Your online presence, protected and growing on its own. Satisfied clients receive gentle nudges to leave <strong>reviews</strong> right after service, every review gets a thoughtful <strong>response</strong> — positive or negative — and continuous <strong>monitoring</strong> alerts you the moment your brand is mentioned anywhere online.
+            </>
+        ),
     },
     {
         title: "Payments",
-        items: ["Automated Billing", "Invoicing", "Reminders", "Recovery"],
-        image: "/images/tirionapp/v2/3_resultado.webp",
-        color: "from-neutral-400/10 to-neutral-800/20"
+        image: "/images/tirionapp/retro/3_resultado.webp",
+        description: (
+            <>
+                Money flows in without chasing it. <strong>Automated billing</strong> triggers at the right moment, professional <strong>invoices</strong> go out instantly after every job, polite <strong>reminders</strong> follow up on outstanding balances, and intelligent <strong>recovery</strong> workflows recapture revenue you would have otherwise lost.
+            </>
+        ),
     },
     {
         title: "Content",
-        items: ["Social Media", "Repurposing", "Scheduling"],
-        image: "/images/tirionapp/v2/8_resultado.webp",
-        color: "from-cyan-500/10 to-[#1a1a1a]/20"
+        image: "/images/tirionapp/retro/8_resultado.webp",
+        description: (
+            <>
+                Stay visible without spending hours creating. Your best moments become <strong>social media</strong> posts that feel authentic, long-form content gets <strong>repurposed</strong> into shorts, carousels, and stories, and a smart <strong>scheduling</strong> engine posts at the exact times your audience is most active.
+            </>
+        ),
     },
     {
         title: "Retention",
-        items: ["Churn Risk", "Referrals", "Loyalty"],
-        image: "/images/tirionapp/v2/4_resultado.webp",
-        color: "from-indigo-500/10 to-[#1a1a1a]/20"
-    }
+        image: "/images/tirionapp/retro/4_resultado.webp",
+        description: (
+            <>
+                Keep the clients you already won. Predictive models flag <strong>churn risk</strong> before a customer even thinks about leaving, personalized <strong>referral</strong> programs turn happy clients into your best salespeople, and <strong>loyalty</strong> rewards make staying with you the obvious choice.
+            </>
+        ),
+    },
 ];
 
+const rowVariants = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
+    },
+};
+
 export function WorkflowLibrary() {
-    const targetRef = useRef<HTMLDivElement>(null);
-    const scrollTrackRef = useRef<HTMLDivElement>(null);
-    const [maxTranslate, setMaxTranslate] = useState(0);
-
-    const { scrollYProgress } = useScroll({
-        target: targetRef,
-        offset: ["start start", "end end"],
-    });
-
-    useEffect(() => {
-        const updateSize = () => {
-            if (scrollTrackRef.current) {
-                const viewportWidth = document.documentElement.clientWidth || window.innerWidth;
-                // scrollWidth inherently includes the 30px start and 30px end spacers.
-                // To stop perfectly at the end of the track (leaving the end spacer visible),
-                // we translate by exactly scrollWidth - viewportWidth.
-                setMaxTranslate(scrollTrackRef.current.scrollWidth - viewportWidth);
-            }
-        };
-        updateSize();
-        window.addEventListener("resize", updateSize);
-        return () => window.removeEventListener("resize", updateSize);
-    }, []);
-
-    const x = useTransform(scrollYProgress, [0, 1], [0, -maxTranslate]);
-
     return (
         <section
             id="library"
-            ref={targetRef}
-            className="relative w-full bg-white text-agency-text-main"
-            style={{ height: `${categories.length * 100}vh` }}
+            className="relative w-full bg-white text-agency-text-main py-16 md:py-24"
         >
-            <div className="sticky top-0 h-screen w-full flex flex-col justify-center overflow-hidden">
-                {/* Background ambient color */}
-                <div className="absolute inset-0 bg-white pointer-events-none z-0" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.03)_0,transparent_70%)] pointer-events-none z-0" />
+            <div className="max-w-[1100px] mx-auto px-4 md:px-10 flex flex-col gap-24 md:gap-32">
+                {categories.map((cat, index) => {
+                    const isEven = index % 2 === 0;
 
-                {/* Fixed Header */}
-                <div className="absolute top-6 sm:top-10 w-full px-4 md:px-10 z-20 pointer-events-none">
-                    <h2 className="text-[clamp(3rem,5vw,5rem)] font-outfit font-medium leading-[1.1] tracking-[-0.02em] text-agency-text-main">
-                        The Automation Library.
-                    </h2>
-                </div>
-
-                {/* Horizontal Scroll Track */}
-                <motion.div
-                    ref={scrollTrackRef}
-                    style={{ x }}
-                    className="flex w-max h-full items-center relative z-10 gap-8 sm:gap-16 lg:gap-24 pt-24 pb-12"
-                >
-                    {/* Start Spacer */}
-                    <div className="w-[30px] shrink-0" />
-                    {categories.map((cat, index) => {
-                        return (
-                            <div
-                                key={index}
-                                className="w-[85vw] max-w-[1200px] h-full max-h-[600px] sm:max-h-[700px] flex-shrink-0 flex flex-col md:flex-row gap-4 sm:gap-6 rounded-[32px] sm:rounded-[48px]"
-                            >
-                                {/* Left Text Content */}
-                                <div className="relative z-10 w-full md:w-[45%] lg:w-[45%] bg-white rounded-[32px] sm:rounded-[48px] shadow-[0_24px_48px_rgba(0,0,0,0.06)] p-8 sm:p-12 lg:p-16 flex flex-col justify-center">
-                                    <div className="text-slate-400 font-outfit text-sm sm:text-lg mb-2 sm:mb-4 tracking-widest uppercase font-semibold">
-                                        0{index + 1} // System Module
-                                    </div>
-                                    <h3 className="text-3xl sm:text-5xl lg:text-5xl font-outfit font-bold text-slate-900 mb-8 sm:mb-12">
-                                        {cat.title}
-                                    </h3>
-
-                                    <div className="flex flex-col gap-3 sm:gap-4">
-                                        {cat.items.map((item, j) => (
-                                            <div key={j} className="flex items-center gap-4 group">
-                                                <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center transition-colors group-hover:bg-[#333333]/10">
-                                                    <svg className="w-4 h-4 text-slate-400 group-hover:text-[#333333]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                                                    </svg>
-                                                </div>
-                                                <span className="text-slate-600 text-lg sm:text-xl font-medium transition-colors group-hover:text-slate-900">
-                                                    {item}
-                                                </span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                {/* Right Image Content */}
-                                <div className="relative z-0 w-full md:w-[55%] lg:w-[55%] flex-1 min-h-[300px] md:min-h-0 bg-white rounded-[32px] sm:rounded-[48px] shadow-[0_24px_48px_rgba(0,0,0,0.06)] overflow-hidden">
-                                    {/* Grainient Background */}
-                                    <div className="absolute inset-0 z-0">
-                                        <Grainient
-                                            key={`grainient-${index}`}
-                                            color1="#F8FAFC"
-                                            color2="#333333"
-                                            color3="#1a1a1a"
-                                        />
-                                    </div>
-
-                                    {/* 3D Image Overlay */}
-                                    <Image
+                    return (
+                        <motion.div
+                            key={index}
+                            variants={rowVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-100px" }}
+                            className={`flex flex-col gap-8 md:gap-16 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'
+                                } items-center`}
+                        >
+                            {/* Image Card */}
+                            <div className="w-full md:w-[45%] shrink-0">
+                                <div className="aspect-square max-w-[400px] mx-auto rounded-[24px] overflow-hidden shadow-[0_16px_40px_rgba(0,0,0,0.08)] bg-white">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img
                                         src={cat.image}
                                         alt={cat.title}
-                                        fill
-                                        className="object-cover object-center relative z-10 mix-blend-multiply opacity-90"
+                                        className="w-full h-full object-cover"
                                     />
-                                    {/* Light gradient overlay to ensure the image blends perfectly if it has white edges */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent pointer-events-none relative z-20" />
                                 </div>
-
                             </div>
-                        );
-                    })}
 
-                    {/* End Spacer */}
-                    <div className="w-[30px] shrink-0" />
-                </motion.div>
-
-                {/* Removed Scroll Progress Indicator entirely */}
-
+                            {/* Text Card — no borders, no shadows */}
+                            <div className="w-full md:w-[55%] flex flex-col justify-center">
+                                <div className="text-[#0032A0] font-outfit text-sm tracking-[0.2em] uppercase font-semibold mb-3">
+                                    0{index + 1}
+                                </div>
+                                <h3 className="text-3xl md:text-4xl font-outfit font-semibold text-[#050505] mb-6 leading-[1.1]">
+                                    {cat.title}
+                                </h3>
+                                <p className="text-gray-400 text-[1.05rem] md:text-[1.125rem] leading-[1.75] font-light [&>strong]:text-[#050505] [&>strong]:font-medium">
+                                    {cat.description}
+                                </p>
+                            </div>
+                        </motion.div>
+                    );
+                })}
             </div>
         </section>
     );

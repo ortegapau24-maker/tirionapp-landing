@@ -14,6 +14,7 @@ El modelo de negocio se basa en: **(Suscripción + créditos incluidos) + (pago 
 
 ### Planes de Suscripción
 Cada plan incluye una cantidad de créditos mensuales. Los créditos se consumen con cada ejecución de IA/agente.
+0. **Free Trial:** $0 por 14 días. (1 Automatización Activa | **200 créditos** incluidos una sola vez | Sin tarjeta de crédito necesaria). Implementación: usar flag `subscription_tier: 'trial'` en DB. Auto-degradar tras 14 días desde `created_at` — bloquear nuevas ejecuciones y solicitar upgrade. Los créditos del trial NO se renuevan.
 1. **Starter:** $149/mes. (3 Automatizaciones Activas | **1,000 créditos** incluidos | Créditos extra a **$0.05** c/u).
 2. **Growth:** $299/mes. (10 Automatizaciones Activas | **5,000 créditos** incluidos | Créditos extra a **$0.03** c/u).
 3. **Scale:** $599/mes. (Automatizaciones Ilimitadas | **20,000 créditos** incluidos | Créditos extra a **$0.02** c/u).

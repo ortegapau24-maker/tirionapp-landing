@@ -13,7 +13,7 @@ export function CtaSection() {
                     href={process.env.NEXT_PUBLIC_APP_URL || 'https://app.tirionapp.com'}
                     className="inline-block px-12 py-6 bg-[#050505] text-white font-outfit font-medium text-[1.25rem] rounded-full transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] hover:scale-105 hover:shadow-[0_16px_48px_rgba(0,0,0,0.2)]"
                 >
-                    Deploy Your First Agent
+                    Start Free Trial
                 </a>
             </div>
         </div>

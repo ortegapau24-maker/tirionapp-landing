@@ -1,0 +1,22 @@
+﻿commit 7c7516031c1a506d85ba32556393630618c2bbdd
+Author: Pau Ortega <ortegapau24@gmail.com>
+Date:   Wed Mar 4 00:40:39 2026 +0100
+
+    feat: Swiss design system, credit-based pricing, footer pages, grey grainients
+
+commit 06a0579df73095f5e30d151e689c91390bb7284a
+Author: Pau Ortega <ortegapau24@gmail.com>
+Date:   Tue Mar 3 01:31:10 2026 +0100
+
+    update: refined WorkflowDemo UI, AgentGenerator UI canvas sizes, HowItWorks image scaling & mix-blends, and fix Grainient rendering keys
+
+commit 702437a47a6109678ae282c46afe2dccce163ac7
+Author: Pau Ortega <ortegapau24@gmail.com>
+Date:   Mon Mar 2 17:48:47 2026 +0100
+
+    Initial commit: TirionApp landing/marketing site
+    
+    Extracted from the main AgencyOS dashboard as a standalone Next.js project.
+    Includes homepage, marketing pages, and Clerk auth.
+    
+    Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>

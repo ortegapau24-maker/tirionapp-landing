@@ -136,7 +136,7 @@ export function FAQs() {
                 <div className="flex items-center justify-center pt-4">
                     <p className="text-agency-text-muted/60 text-[0.95rem] font-light">
                         Still have questions?{' '}
-                        <a href="mailto:hello@tirionapp.com" className="text-white/80 hover:text-white underline underline-offset-4 decoration-white/20 hover:decoration-white/50 transition-all duration-300">
+                        <a href="mailto:pau@tirionapp.com" className="text-white/80 hover:text-white underline underline-offset-4 decoration-white/20 hover:decoration-white/50 transition-all duration-300">
                             Talk to our team
                         </a>
                     </p>

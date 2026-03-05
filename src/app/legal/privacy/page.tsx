@@ -20,7 +20,7 @@ export default function PrivacyPolicy() {
                     <p className="mb-4">Our application integrates with third-party tools (like CRM systems) via API. We only access the data necessary to execute your defined workflows.</p>
 
                     <h2 className="text-2xl font-bold text-agency-text-main mt-8 mb-4">5. Contact Us</h2>
-                    <p className="mb-4">If you have any questions about this Privacy Policy, please contact us at <a href="mailto:hello@tirionapp.com" className="text-[#0032A0] hover:underline">hello@tirionapp.com</a>.</p>
+                    <p className="mb-4">If you have any questions about this Privacy Policy, please contact us at <a href="mailto:pau@tirionapp.com" className="text-[#0032A0] hover:underline">pau@tirionapp.com</a>.</p>
                 </div>
             </div>
         </div>

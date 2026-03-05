@@ -197,7 +197,7 @@ export function WorkflowLibrary() {
                         <div key={index} className="flex flex-col gap-8 items-center bg-gray-50/50 p-6 rounded-3xl border border-gray-100">
                             {/* Image */}
                             <div className="w-full">
-                                <div className="aspect-square max-w-[400px] mx-auto rounded-[24px] overflow-hidden shadow-lg shadow-black/5">
+                                <div className="aspect-square max-w-[400px] mx-auto overflow-hidden">
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img
                                         src={cat.image}

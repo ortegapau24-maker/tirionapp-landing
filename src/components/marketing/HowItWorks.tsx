@@ -9,7 +9,7 @@ const steps = [
         num: "01",
         title: "Audit The Revenue Leaks",
         desc: "Every missed call is revenue handed to your competition. We connect to your existing tools and calculate exactly where you're losing hours and revenue — then deploy a system to recover it instantly.",
-        image: "/images/tirionapp/retro/8_resultado.webp",
+        image: "/images/tirionapp/retro/9_resultado.webp",
         bgColor: "#E8DDD3",
         highlights: ["No software to configure", "Works with your existing tools", "See ROI immediately"],
 
@@ -18,7 +18,7 @@ const steps = [
         num: "02",
         title: "Tell Us What You Need",
         desc: "No complicated drag-and-drop builders. Just describe what you need in plain English — our AI interviews you about your business, maps your bottlenecks, and builds the solution automatically.",
-        image: "/images/tirionapp/retro/9_resultado.webp",
+        image: "/images/tirionapp/retro/10_resultado.webp",
         bgColor: "#D3DEE8",
         highlights: ["Plain English setup", "AI builds it for you", "Ready in minutes"],
 
@@ -27,7 +27,7 @@ const steps = [
         num: "03",
         title: "We Test Everything First",
         desc: "Before anything goes live, your automations run through sandbox simulations. You review the results, approve with one click, and deploy with confidence — no surprises.",
-        image: "/images/tirionapp/retro/10_resultado.webp",
+        image: "/images/tirionapp/retro/11_resultado.webp",
         bgColor: "#D8E8D3",
         highlights: ["Safe sandbox testing", "One-click approval", "Full transparency"],
 
@@ -36,7 +36,7 @@ const steps = [
         num: "04",
         title: "Your Business Runs Itself",
         desc: "Your agents start working 24/7 — answering calls, qualifying leads, booking appointments, and sending you a daily summary. You focus on what matters while TirionApp handles the rest.",
-        image: "/images/tirionapp/retro/11_resultado.webp",
+        image: "/images/tirionapp/retro/12_resultado.webp",
         bgColor: "#E3D3E8",
         highlights: ["24/7 autonomous operation", "Daily executive summaries", "Always in control"],
 
@@ -130,7 +130,7 @@ function StepItem({ step, index, setActiveIndex }: { step: StepData; index: numb
                 </div>
 
                 {/* Mobile Image (hidden on desktop) */}
-                <div className="block lg:hidden mt-8 w-full aspect-square rounded-[32px] shadow-[0_16px_32px_rgba(0,0,0,0.1)] overflow-visible relative border border-agency-border-light/50" style={{ backgroundColor: step.bgColor }}>
+                <div className="block lg:hidden mt-8 w-full aspect-square rounded-[32px] overflow-visible relative">
                     <div className="absolute inset-0 w-full h-full rounded-[32px] overflow-visible">
                         <div className="absolute inset-0 bg-cover bg-center rounded-[32px] z-10" style={{ backgroundImage: `url(${step.image})`, transform: 'scale(1.15)' }} />
                     </div>
@@ -185,19 +185,9 @@ export function HowItWorks() {
                     </div>
 
                     <div className="hidden lg:block sticky top-[12vh] w-full mb-[8vh]">
-                        <div className="w-full aspect-square rounded-[48px] shadow-[0_32px_64px_rgba(0,0,0,0.1)] border border-agency-border-light/50 bg-agency-bg-surface relative z-0 overflow-visible">
+                        <div className="w-full aspect-square rounded-[48px] overflow-visible relative z-0">
                             <div className="absolute inset-0 w-full h-full rounded-[48px] overflow-visible mask-image-rounded">
-                                {/* Solid color backgrounds */}
-                                {steps.map((step, index) => (
-                                    <div
-                                        key={`bg-${index}`}
-                                        className="absolute inset-0 rounded-[48px] transition-opacity duration-[1500ms] ease-[cubic-bezier(0.2,0.8,0.2,1)]"
-                                        style={{
-                                            opacity: activeIndex === index ? 1 : 0,
-                                            backgroundColor: step.bgColor,
-                                        }}
-                                    />
-                                ))}
+                                {/* Images only — no color backgrounds */}
                                 {/* Inner images cross-fading */}
                                 {steps.map((step, index) => (
                                     <div

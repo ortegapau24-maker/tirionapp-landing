@@ -72,7 +72,7 @@ export function WorkflowLibrary() {
                         >
                             {/* Image Card */}
                             <div className="w-full md:w-[45%] shrink-0">
-                                <div className="aspect-square max-w-[400px] mx-auto rounded-[24px] overflow-visible shadow-[0_16px_40px_rgba(0,0,0,0.08)] bg-white">
+                                <div className="aspect-square max-w-[400px] mx-auto rounded-[24px] overflow-hidden">
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img
                                         src={cat.image}

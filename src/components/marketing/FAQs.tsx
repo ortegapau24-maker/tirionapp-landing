@@ -11,7 +11,7 @@ const faqs = [
     },
     {
         question: "Is my business data safe?",
-        answer: "Yes. Your data is encrypted at every step and never shared with anyone. We don't use your data to train our AI models. Your business information stays yours."
+        answer: "Yes. Every workflow is audited by a dedicated Security AI Agent before deployment to prevent data leaks or bad actions. We also employ strict Guardrails to prevent prompt-injection attacks. Your data is encrypted, never shared, and never used to train our models."
     },
     {
         question: "What happens if an automation doesn't know how to handle something?",
@@ -28,7 +28,7 @@ const faqs = [
     },
     {
         question: "Am I locked into a specific AI provider?",
-        answer: "No. TirionApp automatically uses the best AI model for each task — you don't need to choose or manage AI providers. We handle the technology so you can focus on your business."
+        answer: "No. TirionApp dynamically routes your task to the best model in the market — Claude Opus for complex reasoning, GPT-4 for code generation, and Gemini Flash for rapid validations. We manage the infra so you just focus on the results."
     },
     {
         question: "Can I use TirionApp if I have a larger team or enterprise needs?",
@@ -136,7 +136,7 @@ export function FAQs() {
                 <div className="flex items-center justify-center pt-4">
                     <p className="text-agency-text-muted/60 text-[0.95rem] font-light">
                         Still have questions?{' '}
-                        <a href="#" className="text-white/80 hover:text-white underline underline-offset-4 decoration-white/20 hover:decoration-white/50 transition-all duration-300">
+                        <a href="mailto:hello@tirionapp.com" className="text-white/80 hover:text-white underline underline-offset-4 decoration-white/20 hover:decoration-white/50 transition-all duration-300">
                             Talk to our team
                         </a>
                     </p>

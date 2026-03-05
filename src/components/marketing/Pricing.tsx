@@ -73,10 +73,11 @@ export function Pricing() {
                     onMouseLeave={() => setHoveredTier(null)}
                 >
                     <div className="relative z-10 pointer-events-none flex flex-col h-full">
-                        <div className="flex items-center gap-2 mb-4">
+                        <div className="flex items-center gap-2 mb-2">
                             <div className="text-[1.5rem] font-semibold font-outfit text-agency-text-main">Free Trial</div>
                             <span className="text-[0.65rem] px-2 py-0.5 rounded-full font-bold bg-white/10 text-agency-text-muted uppercase tracking-wider">14 Days</span>
                         </div>
+                        <p className="text-agency-text-muted text-[0.85rem] mb-4 leading-snug">Try the platform with no commitment.</p>
                         <div className="flex items-baseline gap-1 mb-2">
                             <div className="text-[4rem] font-bold leading-none font-outfit tracking-[-0.04em] text-agency-text-main">
                                 $0
@@ -107,7 +108,8 @@ export function Pricing() {
                     onMouseLeave={() => setHoveredTier(null)}
                 >
                     <div className="relative z-10 pointer-events-none flex flex-col h-full">
-                        <div className="text-[1.5rem] font-semibold mb-4 font-outfit text-agency-text-main">Starter</div>
+                        <div className="text-[1.5rem] font-semibold mb-2 font-outfit text-agency-text-main">Starter</div>
+                        <p className="text-agency-text-muted text-[0.85rem] mb-4 leading-snug">Single-location businesses with basic operations.</p>
                         <div className="flex items-baseline gap-1 mb-2">
                             <div className="text-[4rem] font-bold leading-none font-outfit tracking-[-0.04em] text-agency-text-main">
                                 ${isAnnual ? Math.round(149 * 0.9) : 149}
@@ -141,7 +143,8 @@ export function Pricing() {
                     onMouseLeave={() => setHoveredTier(null)}
                 >
                     <div className="relative z-10 pointer-events-none flex flex-col h-full">
-                        <div className="text-[1.5rem] font-semibold mb-4 font-outfit text-agency-text-main">Growth</div>
+                        <div className="text-[1.5rem] font-semibold mb-2 font-outfit text-agency-text-main">Growth</div>
+                        <p className="text-agency-text-muted text-[0.85rem] mb-4 leading-snug">Scaling businesses with multiple teams or channels.</p>
                         <div className="flex items-baseline gap-1 mb-2">
                             <div className="text-[4rem] font-bold leading-none font-outfit tracking-[-0.04em] text-agency-text-main">
                                 ${isAnnual ? Math.round(299 * 0.9) : 299}
@@ -175,7 +178,8 @@ export function Pricing() {
                     onMouseLeave={() => setHoveredTier(null)}
                 >
                     <div className="relative z-10 pointer-events-none flex flex-col h-full">
-                        <div className="text-[1.5rem] font-semibold mb-4 font-outfit text-agency-text-main">Scale</div>
+                        <div className="text-[1.5rem] font-semibold mb-2 font-outfit text-agency-text-main">Scale</div>
+                        <p className="text-agency-text-muted text-[0.85rem] mb-4 leading-snug">Agencies and groups running high-volume automation.</p>
                         <div className="flex items-baseline gap-1 mb-2">
                             <div className="text-[4rem] font-bold leading-none font-outfit tracking-[-0.04em] text-agency-text-main">
                                 ${isAnnual ? Math.round(599 * 0.9) : 599}
@@ -203,29 +207,7 @@ export function Pricing() {
                 </div>
             </div>
 
-            {/* Credit Explainer */}
-            <div className="max-w-[800px] mx-auto mt-16 relative z-10">
-                <div className="bg-agency-bg-surface/50 rounded-[24px] border border-agency-border-light p-8 md:p-10">
-                    <h3 className="text-[1.25rem] font-outfit font-semibold text-agency-text-main mb-3">What is a credit?</h3>
-                    <p className="text-agency-text-muted text-[0.95rem] leading-[1.65] mb-6">
-                        1 credit = 1 AI workflow execution. Processing an email, qualifying a lead, or handling a phone call each uses 1 credit.
-                    </p>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-[0.875rem]">
-                        <div className="bg-white/5 rounded-xl p-4 border border-agency-border-light">
-                            <div className="font-semibold text-agency-text-main mb-1">🦷 Dental Clinic</div>
-                            <div className="text-agency-text-muted">~800 credits/month</div>
-                        </div>
-                        <div className="bg-white/5 rounded-xl p-4 border border-agency-border-light">
-                            <div className="font-semibold text-agency-text-main mb-1">🔧 Plumbing Company</div>
-                            <div className="text-agency-text-muted">~500 credits/month</div>
-                        </div>
-                        <div className="bg-white/5 rounded-xl p-4 border border-agency-border-light">
-                            <div className="font-semibold text-agency-text-main mb-1">🍽️ Restaurant</div>
-                            <div className="text-agency-text-muted">~1,200 credits/month</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     );
 }

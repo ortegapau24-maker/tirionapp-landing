@@ -17,19 +17,19 @@ const steps = [
     {
         num: "02",
         title: "Tell Us What You Need",
-        desc: "No complicated drag-and-drop builders. Just describe what you need in plain English — our AI interviews you about your business, maps your bottlenecks, and builds the solution automatically.",
+        desc: "No complicated drag-and-drop builders. Just describe what you need in plain English. Our system dynamically routes your request to the optimal AI model — Claude for reasoning, GPT-4 for generation, and Gemini for speed.",
         image: "/images/tirionapp/retro/10_resultado.webp",
         bgColor: "#D3DEE8",
-        highlights: ["Plain English setup", "AI builds it for you", "Ready in minutes"],
+        highlights: ["Plain English setup", "Multi-LLM architecture", "Ready in minutes"],
 
     },
     {
         num: "03",
         title: "We Test Everything First",
-        desc: "Before anything goes live, your automations run through sandbox simulations. You review the results, approve with one click, and deploy with confidence — no surprises.",
+        desc: "Before anything goes live, our dedicated SecOps AI Agent audits your new workflow for risks (like data leaks or mass emails). You review the sandbox results, approve with one click, and deploy securely.",
         image: "/images/tirionapp/retro/11_resultado.webp",
         bgColor: "#D8E8D3",
-        highlights: ["Safe sandbox testing", "One-click approval", "Full transparency"],
+        highlights: ["AI Security Auditing", "Safe sandbox testing", "One-click deployment"],
 
     },
     {

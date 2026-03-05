@@ -183,7 +183,7 @@ function AgentText({ agent, index, progress, isLast, isFirst, isMobile }: { agen
         >
             <div className="relative">
                 {agent.isComingSoon && (
-                    <div className="absolute top-[-36px] left-0">
+                    <div className="absolute top-[-36px] left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0">
                         <span className="relative overflow-hidden flex items-center justify-center text-[0.75rem] font-bold px-4 py-1 rounded-full text-agency-text-main/80 uppercase tracking-widest whitespace-nowrap border border-black/10 shadow-[0_4px_24px_rgba(0,0,0,0.06),inset_0_1px_1px_rgba(255,255,255,0.8)] bg-white/40 backdrop-blur-lg">
                             <span className="relative z-10">Coming Next</span>
                             {/* Glass static highlight (top rim) */}

@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import Link from 'next/link';
 
 export function Footer() {
     const containerRef = useRef<HTMLElement>(null);
@@ -59,8 +60,8 @@ export function Footer() {
             <div className="border-t border-agency-border-light max-w-[1200px] mx-auto px-10 pt-8 pb-10 flex flex-col md:flex-row justify-between text-agency-text-muted text-sm gap-4">
                 <div>© 2026 TirionApp. All rights reserved.</div>
                 <div className="flex gap-6">
-                    <a href="/privacy" className="hover:text-agency-accent-solid transition-colors">Privacy</a>
-                    <a href="/terms" className="hover:text-agency-accent-solid transition-colors">Terms</a>
+                    <Link href="/legal/privacy" className="hover:text-agency-accent-solid transition-colors">Privacy</Link>
+                    <Link href="/legal/terms" className="hover:text-agency-accent-solid transition-colors">Terms</Link>
                 </div>
             </div>
 

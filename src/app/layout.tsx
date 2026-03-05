@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 const TITLE = "TirionApp — AI Automation Platform";
@@ -41,7 +42,7 @@ export default function RootLayout({
         "operatingSystem": "All",
         "offers": {
           "@type": "Offer",
-          "price": "299.00",
+          "price": "149.00",
           "priceCurrency": "USD"
         },
         "description": DESCRIPTION
@@ -79,6 +80,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <Analytics />
       </body>
     </html>
   );

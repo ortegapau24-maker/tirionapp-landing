@@ -130,10 +130,12 @@ function StepItem({ step, index, setActiveIndex }: { step: StepData; index: numb
                 </div>
 
                 {/* Mobile Image (hidden on desktop) */}
-                {/* Mobile Image (hidden on desktop) */}
-                <div className="block lg:hidden mt-8 w-full overflow-visible relative">
-                    <div className="w-full h-full overflow-visible">
-                        <div className="w-full aspect-[4/3] bg-cover bg-center z-10" style={{ backgroundImage: `url(${step.image})`, transform: 'scale(1.05)' }} />
+                <div className="block lg:hidden mt-8 w-full relative">
+                    <div className="w-full aspect-square relative z-10">
+                        <div
+                            className="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-[1500ms] rounded-2xl"
+                            style={{ backgroundImage: `url(${step.image})` }}
+                        />
                     </div>
                 </div>
             </motion.div>
@@ -158,7 +160,7 @@ export function HowItWorks() {
     return (
         <motion.div
             ref={containerRef}
-            className="w-full relative bg-agency-bg-surface py-20 md:py-[120px] overflow-visible"
+            className="w-full relative bg-agency-bg-surface py-20 md:py-[120px] overflow-visible z-20"
             id="how-it-works"
             style={{ borderRadius }}
         >
@@ -186,17 +188,17 @@ export function HowItWorks() {
                     </div>
 
                     <div className="hidden lg:flex sticky top-[10vh] w-full mb-[8vh] lg:col-span-3 items-center justify-center">
-                        <div className="w-full aspect-[4/3] overflow-visible relative z-0">
-                            <div className="absolute inset-0 w-full h-full overflow-visible">
-                                {/* Images cross-fading — no container box */}
+                        <div className="w-full aspect-square relative z-10">
+                            <div className="absolute inset-0 w-full h-full">
+                                {/* Images cross-fading */}
                                 {steps.map((step, index) => (
                                     <div
                                         key={index}
-                                        className="absolute inset-0 bg-cover bg-center transition-all duration-[1500ms] ease-[cubic-bezier(0.2,0.8,0.2,1)] z-[5]"
+                                        className={`absolute inset-0 bg-cover bg-center transition-all duration-[1500ms] ease-[cubic-bezier(0.2,0.8,0.2,1)] rounded-[2rem] ${activeIndex === index ? 'z-10' : 'z-0'}`}
                                         style={{
                                             backgroundImage: `url(${step.image})`,
                                             opacity: activeIndex === index ? 1 : 0,
-                                            transform: activeIndex === index ? 'scale(1.05)' : 'scale(1.1)',
+                                            transform: activeIndex === index ? 'scale(1)' : 'scale(1.05)',
                                             filter: activeIndex === index ? 'blur(0px)' : 'blur(10px)',
                                         }}
                                     />

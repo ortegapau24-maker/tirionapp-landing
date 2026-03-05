@@ -322,26 +322,27 @@ function SphereCanvas({
 
 export default function IntegrationSphere() {
     return (
-        // Removed borders, backgrounds, margins, and shadows as requested
-        <div className="py-16 md:py-24 flex flex-col items-center relative z-10 w-full overflow-visible">
-            <div className="text-[0.9rem] uppercase tracking-[0.15em] text-agency-text-muted mb-8 font-semibold text-center font-inter relative z-20">
-                Native Integrations
-            </div>
-
-            <div className="flex flex-row items-center justify-center w-full max-w-[1400px] gap-4 lg:gap-8 xl:gap-8">
-                {/* Left Sphere (Delayed by 1000ms, distinct start index) */}
-                <div className="relative z-30">
-                    <SphereCanvas radius={110} delayMs={0} isCenter={false} startIndex={5} />
+        <div className="w-full my-12 md:my-24">
+            <div className="bg-agency-bg-surface rounded-[4rem] md:rounded-[6rem] py-16 md:py-24 flex flex-col items-center relative z-10 w-full overflow-hidden">
+                <div className="text-[0.9rem] uppercase tracking-[0.15em] text-agency-text-muted mb-8 font-semibold text-center font-inter relative z-20">
+                    Native Integrations
                 </div>
 
-                {/* Center Sphere (Master, large, delayed by 2000ms) */}
-                <div className="relative z-40">
-                    <SphereCanvas radius={220} delayMs={1000} isCenter={true} startIndex={0} />
-                </div>
+                <div className="flex flex-row items-center justify-center w-full gap-4 lg:gap-8 xl:gap-8">
+                    {/* Left Sphere (Delayed by 1000ms, distinct start index) */}
+                    <div className="relative z-30">
+                        <SphereCanvas radius={110} delayMs={0} isCenter={false} startIndex={5} />
+                    </div>
 
-                {/* Right Sphere (Delayed by 3000ms, distinct start index) */}
-                <div className="relative z-20">
-                    <SphereCanvas radius={110} delayMs={2000} isCenter={false} startIndex={10} />
+                    {/* Center Sphere (Master, large, delayed by 2000ms) */}
+                    <div className="relative z-40">
+                        <SphereCanvas radius={220} delayMs={1000} isCenter={true} startIndex={0} />
+                    </div>
+
+                    {/* Right Sphere (Delayed by 3000ms, distinct start index) */}
+                    <div className="relative z-20">
+                        <SphereCanvas radius={110} delayMs={2000} isCenter={false} startIndex={10} />
+                    </div>
                 </div>
             </div>
         </div>

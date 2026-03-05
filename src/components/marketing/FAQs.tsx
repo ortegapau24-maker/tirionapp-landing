@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SplitText from '@/components/ui/SplitText';
 
@@ -41,6 +41,9 @@ const faqs = [
 
 export function FAQs() {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+    const isActive = useCallback((index: number) => openIndex === index || hoveredIndex === index, [openIndex, hoveredIndex]);
 
     return (
         <section className="py-24 md:py-[clamp(6rem,10vw,10rem)] px-4 md:px-10 bg-agency-bg-dark flex justify-center w-full relative overflow-hidden" id="faq">
@@ -78,30 +81,33 @@ export function FAQs() {
                 <div className="flex flex-col w-full gap-3">
                     {faqs.map((faq, index) => {
                         const isOpen = openIndex === index;
+                        const active = isActive(index);
 
                         return (
                             <motion.div
                                 key={index}
-                                className="overflow-hidden rounded-2xl border border-white/10"
-                                style={{ backgroundColor: '#1c1c1e' }}
+                                className="overflow-hidden rounded-2xl border border-white/10 transition-colors duration-300"
+                                style={{ backgroundColor: active ? '#0032A0' : '#1c1c1e' }}
                                 initial={false}
+                                onMouseEnter={() => setHoveredIndex(index)}
+                                onMouseLeave={() => setHoveredIndex(null)}
                             >
                                 <button
                                     onClick={() => setOpenIndex(isOpen ? null : index)}
                                     className="w-full flex justify-between items-center px-4 md:px-6 py-4 md:py-5 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30 rounded-2xl transition-colors group"
                                 >
                                     <div className="flex items-center gap-3 md:gap-5 pr-4 md:pr-8">
-                                        <span className="text-[0.8rem] font-mono text-agency-text-muted/40 font-medium tabular-nums shrink-0">
+                                        <span className={`text-[0.8rem] font-mono font-medium tabular-nums shrink-0 transition-colors duration-300 ${active ? 'text-white/60' : 'text-agency-text-muted/40'}`}>
                                             {String(index + 1).padStart(2, '0')}
                                         </span>
-                                        <span className="font-outfit text-[1.1rem] md:text-[1.2rem] font-medium text-white/90 group-hover:text-white transition-colors duration-300">
+                                        <span className={`font-outfit text-[1.1rem] md:text-[1.2rem] font-medium transition-colors duration-300 ${active ? 'text-white' : 'text-white/90 group-hover:text-white'}`}>
                                             {faq.question}
                                         </span>
                                     </div>
                                     <motion.div
                                         animate={{ rotate: isOpen ? 45 : 0 }}
                                         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                                        className="shrink-0 w-7 h-7 rounded-full border border-white/10 flex items-center justify-center text-white/60 group-hover:border-white/20 group-hover:text-white/80 transition-all duration-300"
+                                        className={`shrink-0 w-7 h-7 rounded-full border flex items-center justify-center transition-all duration-300 ${active ? 'border-white/30 text-white' : 'border-white/10 text-white/60 group-hover:border-white/20 group-hover:text-white/80'}`}
                                     >
                                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                             <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -118,7 +124,7 @@ export function FAQs() {
                                             exit={{ height: 0, opacity: 0 }}
                                             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                                         >
-                                            <div className="px-4 md:px-6 pb-4 md:pb-6 pl-10 md:pl-[4.5rem] pr-6 md:pr-10 text-[1rem] md:text-[1.05rem] text-agency-text-muted/75 leading-[1.75] font-inter font-light">
+                                            <div className="px-4 md:px-6 pb-4 md:pb-6 pl-10 md:pl-[4.5rem] pr-6 md:pr-10 text-[1rem] md:text-[1.05rem] text-white/75 leading-[1.75] font-inter font-light">
                                                 {faq.answer}
                                             </div>
                                         </motion.div>

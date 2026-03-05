@@ -68,21 +68,21 @@ export function Pricing() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[1400px] mx-auto relative z-10">
                 {/* Free Trial */}
                 <div
-                    className="pricing-card bg-transparent p-6 md:p-10 rounded-[24px] md:rounded-[32px] relative transition-all duration-400 ease-[cubic-bezier(0.2,0.8,0.2,1)] group ring-2 ring-green-500/30"
+                    className="pricing-card bg-transparent p-6 md:p-10 rounded-[24px] md:rounded-[32px] relative transition-all duration-400 ease-[cubic-bezier(0.2,0.8,0.2,1)] group"
                     onMouseEnter={() => setHoveredTier("core")}
                     onMouseLeave={() => setHoveredTier(null)}
                 >
                     <div className="relative z-10 pointer-events-none flex flex-col h-full">
                         <div className="flex items-center gap-2 mb-4">
                             <div className="text-[1.5rem] font-semibold font-outfit text-agency-text-main">Free Trial</div>
-                            <span className="text-[0.65rem] px-2 py-0.5 rounded-full font-bold bg-green-500/10 text-green-600 uppercase tracking-wider">14 Days</span>
+                            <span className="text-[0.65rem] px-2 py-0.5 rounded-full font-bold bg-white/10 text-agency-text-muted uppercase tracking-wider">14 Days</span>
                         </div>
                         <div className="flex items-baseline gap-1 mb-2">
                             <div className="text-[4rem] font-bold leading-none font-outfit tracking-[-0.04em] text-agency-text-main">
                                 $0
                             </div>
                         </div>
-                        <div className="text-agency-text-muted mb-8">no credit card required</div>
+                        <div className="text-agency-text-muted mb-8">for 14 days</div>
                         <ul className="list-none mb-12 space-y-4 text-agency-text-main">
                             <li className="flex items-start gap-3 mb-4 text-[0.95rem]">
                                 <Check /> 1 Active Automation
@@ -91,18 +91,18 @@ export function Pricing() {
                                 <Check /> <span><strong>200 credits</strong> included</span>
                             </li>
                             <li className="flex items-start gap-3 mb-4 text-[0.95rem]">
-                                <Check /> Full platform access
+                                <Check /> Limited platform access
                             </li>
                         </ul>
-                        <a href={APP_URL} className="mt-auto block w-full text-center py-4 rounded-full font-semibold text-[1.1rem] transition-all duration-300 bg-green-600 text-white hover:bg-green-700 pointer-events-auto">
-                            Start Free — No Card Required
+                        <a href={APP_URL} className="mt-auto block w-full text-center py-4 rounded-full font-semibold text-[1.1rem] transition-all duration-300 border border-agency-border-light text-agency-text-muted hover:text-agency-text-main pointer-events-auto">
+                            Start Free Trial
                         </a>
                     </div>
                 </div>
 
                 {/* Starter */}
                 <div
-                    className="pricing-card bg-transparent p-6 md:p-10 rounded-[24px] md:rounded-[32px] relative transition-all duration-400 ease-[cubic-bezier(0.2,0.8,0.2,1)] group"
+                    className="pricing-card bg-transparent p-6 md:p-10 rounded-[24px] md:rounded-[32px] relative transition-all duration-400 ease-[cubic-bezier(0.2,0.8,0.2,1)] group shadow-[0_16px_48px_rgba(0,50,160,0.15)]"
                     onMouseEnter={() => setHoveredTier("core")}
                     onMouseLeave={() => setHoveredTier(null)}
                 >
@@ -128,7 +128,7 @@ export function Pricing() {
                                 <Check /> Standard Support
                             </li>
                         </ul>
-                        <a href={APP_URL} className="mt-auto block w-full text-center py-4 rounded-full font-semibold text-[1.1rem] transition-all duration-300 border border-agency-border-light text-agency-text-main hover:bg-[#050505] hover:text-white pointer-events-auto">
+                        <a href={APP_URL} className="mt-auto block w-full text-center py-4 rounded-full font-semibold text-[1.1rem] transition-all duration-300 bg-[#0032A0] text-white hover:bg-[#002880] pointer-events-auto">
                             Begin Setup
                         </a>
                     </div>
@@ -162,7 +162,7 @@ export function Pricing() {
                                 <Check /> Priority Support
                             </li>
                         </ul>
-                        <a href={APP_URL} className="mt-auto block w-full text-center py-4 rounded-full font-semibold text-[1.1rem] transition-all duration-300 bg-[#050505] text-white hover:bg-[#222] pointer-events-auto">
+                        <a href={APP_URL} className="mt-auto block w-full text-center py-4 rounded-full font-semibold text-[1.1rem] transition-all duration-300 border border-agency-border-light text-agency-text-muted hover:text-agency-text-main pointer-events-auto">
                             Get Started
                         </a>
                     </div>

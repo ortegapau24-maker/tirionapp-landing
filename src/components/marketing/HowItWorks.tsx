@@ -130,9 +130,10 @@ function StepItem({ step, index, setActiveIndex }: { step: StepData; index: numb
                 </div>
 
                 {/* Mobile Image (hidden on desktop) */}
-                <div className="block lg:hidden mt-8 w-full aspect-square rounded-[32px] overflow-visible relative">
-                    <div className="absolute inset-0 w-full h-full rounded-[32px] overflow-visible">
-                        <div className="absolute inset-0 bg-cover bg-center rounded-[32px] z-10" style={{ backgroundImage: `url(${step.image})`, transform: 'scale(1.15)' }} />
+                {/* Mobile Image (hidden on desktop) */}
+                <div className="block lg:hidden mt-8 w-full overflow-visible relative">
+                    <div className="w-full h-full overflow-visible">
+                        <div className="w-full aspect-[4/3] bg-cover bg-center z-10" style={{ backgroundImage: `url(${step.image})`, transform: 'scale(1.05)' }} />
                     </div>
                 </div>
             </motion.div>
@@ -157,11 +158,11 @@ export function HowItWorks() {
     return (
         <motion.div
             ref={containerRef}
-            className="w-full relative bg-agency-bg-surface py-20 md:py-[120px]"
+            className="w-full relative bg-agency-bg-surface py-20 md:py-[120px] overflow-visible"
             id="how-it-works"
             style={{ borderRadius }}
         >
-            <div className="max-w-[1400px] mx-auto px-4 md:px-12">
+            <div className="max-w-[1400px] mx-auto px-4 md:px-12 overflow-visible">
 
                 {/* Header Section */}
                 <div className="mb-[8vh] border-b border-agency-border-light pb-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
@@ -176,7 +177,7 @@ export function HowItWorks() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-16 relative items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-16 relative items-start overflow-visible">
                     {/* Left side: Scrollable List */}
                     <div className="pb-[10vh] lg:col-span-2">
                         {steps.map((step, index) => (
@@ -184,30 +185,22 @@ export function HowItWorks() {
                         ))}
                     </div>
 
-                    <div className="hidden lg:block sticky top-[12vh] w-full mb-[8vh] lg:col-span-3">
-                        <div className="w-full aspect-square rounded-[48px] overflow-visible relative z-0">
-                            <div className="absolute inset-0 w-full h-full rounded-[48px] overflow-visible mask-image-rounded">
-                                {/* Images only — no color backgrounds */}
-                                {/* Inner images cross-fading */}
+                    <div className="hidden lg:flex sticky top-[10vh] w-full mb-[8vh] lg:col-span-3 items-center justify-center">
+                        <div className="w-full aspect-[4/3] overflow-visible relative z-0">
+                            <div className="absolute inset-0 w-full h-full overflow-visible">
+                                {/* Images cross-fading — no container box */}
                                 {steps.map((step, index) => (
                                     <div
                                         key={index}
-                                        className="absolute inset-0 bg-cover bg-center transition-all duration-[1500ms] ease-[cubic-bezier(0.2,0.8,0.2,1)] rounded-[48px] z-[5]"
+                                        className="absolute inset-0 bg-cover bg-center transition-all duration-[1500ms] ease-[cubic-bezier(0.2,0.8,0.2,1)] z-[5]"
                                         style={{
                                             backgroundImage: `url(${step.image})`,
                                             opacity: activeIndex === index ? 1 : 0,
-                                            transform: activeIndex === index ? 'scale(1.15)' : 'scale(1.2)',
+                                            transform: activeIndex === index ? 'scale(1.05)' : 'scale(1.1)',
                                             filter: activeIndex === index ? 'blur(0px)' : 'blur(10px)',
                                         }}
                                     />
                                 ))}
-                                {/* Noise overlay on top of images */}
-                                <div className="absolute inset-0 rounded-[48px] z-10 pointer-events-none opacity-40 mix-blend-overlay"
-                                    style={{
-                                        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-                                        backgroundSize: '128px 128px',
-                                    }}
-                                />
                             </div>
                         </div>
                     </div>

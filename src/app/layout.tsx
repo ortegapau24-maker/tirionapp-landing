@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
-import { Analytics } from "@vercel/analytics/react";
+import { CookieConsent } from "@/components/ui/CookieConsent";
+import { GtmScript } from "@/components/ui/GtmScript";
 import "./globals.css";
 
 const TITLE = "TirionApp — AI Automation Platform";
@@ -74,13 +75,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${GeistSans.variable} antialiased`}>
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-56J5J3P7"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         {children}
         {/* Inject JSON-LD Scripts for SEO/GEO */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Analytics />
+        <GtmScript />
+        <CookieConsent />
       </body>
     </html>
   );

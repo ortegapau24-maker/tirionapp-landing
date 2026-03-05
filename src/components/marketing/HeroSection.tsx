@@ -20,6 +20,9 @@ export function HeroSection() {
     });
 
     const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+    // Parallax layers — deeper = slower
+    const bgLayer15Y = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
+    const bgLayer16Y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
     // Slide down instead of fade
     const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "80%"]);
 
@@ -35,6 +38,32 @@ export function HeroSection() {
 
     return (
         <div ref={containerRef} className="relative h-screen overflow-hidden flex items-center justify-center px-4 md:px-10">
+            {/* Parallax background layer 1 — deepest, slowest (15_resultado) */}
+            <motion.div
+                style={{ y: bgLayer15Y }}
+                className="absolute inset-0 z-[1] pointer-events-none will-change-transform"
+            >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                    src="/images/hero-bg-15.webp"
+                    alt=""
+                    className="w-full h-full object-cover select-none"
+                />
+            </motion.div>
+
+            {/* Parallax background layer 2 — mid depth (16_resultado) */}
+            <motion.div
+                style={{ y: bgLayer16Y }}
+                className="absolute inset-0 z-[2] pointer-events-none will-change-transform"
+            >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                    src="/images/hero-bg-16.webp"
+                    alt=""
+                    className="w-full h-full object-cover select-none"
+                />
+            </motion.div>
+
             {/* Background image — desktop: centered full height, mobile: bottom 1:1 square */}
             {/* Desktop image */}
             <div className="absolute inset-0 z-[5] hidden md:flex items-center justify-center pointer-events-none">

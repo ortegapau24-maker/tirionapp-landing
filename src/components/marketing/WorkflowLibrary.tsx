@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 
 const categories = [
     {
@@ -41,62 +42,164 @@ const categories = [
     },
 ];
 
-const rowVariants = {
-    hidden: { opacity: 0, y: 60 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] },
-    },
-};
+const TOTAL = categories.length;
+
+// Each card occupies a "segment" of the overall scroll progress
+function useCardTransforms(scrollYProgress: MotionValue<number>, index: number) {
+    const segmentSize = 1 / TOTAL;
+    const start = index * segmentSize;
+    const mid = start + segmentSize * 0.4;
+    const hold = start + segmentSize * 0.6;
+    const end = start + segmentSize;
+    const isEven = index % 2 === 0;
+
+    // Approach: scale up from small, come from behind
+    const scale = useTransform(
+        scrollYProgress,
+        [start, mid, hold, end],
+        [0.3, 1, 1, 1.5]
+    );
+
+    const z = useTransform(
+        scrollYProgress,
+        [start, mid, hold, end],
+        [-500, 0, 0, 300]
+    );
+
+    const opacity = useTransform(
+        scrollYProgress,
+        [start, start + segmentSize * 0.15, mid, hold, end - segmentSize * 0.1, end],
+        [0, 1, 1, 1, 1, 0]
+    );
+
+    // Image zooms from center
+    const imageScale = useTransform(
+        scrollYProgress,
+        [start, mid, hold, end],
+        [0.6, 1, 1, 1.2]
+    );
+
+    // Text fades in with upward slide
+    const textY = useTransform(
+        scrollYProgress,
+        [start, mid],
+        [50, 0]
+    );
+
+    const textOpacity = useTransform(
+        scrollYProgress,
+        [start, start + segmentSize * 0.3],
+        [0, 1]
+    );
+
+    // Exit divergence: image always goes left, text always goes right (always split apart)
+    const imageExitX = useTransform(
+        scrollYProgress,
+        [hold, end],
+        [0, -250]
+    );
+
+    const textExitX = useTransform(
+        scrollYProgress,
+        [hold, end],
+        [0, 250]
+    );
+
+    return { scale, z, opacity, imageScale, textY, textOpacity, imageExitX, textExitX };
+}
+
+function WorkflowCard({
+    cat,
+    index,
+    scrollYProgress,
+}: {
+    cat: typeof categories[0];
+    index: number;
+    scrollYProgress: MotionValue<number>;
+}) {
+    const { scale, z, opacity, imageScale, textY, textOpacity, imageExitX, textExitX } =
+        useCardTransforms(scrollYProgress, index);
+
+    return (
+        <motion.div
+            className="absolute inset-0 flex items-center justify-center"
+            style={{
+                scale,
+                translateZ: z,
+                opacity,
+            }}
+        >
+            <div className="w-full max-w-[1100px] mx-auto px-4 md:px-10 flex flex-col md:flex-row items-center gap-8 md:gap-16">
+                {/* Image */}
+                <motion.div
+                    className="w-full md:w-[45%] shrink-0"
+                    style={{
+                        scale: imageScale,
+                        x: imageExitX,
+                    }}
+                >
+                    <div className="aspect-square max-w-[400px] mx-auto rounded-[24px] overflow-hidden">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                            src={cat.image}
+                            alt={cat.title}
+                            className="w-full h-full object-cover"
+                        />
+                    </div>
+                </motion.div>
+
+                {/* Text */}
+                <motion.div
+                    className="w-full md:w-[55%] flex flex-col justify-center"
+                    style={{
+                        y: textY,
+                        opacity: textOpacity,
+                        x: textExitX,
+                    }}
+                >
+                    <div className="text-[#0032A0] font-outfit text-sm tracking-[0.2em] uppercase font-semibold mb-3">
+                        0{index + 1}
+                    </div>
+                    <h3 className="text-3xl md:text-4xl font-outfit font-semibold text-[#050505] mb-6 leading-[1.1]">
+                        {cat.title}
+                    </h3>
+                    <p className="text-gray-400 text-[1.05rem] md:text-[1.125rem] leading-[1.75] font-light [&>strong]:text-[#050505] [&>strong]:font-medium">
+                        {cat.description}
+                    </p>
+                </motion.div>
+            </div>
+        </motion.div>
+    );
+}
 
 export function WorkflowLibrary() {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end end"],
+    });
+
     return (
         <section
             id="library"
-            className="relative w-full bg-white text-agency-text-main py-16 md:py-24"
+            ref={containerRef}
+            className="relative w-full bg-white text-agency-text-main"
+            style={{ height: `${TOTAL * 150}vh` }}
         >
-            <div className="max-w-[1100px] mx-auto px-4 md:px-10 flex flex-col gap-24 md:gap-32">
-                {categories.map((cat, index) => {
-                    const isEven = index % 2 === 0;
-
-                    return (
-                        <motion.div
-                            key={index}
-                            variants={rowVariants}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, margin: "-100px" }}
-                            className={`flex flex-col gap-8 md:gap-16 ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'
-                                } items-center`}
-                        >
-                            {/* Image Card */}
-                            <div className="w-full md:w-[45%] shrink-0">
-                                <div className="aspect-square max-w-[400px] mx-auto rounded-[24px] overflow-hidden">
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img
-                                        src={cat.image}
-                                        alt={cat.title}
-                                        className="w-full h-full object-cover"
-                                    />
-                                </div>
-                            </div>
-
-                            {/* Text Card — no borders, no shadows */}
-                            <div className="w-full md:w-[55%] flex flex-col justify-center">
-                                <div className="text-[#0032A0] font-outfit text-sm tracking-[0.2em] uppercase font-semibold mb-3">
-                                    0{index + 1}
-                                </div>
-                                <h3 className="text-3xl md:text-4xl font-outfit font-semibold text-[#050505] mb-6 leading-[1.1]">
-                                    {cat.title}
-                                </h3>
-                                <p className="text-gray-400 text-[1.05rem] md:text-[1.125rem] leading-[1.75] font-light [&>strong]:text-[#050505] [&>strong]:font-medium">
-                                    {cat.description}
-                                </p>
-                            </div>
-                        </motion.div>
-                    );
-                })}
+            {/* Sticky viewport — pinned to the screen */}
+            <div
+                className="sticky top-0 h-screen w-full overflow-hidden"
+                style={{ perspective: '1200px' }}
+            >
+                {categories.map((cat, index) => (
+                    <WorkflowCard
+                        key={index}
+                        cat={cat}
+                        index={index}
+                        scrollYProgress={scrollYProgress}
+                    />
+                ))}
             </div>
         </section>
     );

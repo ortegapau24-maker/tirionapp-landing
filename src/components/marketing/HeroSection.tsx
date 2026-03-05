@@ -35,8 +35,18 @@ export function HeroSection() {
 
     return (
         <div ref={containerRef} className="relative h-screen overflow-hidden flex items-center justify-center px-4 md:px-10">
-            {/* Background image — bottom of hero, behind Automate Everything, 1:1 square */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-[5] pointer-events-none w-[90vw] md:w-[50vw] aspect-square flex items-end justify-center">
+            {/* Background image — desktop: centered full height, mobile: bottom 1:1 square */}
+            {/* Desktop image */}
+            <div className="absolute inset-0 z-[5] hidden md:flex items-center justify-center pointer-events-none">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                    src="/images/hero-bg.webp"
+                    alt=""
+                    className="w-auto h-[100vh] object-contain select-none"
+                />
+            </div>
+            {/* Mobile image — bottom, square */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-[5] md:hidden pointer-events-none w-[90vw] aspect-square">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src="/images/hero-bg.webp"

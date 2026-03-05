@@ -66,7 +66,7 @@ export function HeroSection() {
 
             {/* Background image — desktop: centered full height, mobile: bottom 1:1 square */}
             {/* Desktop image */}
-            <div className="absolute inset-0 z-[5] hidden md:flex items-center justify-center pointer-events-none">
+            <div className="absolute inset-0 z-[5] hidden md:flex items-center justify-center pointer-events-none translate-y-[10%]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src="/images/hero-bg.webp"
@@ -75,7 +75,7 @@ export function HeroSection() {
                 />
             </div>
             {/* Mobile image — bottom, square */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-[5] md:hidden pointer-events-none w-[90vw] aspect-square">
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-[5] md:hidden pointer-events-none w-[225vw] max-w-none aspect-square translate-y-[25%]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                     src="/images/hero-bg.webp"

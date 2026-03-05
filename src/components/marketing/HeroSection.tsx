@@ -34,7 +34,7 @@ export function HeroSection() {
     };
 
     return (
-        <div ref={containerRef} className="relative h-screen overflow-hidden flex items-center justify-center px-4 md:px-10">
+        <div ref={containerRef} className="relative h-screen overflow-hidden flex items-start md:items-center justify-center px-4 md:px-10">
             {/* Background image */}
             <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -88,7 +88,7 @@ export function HeroSection() {
             </motion.div>
 
             {/* Main content: chatbox only */}
-            <motion.div style={{ y: contentY }} className="z-10 w-full max-w-[760px] px-4 md:px-0 mb-20 md:mb-[8vw]">
+            <motion.div style={{ y: contentY }} className="z-10 w-full max-w-[760px] px-4 md:px-0 pt-[12vh] md:pt-0 mb-0 md:mb-[8vw] self-start md:self-center">
                 {/* Mobile text above chatbox */}
                 <div className="block md:hidden mb-6 text-center">
                     <SplitText

@@ -4,11 +4,11 @@ import { motion } from 'framer-motion';
 
 const categories = [
     {
-        title: "Sales",
+        title: "Sales & Payments",
         image: "/images/tirionapp/retro/2_resultado.webp",
         description: (
             <>
-                Every interaction is a chance to close. TirionApp handles <strong>lead qualification</strong> the moment a prospect reaches out, sends personalized <strong>follow-up sequences</strong> that feel human, generates <strong>proposals</strong> tailored to each client, and manages <strong>contracts</strong> from draft to signature — all without you lifting a finger.
+                Every interaction is a chance to close — and get paid. TirionApp handles <strong>lead qualification</strong> the moment a prospect reaches out, sends personalized <strong>follow-up sequences</strong> that feel human, and manages <strong>contracts</strong> from draft to signature. Once the deal closes, <strong>automated billing</strong> triggers instantly, professional <strong>invoices</strong> go out after every job, and intelligent <strong>recovery</strong> workflows recapture revenue you would have otherwise lost.
             </>
         ),
     },
@@ -22,47 +22,20 @@ const categories = [
         ),
     },
     {
-        title: "Communication",
+        title: "Communication & Content",
         image: "/images/tirionapp/retro/4_resultado.webp",
         description: (
             <>
-                Be everywhere your customers are, without being tied to a screen. <strong>AI phone calls</strong> answer and qualify leads 24/7 in a natural voice, <strong>WhatsApp</strong> conversations convert inquiries into bookings, <strong>emails</strong> nurture relationships at scale, and <strong>web chat</strong> captures visitors the moment they land on your site.
+                Be everywhere your customers are, without being tied to a screen. <strong>AI phone calls</strong> answer and qualify leads 24/7, <strong>WhatsApp</strong> converts inquiries into bookings, <strong>emails</strong> nurture relationships at scale, and <strong>web chat</strong> captures visitors instantly. Meanwhile, your best moments become <strong>social media</strong> posts that feel authentic, long-form content gets <strong>repurposed</strong> into shorts and stories, and a smart <strong>scheduling</strong> engine posts when your audience is most active.
             </>
         ),
     },
     {
-        title: "Reputation",
+        title: "Reputation & Retention",
         image: "/images/tirionapp/retro/13_resultado.webp",
         description: (
             <>
-                Your online presence, protected and growing on its own. Satisfied clients receive gentle nudges to leave <strong>reviews</strong> right after service, every review gets a thoughtful <strong>response</strong> — positive or negative — and continuous <strong>monitoring</strong> alerts you the moment your brand is mentioned anywhere online.
-            </>
-        ),
-    },
-    {
-        title: "Payments",
-        image: "/images/tirionapp/retro/5_resultado.webp",
-        description: (
-            <>
-                Money flows in without chasing it. <strong>Automated billing</strong> triggers at the right moment, professional <strong>invoices</strong> go out instantly after every job, polite <strong>reminders</strong> follow up on outstanding balances, and intelligent <strong>recovery</strong> workflows recapture revenue you would have otherwise lost.
-            </>
-        ),
-    },
-    {
-        title: "Content",
-        image: "/images/tirionapp/retro/6_resultado.webp",
-        description: (
-            <>
-                Stay visible without spending hours creating. Your best moments become <strong>social media</strong> posts that feel authentic, long-form content gets <strong>repurposed</strong> into shorts, carousels, and stories, and a smart <strong>scheduling</strong> engine posts at the exact times your audience is most active.
-            </>
-        ),
-    },
-    {
-        title: "Retention",
-        image: "/images/tirionapp/retro/7_resultado.webp",
-        description: (
-            <>
-                Keep the clients you already won. Predictive models flag <strong>churn risk</strong> before a customer even thinks about leaving, personalized <strong>referral</strong> programs turn happy clients into your best salespeople, and <strong>loyalty</strong> rewards make staying with you the obvious choice.
+                Your online presence, protected and growing on its own. Satisfied clients receive gentle nudges to leave <strong>reviews</strong> right after service, every review gets a thoughtful <strong>response</strong>, and continuous <strong>monitoring</strong> alerts you when your brand is mentioned. Predictive models flag <strong>churn risk</strong> before a customer thinks about leaving, personalized <strong>referral</strong> programs turn happy clients into your best salespeople, and <strong>loyalty</strong> rewards make staying with you the obvious choice.
             </>
         ),
     },

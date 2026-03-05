@@ -130,7 +130,7 @@ function StepItem({ step, index, setActiveIndex }: { step: StepData; index: numb
                 </div>
 
                 {/* Mobile Image (hidden on desktop) */}
-                <div className="block lg:hidden mt-8 w-full aspect-[3/4] rounded-[32px] shadow-[0_16px_32px_rgba(0,0,0,0.1)] overflow-visible relative border border-agency-border-light/50" style={{ backgroundColor: step.bgColor }}>
+                <div className="block lg:hidden mt-8 w-full aspect-square rounded-[32px] shadow-[0_16px_32px_rgba(0,0,0,0.1)] overflow-visible relative border border-agency-border-light/50" style={{ backgroundColor: step.bgColor }}>
                     <div className="absolute inset-0 w-full h-full rounded-[32px] overflow-visible">
                         <div className="absolute inset-0 bg-cover bg-center rounded-[32px] z-10" style={{ backgroundImage: `url(${step.image})`, transform: 'scale(1.15)' }} />
                     </div>
@@ -184,9 +184,8 @@ export function HowItWorks() {
                         ))}
                     </div>
 
-                    {/* Right side: Sticky Image/Visual */}
-                    <div className="hidden lg:block sticky top-[8vh] h-[84vh] w-full mb-[8vh]">
-                        <div className="h-full w-full rounded-[48px] shadow-[0_32px_64px_rgba(0,0,0,0.1)] border border-agency-border-light/50 bg-agency-bg-surface relative z-0 overflow-visible">
+                    <div className="hidden lg:block sticky top-[12vh] w-full mb-[8vh]">
+                        <div className="w-full aspect-square rounded-[48px] shadow-[0_32px_64px_rgba(0,0,0,0.1)] border border-agency-border-light/50 bg-agency-bg-surface relative z-0 overflow-visible">
                             <div className="absolute inset-0 w-full h-full rounded-[48px] overflow-visible mask-image-rounded">
                                 {/* Solid color backgrounds */}
                                 {steps.map((step, index) => (

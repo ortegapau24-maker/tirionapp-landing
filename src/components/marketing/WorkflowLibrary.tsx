@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 
 const categories = [
@@ -175,11 +175,56 @@ function WorkflowCard({
 
 export function WorkflowLibrary() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end end"],
     });
+
+    if (isMobile) {
+        return (
+            <section id="library" className="relative w-full bg-white text-agency-text-main py-24 px-4">
+                <div className="w-full max-w-[1100px] mx-auto flex flex-col gap-24">
+                    {categories.map((cat, index) => (
+                        <div key={index} className="flex flex-col gap-8 items-center bg-gray-50/50 p-6 rounded-3xl border border-gray-100">
+                            {/* Image */}
+                            <div className="w-full">
+                                <div className="aspect-square max-w-[400px] mx-auto rounded-[24px] overflow-hidden shadow-lg shadow-black/5">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img
+                                        src={cat.image}
+                                        alt={cat.title}
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Text */}
+                            <div className="w-full flex flex-col items-center text-center">
+                                <div className="text-[#0032A0] font-outfit text-sm tracking-[0.2em] uppercase font-semibold mb-3">
+                                    0{index + 1}
+                                </div>
+                                <h3 className="text-[1.75rem] font-outfit font-semibold text-[#050505] mb-4 leading-[1.2]">
+                                    {cat.title}
+                                </h3>
+                                <p className="text-gray-500 text-[1rem] leading-[1.6] font-light [&>strong]:text-[#050505] [&>strong]:font-medium">
+                                    {cat.description}
+                                </p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section

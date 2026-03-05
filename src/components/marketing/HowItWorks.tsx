@@ -176,15 +176,15 @@ export function HowItWorks() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 relative items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 lg:gap-16 relative items-start">
                     {/* Left side: Scrollable List */}
-                    <div className="pb-[10vh]">
+                    <div className="pb-[10vh] lg:col-span-2">
                         {steps.map((step, index) => (
                             <StepItem key={index} step={step} index={index} setActiveIndex={setActiveIndex} />
                         ))}
                     </div>
 
-                    <div className="hidden lg:block sticky top-[12vh] w-full mb-[8vh]">
+                    <div className="hidden lg:block sticky top-[12vh] w-full mb-[8vh] lg:col-span-3">
                         <div className="w-full aspect-square rounded-[48px] overflow-visible relative z-0">
                             <div className="absolute inset-0 w-full h-full rounded-[48px] overflow-visible mask-image-rounded">
                                 {/* Images only — no color backgrounds */}

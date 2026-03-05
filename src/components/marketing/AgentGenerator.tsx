@@ -128,7 +128,6 @@ export function AgentGenerator() {
                             {/* Chat Header */}
                             <div className="w-full p-4 bg-white/50 backdrop-blur-sm flex items-center justify-between border-b border-white/20">
                                 <div className="flex items-center gap-3">
-                                    <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
                                     <span className="font-outfit font-semibold text-black text-[0.95rem]">TirionApp Copilot</span>
                                 </div>
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
@@ -138,22 +137,22 @@ export function AgentGenerator() {
                             <div className="flex-1 w-full p-4 flex flex-col gap-4 overflow-y-auto relative">
                                 {/* Step 1: User Msg */}
                                 <div className={cn("flex gap-3 justify-end transition-all duration-700 ease-out shrink-0", step >= 1 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}>
-                                    <div className="max-w-[85%] bg-white text-black border border-gray-200 rounded-t-[20px] rounded-bl-[20px] rounded-br-sm p-4 text-[0.95rem] leading-[1.5] shadow-sm relative">
+                                    <div className="max-w-[85%] bg-[#f0f0f0] text-black rounded-t-[20px] rounded-bl-[20px] rounded-br-sm p-4 text-[0.95rem] leading-[1.5] relative">
                                         &quot;Build a workflow that checks info@myagency.com for urgent tickets. If urgent, create a Zendesk ticket AND ping Slack. Otherwise, log it to Postgres.&quot;
                                     </div>
-                                    <div className="w-[36px] h-[36px] rounded-full bg-black text-white flex items-center justify-center font-bold flex-shrink-0 font-outfit text-sm shadow-sm">
+                                    <div className="w-[36px] h-[36px] rounded-full bg-red-500 text-white flex items-center justify-center font-bold flex-shrink-0 font-outfit text-sm">
                                         U
                                     </div>
                                 </div>
 
                                 {/* Step 2/3: AI Msg 1 */}
                                 <div className={cn("flex gap-3 transition-all duration-700 ease-out shrink-0", step >= 2 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8 hidden")}>
-                                    <div className="w-[36px] h-[36px] mt-1 bg-white border border-gray-200 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm relative">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" className="w-4 h-4">
+                                    <div className="w-[36px] h-[36px] mt-1 bg-[#0032A0] rounded-full flex items-center justify-center flex-shrink-0 relative">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="w-4 h-4">
                                             <path d="M12 2a2 2 0 0 1 2 2v1h6a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h6V4a2 2 0 0 1 2-2z"></path>
                                         </svg>
                                     </div>
-                                    <div className="w-full max-w-[85%] bg-white border border-gray-200 rounded-t-[20px] rounded-br-[20px] rounded-bl-sm p-4 text-[0.95rem] text-black leading-[1.5] shadow-sm relative">
+                                    <div className="w-full max-w-[85%] bg-[#f0f0f0] rounded-t-[20px] rounded-br-[20px] rounded-bl-sm p-4 text-[0.95rem] text-black leading-[1.5] relative">
                                         {step === 2 && (
                                             <span className="text-black font-medium font-inter flex items-center gap-2 animate-pulse">
                                                 Analyzing branching logic...
@@ -170,22 +169,22 @@ export function AgentGenerator() {
 
                                 {/* Step 4: User Msg 2 */}
                                 <div className={cn("flex gap-3 justify-end transition-all duration-700 ease-out shrink-0", step >= 4 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8 hidden")}>
-                                    <div className="max-w-[85%] bg-white text-black border border-gray-200 rounded-t-[20px] rounded-bl-[20px] rounded-br-sm p-4 text-[0.95rem] leading-[1.5] shadow-sm relative">
+                                    <div className="max-w-[85%] bg-[#f0f0f0] text-black rounded-t-[20px] rounded-bl-[20px] rounded-br-sm p-4 text-[0.95rem] leading-[1.5] relative">
                                         &quot;Yes, proceed.&quot;
                                     </div>
-                                    <div className="w-[36px] h-[36px] rounded-full bg-black text-white flex items-center justify-center font-bold flex-shrink-0 font-outfit text-sm shadow-sm">
+                                    <div className="w-[36px] h-[36px] rounded-full bg-red-500 text-white flex items-center justify-center font-bold flex-shrink-0 font-outfit text-sm">
                                         U
                                     </div>
                                 </div>
 
                                 {/* Step 5-9: AI Msg 2 */}
                                 <div className={cn("flex gap-3 transition-all duration-700 ease-out", step >= 5 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8 hidden")}>
-                                    <div className="w-[36px] h-[36px] mt-1 bg-white border border-gray-200 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm relative">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" className="w-4 h-4">
+                                    <div className="w-[36px] h-[36px] mt-1 bg-[#0032A0] rounded-full flex items-center justify-center flex-shrink-0 relative">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" className="w-4 h-4">
                                             <path d="M12 2a2 2 0 0 1 2 2v1h6a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h6V4a2 2 0 0 1 2-2z"></path>
                                         </svg>
                                     </div>
-                                    <div className="w-full max-w-[88%] bg-white border border-gray-200 rounded-t-[20px] rounded-br-[20px] rounded-bl-sm p-4 text-[0.95rem] text-black leading-[1.5] shadow-sm relative">
+                                    <div className="w-full max-w-[88%] bg-[#f0f0f0] rounded-t-[20px] rounded-br-[20px] rounded-bl-sm p-4 text-[0.95rem] text-black leading-[1.5] relative">
                                         {step >= 5 && step < 8 && (
                                             <span className="text-black font-medium font-inter flex items-center gap-2 animate-pulse">
                                                 {step === 5 && "Scaffolding workflow nodes..."}

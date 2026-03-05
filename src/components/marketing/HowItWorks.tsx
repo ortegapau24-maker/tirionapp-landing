@@ -70,8 +70,8 @@ function StepItem({ step, index, setActiveIndex }: { step: StepData; index: numb
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             >
                 <div className="flex items-center gap-4 mb-6">
-                    <span className="text-[1.8rem] md:text-[2.4rem] font-bold text-black tracking-[0.1em] font-outfit">{step.num}</span>
-                    <div className="h-[2px] bg-black w-12 md:w-20 rounded-full" />
+                    <span className="text-[1.8rem] md:text-[2.4rem] font-bold text-[#0032A0] tracking-[0.1em] font-outfit">{step.num}</span>
+                    <div className="h-[2px] bg-[#0032A0] w-12 md:w-20 rounded-full" />
                 </div>
                 <div className="mb-6">
                     <SplitText

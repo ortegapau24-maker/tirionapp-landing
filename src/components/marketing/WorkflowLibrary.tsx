@@ -48,8 +48,9 @@ const TOTAL = categories.length;
 function useCardTransforms(scrollYProgress: MotionValue<number>, index: number) {
     const segmentSize = 1 / TOTAL;
     const start = index * segmentSize;
-    const mid = start + segmentSize * 0.4;
-    const hold = start + segmentSize * 0.6;
+    // Stretch out the entrance, hold, and exit to make animations much slower over the scroll
+    const mid = start + segmentSize * 0.45; // Slower entrance
+    const hold = start + segmentSize * 0.75; // Slower exit
     const end = start + segmentSize;
     const isEven = index % 2 === 0;
 
@@ -185,7 +186,7 @@ export function WorkflowLibrary() {
             id="library"
             ref={containerRef}
             className="relative w-full bg-white text-agency-text-main"
-            style={{ height: `${TOTAL * 150}vh` }}
+            style={{ height: `${TOTAL * 250}vh` }}
         >
             {/* Sticky viewport — pinned to the screen */}
             <div

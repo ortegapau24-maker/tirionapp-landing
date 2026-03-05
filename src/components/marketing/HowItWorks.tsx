@@ -17,7 +17,7 @@ const steps = [
     {
         num: "02",
         title: "Tell Us What You Need",
-        desc: "No complicated drag-and-drop builders. Just describe what you need in plain English. Our system dynamically routes your request to the optimal AI model — Claude for reasoning, GPT-4 for generation, and Gemini for speed.",
+        desc: "No complicated drag-and-drop builders. Just describe what you need in plain English. Our system dynamically routes your request to the optimal AI model.",
         image: "/images/tirionapp/retro/10_resultado.webp",
         bgColor: "#D3DEE8",
         highlights: ["Plain English setup", "Multi-LLM architecture", "Ready in minutes"],

@@ -140,21 +140,18 @@ export function AgentGenerator() {
             </div>
 
             {/* Scrollytelling Interface */}
-            <div ref={containerRef} className="relative w-full h-[200vh]">
+            <div ref={containerRef} className="relative w-full h-[200vh] mb-12 md:mb-24">
 
                 {/* Sticky Container */}
-                <div className="sticky top-0 w-full h-[100vh] overflow-hidden flex flex-col items-center justify-end pb-[10vh]">
+                <div className="sticky top-0 w-full h-[100vh] overflow-hidden flex flex-col items-center justify-end pb-[10vh] rounded-b-[4rem] md:rounded-b-[6rem]">
 
-                    {/* Full Screen Background Image (Placeholder) */}
+                    {/* Full Screen Background Image */}
                     <div
                         className="absolute inset-0 z-0 bg-cover bg-center"
-                        style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80)', opacity: 0.3 }}
+                        style={{ backgroundImage: 'url(/images/17_resultado.webp)', opacity: 1 }}
                     />
 
-                    {/* Particle Effect Overlay */}
-                    <div className="absolute inset-0 z-0 pointer-events-none">
-                        <PricingParticles activeColor="#FFFFFF" targetSelector=".chat-card-container" blendMode="mix-blend-normal opacity-40" />
-                    </div>
+
 
                     {/* Bottom: Unified IDE Interface sliding up */}
                     <motion.div
@@ -165,8 +162,7 @@ export function AgentGenerator() {
 
                             {/* Left Side: Chat Sidebar (Fixed Width) */}
                             <div
-                                ref={containerRef}
-                                className="w-full lg:w-[440px] h-[400px] lg:h-full flex flex-col items-center relative z-20 bg-white/40 backdrop-blur-md border-b lg:border-b-0 lg:border-r border-white/30"
+                                className="w-full lg:w-[440px] h-[400px] lg:h-full flex flex-col items-center relative z-20 bg-white/40 backdrop-blur-md border-b lg:border-b-0 lg:border-r border-white/30 rounded-t-[24px] md:rounded-t-[28px] lg:rounded-tr-none lg:rounded-l-[28px] overflow-hidden"
                             >
                                 {/* Chat Header */}
                                 <div className="w-full p-4 bg-white/50 backdrop-blur-sm flex items-center justify-between border-b border-white/20">

@@ -286,8 +286,8 @@ function SphereCanvas({
 
     return (
         <div className={`relative flex items-center justify-center shrink-0 ${isCenter
-            ? 'w-[320px] md:w-[700px] h-[550px] md:h-[750px] z-10'
-            : 'w-[200px] md:w-[320px] h-[350px] md:h-[450px] hidden md:flex opacity-60'
+            ? 'w-full md:w-[700px] h-[300px] md:h-[750px] z-10'
+            : 'w-full md:w-[320px] h-[180px] md:h-[450px] flex opacity-60'
             }`}>
             <canvas
                 ref={canvasRef}
@@ -321,27 +321,36 @@ function SphereCanvas({
 }
 
 export default function IntegrationSphere() {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     return (
-        <div className="w-full my-12 md:my-24">
-            <div className="bg-agency-bg-surface rounded-[4rem] md:rounded-[6rem] py-16 md:py-24 flex flex-col items-center relative z-10 w-full overflow-hidden">
-                <div className="text-[0.9rem] uppercase tracking-[0.15em] text-agency-text-muted mb-8 font-semibold text-center font-inter relative z-20">
+        <div className="w-full my-8 md:my-24 px-4 md:px-0">
+            <div className="bg-agency-bg-surface rounded-[2.5rem] md:rounded-[6rem] py-12 md:py-24 flex flex-col items-center relative z-10 w-full overflow-hidden">
+                <div className="text-[0.8rem] md:text-[0.9rem] uppercase tracking-[0.15em] text-agency-text-muted mb-8 font-semibold text-center font-inter relative z-20">
                     Native Integrations
                 </div>
 
-                <div className="flex flex-row items-center justify-center w-full gap-4 lg:gap-8 xl:gap-8">
-                    {/* Left Sphere (Delayed by 1000ms, distinct start index) */}
-                    <div className="relative z-30">
-                        <SphereCanvas radius={110} delayMs={0} isCenter={false} startIndex={5} />
+                <div className="flex flex-col md:flex-row items-center justify-center w-full gap-8 md:gap-4 lg:gap-8 xl:gap-8">
+                    {/* Top/Left Sphere */}
+                    <div className="relative z-30 w-full flex justify-center">
+                        <SphereCanvas radius={isMobile ? 45 : 110} delayMs={0} isCenter={false} startIndex={5} />
                     </div>
 
-                    {/* Center Sphere (Master, large, delayed by 2000ms) */}
-                    <div className="relative z-40">
-                        <SphereCanvas radius={220} delayMs={1000} isCenter={true} startIndex={0} />
+                    {/* Center Sphere */}
+                    <div className="relative z-40 w-full flex justify-center">
+                        <SphereCanvas radius={isMobile ? 80 : 220} delayMs={1000} isCenter={true} startIndex={0} />
                     </div>
 
-                    {/* Right Sphere (Delayed by 3000ms, distinct start index) */}
-                    <div className="relative z-20">
-                        <SphereCanvas radius={110} delayMs={2000} isCenter={false} startIndex={10} />
+                    {/* Bottom/Right Sphere */}
+                    <div className="relative z-20 w-full flex justify-center">
+                        <SphereCanvas radius={isMobile ? 45 : 110} delayMs={2000} isCenter={false} startIndex={10} />
                     </div>
                 </div>
             </div>

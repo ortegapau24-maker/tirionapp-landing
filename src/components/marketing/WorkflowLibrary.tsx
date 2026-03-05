@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 const categories = [
     {
         title: "Sales",
-        image: "/images/tirionapp/retro/1_resultado.webp",
+        image: "/images/tirionapp/retro/2_resultado.webp",
         description: (
             <>
                 Every interaction is a chance to close. TirionApp handles <strong>lead qualification</strong> the moment a prospect reaches out, sends personalized <strong>follow-up sequences</strong> that feel human, generates <strong>proposals</strong> tailored to each client, and manages <strong>contracts</strong> from draft to signature — all without you lifting a finger.
@@ -14,7 +14,7 @@ const categories = [
     },
     {
         title: "Operations",
-        image: "/images/tirionapp/retro/5_resultado.webp",
+        image: "/images/tirionapp/retro/3_resultado.webp",
         description: (
             <>
                 The invisible backbone of your business, running on autopilot. Your <strong>meetings</strong> schedule themselves around everyone&apos;s availability, <strong>reports</strong> compile overnight and land in your inbox by morning, <strong>support tickets</strong> are triaged and resolved before they pile up, and new client <strong>onboarding</strong> flows happen without a single manual step.
@@ -23,7 +23,7 @@ const categories = [
     },
     {
         title: "Communication",
-        image: "/images/tirionapp/retro/2_resultado.webp",
+        image: "/images/tirionapp/retro/4_resultado.webp",
         description: (
             <>
                 Be everywhere your customers are, without being tied to a screen. <strong>AI phone calls</strong> answer and qualify leads 24/7 in a natural voice, <strong>WhatsApp</strong> conversations convert inquiries into bookings, <strong>emails</strong> nurture relationships at scale, and <strong>web chat</strong> captures visitors the moment they land on your site.
@@ -32,7 +32,7 @@ const categories = [
     },
     {
         title: "Reputation",
-        image: "/images/tirionapp/retro/6_resultado.webp",
+        image: "/images/tirionapp/retro/13_resultado.webp",
         description: (
             <>
                 Your online presence, protected and growing on its own. Satisfied clients receive gentle nudges to leave <strong>reviews</strong> right after service, every review gets a thoughtful <strong>response</strong> — positive or negative — and continuous <strong>monitoring</strong> alerts you the moment your brand is mentioned anywhere online.
@@ -41,7 +41,7 @@ const categories = [
     },
     {
         title: "Payments",
-        image: "/images/tirionapp/retro/3_resultado.webp",
+        image: "/images/tirionapp/retro/5_resultado.webp",
         description: (
             <>
                 Money flows in without chasing it. <strong>Automated billing</strong> triggers at the right moment, professional <strong>invoices</strong> go out instantly after every job, polite <strong>reminders</strong> follow up on outstanding balances, and intelligent <strong>recovery</strong> workflows recapture revenue you would have otherwise lost.
@@ -50,7 +50,7 @@ const categories = [
     },
     {
         title: "Content",
-        image: "/images/tirionapp/retro/8_resultado.webp",
+        image: "/images/tirionapp/retro/6_resultado.webp",
         description: (
             <>
                 Stay visible without spending hours creating. Your best moments become <strong>social media</strong> posts that feel authentic, long-form content gets <strong>repurposed</strong> into shorts, carousels, and stories, and a smart <strong>scheduling</strong> engine posts at the exact times your audience is most active.
@@ -59,7 +59,7 @@ const categories = [
     },
     {
         title: "Retention",
-        image: "/images/tirionapp/retro/4_resultado.webp",
+        image: "/images/tirionapp/retro/7_resultado.webp",
         description: (
             <>
                 Keep the clients you already won. Predictive models flag <strong>churn risk</strong> before a customer even thinks about leaving, personalized <strong>referral</strong> programs turn happy clients into your best salespeople, and <strong>loyalty</strong> rewards make staying with you the obvious choice.

@@ -9,7 +9,7 @@ const steps = [
         num: "01",
         title: "Audit The Revenue Leaks",
         desc: "Every missed call is revenue handed to your competition. We connect to your existing tools and calculate exactly where you're losing hours and revenue — then deploy a system to recover it instantly.",
-        image: "/images/tirionapp/retro/6_resultado.webp",
+        image: "/images/tirionapp/retro/8_resultado.webp",
         bgColor: "#E8DDD3",
         highlights: ["No software to configure", "Works with your existing tools", "See ROI immediately"],
 
@@ -27,7 +27,7 @@ const steps = [
         num: "03",
         title: "We Test Everything First",
         desc: "Before anything goes live, your automations run through sandbox simulations. You review the results, approve with one click, and deploy with confidence — no surprises.",
-        image: "/images/tirionapp/retro/8_resultado.webp",
+        image: "/images/tirionapp/retro/10_resultado.webp",
         bgColor: "#D8E8D3",
         highlights: ["Safe sandbox testing", "One-click approval", "Full transparency"],
 
@@ -36,7 +36,7 @@ const steps = [
         num: "04",
         title: "Your Business Runs Itself",
         desc: "Your agents start working 24/7 — answering calls, qualifying leads, booking appointments, and sending you a daily summary. You focus on what matters while TirionApp handles the rest.",
-        image: "/images/tirionapp/retro/7_resultado.webp",
+        image: "/images/tirionapp/retro/11_resultado.webp",
         bgColor: "#E3D3E8",
         highlights: ["24/7 autonomous operation", "Daily executive summaries", "Always in control"],
 

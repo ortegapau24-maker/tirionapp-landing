@@ -7,25 +7,25 @@ const agents = [
     {
         title: "Call Center Agent",
         subtitle: "Your AI receptionist answers every call, books appointments, checks availability, and updates your CRM — all in real-time. Never miss a lead again.",
-        image: "/images/tirionapp/retro/2_resultado.webp",
+        image: "/images/tirionapp/retro/5_resultado.webp",
         isComingSoon: false,
     },
     {
         title: "SDR Agent",
         subtitle: "Finds and qualifies leads from your existing contacts, sends personalized follow-ups, and books meetings on your calendar — automatically.",
-        image: "/images/tirionapp/retro/3_resultado.webp",
+        image: "/images/tirionapp/retro/6_resultado.webp",
         isComingSoon: true,
     },
     {
         title: "Marketing Agent",
         subtitle: "Creates and distributes content across your channels, optimized for each platform. Grows your pipeline without hiring a marketing team.",
-        image: "/images/tirionapp/retro/4_resultado.webp",
+        image: "/images/tirionapp/retro/7_resultado.webp",
         isComingSoon: true,
     },
     {
         title: "CFO Agent",
         subtitle: "Tracks invoices, monitors cash flow, and alerts you to financial risks before they become problems. Board-ready reports on demand.",
-        image: "/images/tirionapp/retro/5_resultado.webp",
+        image: "/images/tirionapp/retro/8_resultado.webp",
         isComingSoon: true,
     },
 ];

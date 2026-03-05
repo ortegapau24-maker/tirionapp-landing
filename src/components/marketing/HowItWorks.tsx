@@ -1,11 +1,8 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import dynamic from 'next/dynamic';
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import SplitText from '@/components/ui/SplitText';
-
-const Grainient = dynamic(() => import('@/components/ui/Grainient'), { ssr: false });
 
 const steps = [
     {
@@ -15,7 +12,7 @@ const steps = [
         image: "/images/tirionapp/retro/6_resultado.webp",
         bgColor: "#E8DDD3",
         highlights: ["No software to configure", "Works with your existing tools", "See ROI immediately"],
-        grainient: { color1: "#F8FAFC", color2: "#333333", color3: "#1a1a1a" }
+
     },
     {
         num: "02",
@@ -24,7 +21,7 @@ const steps = [
         image: "/images/tirionapp/retro/9_resultado.webp",
         bgColor: "#D3DEE8",
         highlights: ["Plain English setup", "AI builds it for you", "Ready in minutes"],
-        grainient: { color1: "#F8FAFC", color2: "#333333", color3: "#1a1a1a" }
+
     },
     {
         num: "03",
@@ -33,7 +30,7 @@ const steps = [
         image: "/images/tirionapp/retro/8_resultado.webp",
         bgColor: "#D8E8D3",
         highlights: ["Safe sandbox testing", "One-click approval", "Full transparency"],
-        grainient: { color1: "#F8FAFC", color2: "#333333", color3: "#1a1a1a" }
+
     },
     {
         num: "04",
@@ -42,7 +39,7 @@ const steps = [
         image: "/images/tirionapp/retro/7_resultado.webp",
         bgColor: "#E3D3E8",
         highlights: ["24/7 autonomous operation", "Daily executive summaries", "Always in control"],
-        grainient: { color1: "#F8FAFC", color2: "#333333", color3: "#1a1a1a" }
+
     }
 ];
 
@@ -53,7 +50,7 @@ interface StepData {
     image: string;
     bgColor: string;
     highlights: string[];
-    grainient: { color1: string; color2: string; color3: string };
+
 }
 
 function StepItem({ step, index, setActiveIndex }: { step: StepData; index: number; setActiveIndex: (idx: number) => void }) {
@@ -133,40 +130,9 @@ function StepItem({ step, index, setActiveIndex }: { step: StepData; index: numb
                 </div>
 
                 {/* Mobile Image (hidden on desktop) */}
-                <div className="block lg:hidden mt-8 w-full aspect-[3/4] rounded-[32px] shadow-[0_16px_32px_rgba(0,0,0,0.1)] overflow-hidden relative border border-agency-border-light/50 bg-agency-bg-surface">
-                    <div className="absolute inset-0 w-full h-full rounded-[32px] overflow-hidden mask-image-rounded transition-opacity duration-[1500ms] ease-[cubic-bezier(0.2,0.8,0.2,1)]">
-                        {/* Grainient Background */}
-                        <div className="absolute inset-0 rounded-[32px]">
-                            <Grainient
-                                color1={step.grainient.color1}
-                                color2={step.grainient.color2}
-                                color3={step.grainient.color3}
-                                timeSpeed={0.5}
-                                grainAmount={0.06}
-                                grainScale={3.0}
-                                grainAnimated={true}
-                                warpStrength={1.0}
-                                warpFrequency={3.0}
-                                warpSpeed={3.5}
-                                warpAmplitude={50.0}
-                                contrast={1.6}
-                                gamma={1.0}
-                                saturation={0.75}
-                                zoom={0.75}
-                                className="rounded-[32px]"
-                            />
-                        </div>
-
-                        {/* Inner Image */}
+                <div className="block lg:hidden mt-8 w-full aspect-[3/4] rounded-[32px] shadow-[0_16px_32px_rgba(0,0,0,0.1)] overflow-hidden relative border border-agency-border-light/50" style={{ backgroundColor: step.bgColor }}>
+                    <div className="absolute inset-0 w-full h-full rounded-[32px] overflow-hidden">
                         <div className="absolute inset-0 bg-cover bg-center rounded-[32px] z-10" style={{ backgroundImage: `url(${step.image})`, transform: 'scale(1.15)' }} />
-
-                        {/* Noise overlay */}
-                        <div className="absolute inset-0 rounded-[32px] z-10 pointer-events-none opacity-40 mix-blend-overlay"
-                            style={{
-                                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-                                backgroundSize: '128px 128px',
-                            }}
-                        />
                     </div>
                 </div>
             </motion.div>
@@ -222,36 +188,16 @@ export function HowItWorks() {
                     <div className="hidden lg:block sticky top-[8vh] h-[84vh] w-full mb-[8vh]">
                         <div className="h-full w-full rounded-[48px] shadow-[0_32px_64px_rgba(0,0,0,0.1)] border border-agency-border-light/50 bg-agency-bg-surface relative z-0 overflow-hidden">
                             <div className="absolute inset-0 w-full h-full rounded-[48px] overflow-hidden mask-image-rounded">
-                                {/* Grainient backgrounds */}
+                                {/* Solid color backgrounds */}
                                 {steps.map((step, index) => (
                                     <div
-                                        key={`grain-${index}`}
+                                        key={`bg-${index}`}
                                         className="absolute inset-0 rounded-[48px] transition-opacity duration-[1500ms] ease-[cubic-bezier(0.2,0.8,0.2,1)]"
                                         style={{
                                             opacity: activeIndex === index ? 1 : 0,
+                                            backgroundColor: step.bgColor,
                                         }}
-                                    >
-                                        {activeIndex === index && (
-                                            <Grainient
-                                                color1={step.grainient.color1}
-                                                color2={step.grainient.color2}
-                                                color3={step.grainient.color3}
-                                                timeSpeed={0.5}
-                                                grainAmount={0.06}
-                                                grainScale={3.0}
-                                                grainAnimated={true}
-                                                warpStrength={1.0}
-                                                warpFrequency={3.0}
-                                                warpSpeed={3.5}
-                                                warpAmplitude={50.0}
-                                                contrast={1.6}
-                                                gamma={1.0}
-                                                saturation={0.75}
-                                                zoom={0.75}
-                                                className="rounded-[48px]"
-                                            />
-                                        )}
-                                    </div>
+                                    />
                                 ))}
                                 {/* Inner images cross-fading */}
                                 {steps.map((step, index) => (

@@ -1,10 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import dynamic from 'next/dynamic';
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
-
-const Grainient = dynamic(() => import('@/components/ui/Grainient'), { ssr: false });
 
 const agents = [
     {
@@ -136,10 +133,10 @@ function AgentImage({ agent, index, progress, exitProgress, isLast, isFirst, bor
     return (
         <motion.div
             style={{ x, y, width, height, zIndex, opacity, borderRadius: imageBorderRadius }}
-            className="absolute overflow-hidden flex items-center justify-center bg-transparent pointer-events-auto"
+            className={`absolute overflow-hidden flex items-center justify-center pointer-events-auto ${isFirst ? 'bg-[#0032A0]' : 'bg-transparent'}`}
         >
             <motion.div
-                className="w-full h-full bg-contain bg-center bg-no-repeat shrink-0 origin-center relative z-10"
+                className="w-full h-full bg-contain bg-center bg-no-repeat shrink-0 origin-center relative z-20"
                 style={{
                     backgroundImage: `url('${agent.image}')`,
                     scale: imageScale,
@@ -200,7 +197,7 @@ function AgentText({ agent, index, progress, isLast, isFirst, isMobile }: { agen
                         </span>
                     </div>
                 )}
-                <h3 className="text-[clamp(1.75rem,2.5vw,2.25rem)] font-outfit font-medium leading-[1.1] mb-2 md:mb-4 text-agency-text-main">
+                <h3 className="text-[clamp(1.75rem,2.5vw,2.25rem)] font-outfit font-medium leading-[1.1] mb-2 md:mb-4 text-[#0032A0]">
                     {agent.title}
                 </h3>
             </div>
@@ -251,52 +248,23 @@ export function ExecutiveTeam() {
     // End at agents.length - 1 (perfectly locked on the final image dwelling)
     const continuousIndex = useTransform(scrollYProgress, [0, 1], [-0.6, agents.length - 1]);
 
-    // Title fades in precisely as the first image finishes shrinking
-    // Title starts behind image (visible but covered), slides up as image shrinks
-    const sectionTitleY = useTransform(scrollYProgress, [0, 0.12], ["40vh", "0vh"]);
-
-    // Grainient background: scale shrinks to center, opacity fades out
-    const grainientScale = useTransform(scrollYProgress, [0, 0.06, 0.12], [1, 0.5, 0]);
-    const grainientOpacity = useTransform(scrollYProgress, [0, 0.06, 0.12], [1, 0.6, 0]);
+    // Blue background: scale shrinks to center, opacity fades out (same as original Grainient animation)
+    const bgScale = useTransform(scrollYProgress, [0, 0.06, 0.12], [1, 0.5, 0]);
+    const bgOpacity = useTransform(scrollYProgress, [0, 0.06, 0.12], [1, 0.6, 0]);
 
     return (
         // Generous container size ensuring smooth phases 
         <motion.div ref={containerRef} className="relative bg-agency-bg-surface w-full" style={{ height: `${(agents.length * 280)}vh`, borderRadius }} id="agents">
             <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
 
-                {/* Grainient full-screen background - behind everything, shrinks to center */}
+                {/* Solid blue background - shrinks to center like original animation */}
                 <motion.div
-                    className="absolute inset-0 z-10 pointer-events-none origin-center rounded-[6vw] overflow-hidden"
+                    className="absolute inset-0 z-10 pointer-events-none origin-center rounded-[6vw] overflow-hidden bg-[#0032A0]"
                     style={{
-                        scale: grainientScale,
-                        opacity: grainientOpacity,
+                        scale: bgScale,
+                        opacity: bgOpacity,
                     }}
-                >
-                    <Grainient
-                        color1="#F8FAFC"
-                        color2="#333333"
-                        color3="#1a1a1a"
-                        timeSpeed={0.5}
-                        grainAmount={0.06}
-                        grainScale={3.0}
-                        grainAnimated={true}
-                        warpStrength={1.0}
-                        warpFrequency={3.0}
-                        warpSpeed={3.5}
-                        warpAmplitude={50.0}
-                        contrast={1.6}
-                        gamma={1.0}
-                        saturation={0.75}
-                        zoom={0.75}
-                    />
-                </motion.div>
-
-                {/* Static Section Title - starts behind image, rises up */}
-                <motion.div className="absolute top-[8vh] md:top-[4vh] left-0 right-0 flex justify-center z-20 pointer-events-none" style={{ y: sectionTitleY }}>
-                    <h2 className="text-[clamp(3.5rem,6vw,5.5rem)] font-outfit font-medium text-agency-text-main tracking-[-0.02em] text-center whitespace-normal md:whitespace-nowrap max-w-[90vw] md:max-w-none leading-[1.1]">
-                        The Autonomous Executive Team.
-                    </h2>
-                </motion.div>
+                />
 
                 {/* Animated Images Container */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">

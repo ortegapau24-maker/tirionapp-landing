@@ -41,19 +41,18 @@ export function HeroSection() {
                 <img
                     src="/images/hero-bg.webp"
                     alt=""
-                    className="w-auto h-[70vh] md:h-[80vh] object-contain select-none"
+                    className="w-auto h-[95vh] object-contain select-none"
                 />
             </div>
 
             {/* Main content: lateral text + chatbox */}
-            <motion.div style={{ y: contentY }} className="z-10 w-full max-w-[1400px] px-4 md:px-6 mb-20 md:mb-[8vw]">
+            <motion.div style={{ y: contentY }} className="z-10 w-full max-w-[1400px] px-4 md:px-0 mb-20 md:mb-[8vw]">
                 {/* Row: left text — chatbox — right text */}
-                <div className="flex flex-col md:flex-row items-center md:items-center gap-6 md:gap-8">
-                    {/* Left text */}
-                    <div className="hidden md:block flex-1 max-w-[280px]">
+                <div className="flex flex-col md:flex-row items-end md:items-end gap-6 md:gap-8">
+                    <div className="hidden md:block flex-1 pb-4">
                         <SplitText
                             text="Your 24/7 autonomous agency. We don't sell software, we return your time."
-                            className="text-[1rem] md:text-[1.1rem] text-agency-text-muted font-light leading-[1.7]"
+                            className="text-[1rem] md:text-[1.1rem] text-[#0032A0] font-medium leading-[1.7]"
                             delay={15}
                             duration={0.8}
                             ease="power3.out"
@@ -69,11 +68,10 @@ export function HeroSection() {
 
                     {/* Center: Chatbox */}
                     <div className="w-full md:flex-[2] max-w-[760px] mx-auto relative z-20">
-                        {/* Mobile-only text above chatbox */}
                         <div className="block md:hidden mb-6 text-center">
                             <SplitText
                                 text="Your 24/7 autonomous agency. We don't sell software, we return your time. Recover lost leads and operate your business while you sleep."
-                                className="text-[1rem] text-agency-text-muted font-light leading-[1.65]"
+                                className="text-[1rem] text-[#0032A0] font-medium leading-[1.65]"
                                 delay={15}
                                 duration={0.8}
                                 ease="power3.out"
@@ -142,11 +140,10 @@ export function HeroSection() {
                         </motion.div>
                     </div>
 
-                    {/* Right text */}
-                    <div className="hidden md:block flex-1 max-w-[280px]">
+                    <div className="hidden md:block flex-1 pb-4">
                         <SplitText
                             text="Recover lost leads and operate your business while you sleep."
-                            className="text-[1rem] md:text-[1.1rem] text-agency-text-muted font-light leading-[1.7]"
+                            className="text-[1rem] md:text-[1.1rem] text-[#0032A0] font-medium leading-[1.7]"
                             delay={15}
                             duration={0.8}
                             ease="power3.out"

@@ -21,10 +21,7 @@ const faqs = [
         question: "How quickly can I get started?",
         answer: "Most businesses have their first automation running within 48 hours. Our AI interviews you about your needs and builds the solution — no technical setup required on your end."
     },
-    {
-        question: "What is a credit and how much do they cost?",
-        answer: "1 credit = 1 AI workflow execution. For example: processing an email, qualifying a lead, or handling a phone call each uses 1 credit. A typical dental clinic uses about 800 credits/month, a plumbing company about 500, and a restaurant about 1,200."
-    },
+
     {
         question: "Is there a free trial?",
         answer: "Yes! 14 days free with 200 credits and 1 active automation — no credit card required. That's enough to fully experience how TirionApp can transform your operations."

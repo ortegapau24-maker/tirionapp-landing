@@ -82,7 +82,7 @@
     "subtitle": "Subscription + credits included. Buy extra when you need them. Always know what you'll pay.",
     "monthly": "Monthly",
     "annually": "Annually",
-    "save10": "Save 10%",
+    "save10": "Save 30%",
     "perMonth": "per month",
     "billedAnnually": "(billed annually)",
     "for14Days": "for 14 days",
@@ -251,7 +251,7 @@
       },
       {
         "question": "Am I locked into a specific AI provider?",
-        "answer": "No. TirionApp dynamically routes your task to the best model in the market — Claude Opus for complex reasoning, GPT-4 for code generation, and Gemini Flash for rapid validations. We manage the infra so you just focus on the results."
+        "answer": "No. TirionApp dynamically routes your task to the best and latest models in the market for complex reasoning, code generation, and rapid validations. We manage the infra so you just focus on the results."
       },
       {
         "question": "Can I use TirionApp if I have a larger team or enterprise needs?",

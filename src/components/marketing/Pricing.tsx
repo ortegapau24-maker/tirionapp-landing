@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import dynamic from 'next/dynamic';
 import { useLanguage } from '@/lib/i18n/LanguageContext';
 
@@ -19,6 +19,22 @@ export function Pricing() {
     const { t } = useLanguage();
     const [hoveredTier, setHoveredTier] = useState<string | null>(null);
     const [isAnnual, setIsAnnual] = useState(false);
+    const [currency, setCurrency] = useState('$');
+
+    // Exchange rate assumption (1 USD = ~0.95 EUR, visually making EUR cheaper nominally)
+    const EUR_RATE = 0.95;
+
+    // Timezone hack: Detect if user is likely in Europe
+    useEffect(() => {
+        try {
+            const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            if (timeZone && timeZone.startsWith('Europe/')) {
+                setCurrency('€');
+            }
+        } catch (e) {
+            // Ignore if Intl is not supported by browser
+        }
+    }, []);
 
     let activeColor = "#0A0A0A";
     if (hoveredTier === "core") activeColor = "#333333";
@@ -82,7 +98,7 @@ export function Pricing() {
                         <p className="text-agency-text-muted text-[0.85rem] mb-4 leading-snug">{t('pricing.freeTrial.desc')}</p>
                         <div className="flex items-baseline gap-1 mb-2">
                             <div className="text-[4rem] font-bold leading-none font-outfit tracking-[-0.04em] text-agency-text-main">
-                                $0
+                                {currency}0
                             </div>
                         </div>
                         <div className="text-agency-text-muted mb-8">{t('pricing.for14Days')}</div>
@@ -110,7 +126,7 @@ export function Pricing() {
                         <p className="text-agency-text-muted text-[0.85rem] mb-4 leading-snug">{t('pricing.starter.desc')}</p>
                         <div className="flex items-baseline gap-1 mb-2">
                             <div className="text-[4rem] font-bold leading-none font-outfit tracking-[-0.04em] text-agency-text-main">
-                                ${isAnnual ? Math.round(149 * 0.9) : 149}
+                                {currency}{isAnnual ? Math.round(149 * (currency === '€' ? EUR_RATE : 1) * 0.7) : Math.round(149 * (currency === '€' ? EUR_RATE : 1))}
                             </div>
                         </div>
                         <div className="text-agency-text-muted mb-8">{t('pricing.perMonth')} {isAnnual && <span className="text-agency-accent-solid text-sm font-medium ml-1">{t('pricing.billedAnnually')}</span>}</div>
@@ -138,7 +154,7 @@ export function Pricing() {
                         <p className="text-agency-text-muted text-[0.85rem] mb-4 leading-snug">{t('pricing.growth.desc')}</p>
                         <div className="flex items-baseline gap-1 mb-2">
                             <div className="text-[4rem] font-bold leading-none font-outfit tracking-[-0.04em] text-agency-text-main">
-                                ${isAnnual ? Math.round(299 * 0.9) : 299}
+                                {currency}{isAnnual ? Math.round(299 * (currency === '€' ? EUR_RATE : 1) * 0.7) : Math.round(299 * (currency === '€' ? EUR_RATE : 1))}
                             </div>
                         </div>
                         <div className="text-agency-text-muted mb-8">{t('pricing.perMonth')} {isAnnual && <span className="text-agency-accent-solid text-sm font-medium ml-1">{t('pricing.billedAnnually')}</span>}</div>
@@ -166,7 +182,7 @@ export function Pricing() {
                         <p className="text-agency-text-muted text-[0.85rem] mb-4 leading-snug">{t('pricing.scale.desc')}</p>
                         <div className="flex items-baseline gap-1 mb-2">
                             <div className="text-[4rem] font-bold leading-none font-outfit tracking-[-0.04em] text-agency-text-main">
-                                ${isAnnual ? Math.round(599 * 0.9) : 599}
+                                {currency}{isAnnual ? Math.round(599 * (currency === '€' ? EUR_RATE : 1) * 0.7) : Math.round(599 * (currency === '€' ? EUR_RATE : 1))}
                             </div>
                         </div>
                         <div className="text-agency-text-muted mb-8">{t('pricing.perMonth')} {isAnnual && <span className="text-agency-accent-solid text-sm font-medium ml-1">{t('pricing.billedAnnually')}</span>}</div>

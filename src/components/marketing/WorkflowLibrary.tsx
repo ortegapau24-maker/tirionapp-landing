@@ -2,51 +2,34 @@
 
 import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
-const categories = [
+const getCategories = (t: (key: string) => string) => [
     {
-        title: "Sales & Payments",
+        title: t('workflowLibrary.sales.title'),
         image: "/images/tirionapp/retro/2_resultado.webp",
-        description: (
-            <>
-                Every interaction is a chance to close — and get paid. TirionApp handles <strong>lead qualification</strong> the moment a prospect reaches out, sends personalized <strong>follow-up sequences</strong> that feel human, and manages <strong>contracts</strong> from draft to signature. Once the deal closes, <strong>automated billing</strong> triggers instantly, professional <strong>invoices</strong> go out after every job, and intelligent <strong>recovery</strong> workflows recapture revenue you would have otherwise lost.
-            </>
-        ),
+        description: t('workflowLibrary.sales.description'),
     },
     {
-        title: "Operations",
+        title: t('workflowLibrary.operations.title'),
         image: "/images/tirionapp/retro/3_resultado.webp",
-        description: (
-            <>
-                The invisible backbone of your business, running on autopilot. Your <strong>meetings</strong> schedule themselves around everyone&apos;s availability, <strong>reports</strong> compile overnight and land in your inbox by morning, <strong>support tickets</strong> are triaged and resolved before they pile up, and new client <strong>onboarding</strong> flows happen without a single manual step.
-            </>
-        ),
+        description: t('workflowLibrary.operations.description'),
     },
     {
-        title: "Communication & Content",
+        title: t('workflowLibrary.communication.title'),
         image: "/images/tirionapp/retro/4_resultado.webp",
-        description: (
-            <>
-                Be everywhere your customers are, without being tied to a screen. <strong>AI phone calls</strong> answer and qualify leads 24/7, <strong>WhatsApp</strong> converts inquiries into bookings, <strong>emails</strong> nurture relationships at scale, and <strong>web chat</strong> captures visitors instantly. Meanwhile, your best moments become <strong>social media</strong> posts that feel authentic, long-form content gets <strong>repurposed</strong> into shorts and stories, and a smart <strong>scheduling</strong> engine posts when your audience is most active.
-            </>
-        ),
+        description: t('workflowLibrary.communication.description'),
     },
     {
-        title: "Reputation & Retention",
+        title: t('workflowLibrary.reputation.title'),
         image: "/images/tirionapp/retro/13_resultado.webp",
-        description: (
-            <>
-                Your online presence, protected and growing on its own. Satisfied clients receive gentle nudges to leave <strong>reviews</strong> right after service, every review gets a thoughtful <strong>response</strong>, and continuous <strong>monitoring</strong> alerts you when your brand is mentioned. Predictive models flag <strong>churn risk</strong> before a customer thinks about leaving, personalized <strong>referral</strong> programs turn happy clients into your best salespeople, and <strong>loyalty</strong> rewards make staying with you the obvious choice.
-            </>
-        ),
+        description: t('workflowLibrary.reputation.description'),
     },
 ];
 
-const TOTAL = categories.length;
-
 // Each card occupies a "segment" of the overall scroll progress
-function useCardTransforms(scrollYProgress: MotionValue<number>, index: number) {
-    const segmentSize = 1 / TOTAL;
+function useCardTransforms(scrollYProgress: MotionValue<number>, index: number, total: number) {
+    const segmentSize = 1 / total;
     const start = index * segmentSize;
     // Stretch out the entrance, hold, and exit to make animations much slower over the scroll
     const mid = start + segmentSize * 0.45; // Slower entrance
@@ -113,13 +96,15 @@ function WorkflowCard({
     cat,
     index,
     scrollYProgress,
+    total,
 }: {
-    cat: typeof categories[0];
+    cat: { title: string; image: string; description: string };
     index: number;
     scrollYProgress: MotionValue<number>;
+    total: number;
 }) {
     const { scale, z, opacity, imageScale, textY, textOpacity, imageExitX, textExitX } =
-        useCardTransforms(scrollYProgress, index);
+        useCardTransforms(scrollYProgress, index, total);
 
     return (
         <motion.div
@@ -164,9 +149,10 @@ function WorkflowCard({
                     <h3 className="text-3xl md:text-4xl font-outfit font-semibold text-[#050505] mb-6 leading-[1.1]">
                         {cat.title}
                     </h3>
-                    <p className="text-gray-400 text-[1.05rem] md:text-[1.125rem] leading-[1.75] font-light [&>strong]:text-[#050505] [&>strong]:font-medium">
-                        {cat.description}
-                    </p>
+                    <p
+                        className="text-gray-400 text-[1.05rem] md:text-[1.125rem] leading-[1.75] font-light [&>strong]:text-[#050505] [&>strong]:font-medium"
+                        dangerouslySetInnerHTML={{ __html: cat.description }}
+                    />
                 </motion.div>
             </div>
         </motion.div>
@@ -174,6 +160,10 @@ function WorkflowCard({
 }
 
 export function WorkflowLibrary() {
+    const { t } = useLanguage();
+    const categories = getCategories(t);
+    const TOTAL = categories.length;
+
     const containerRef = useRef<HTMLDivElement>(null);
     const [isMobile, setIsMobile] = useState(false);
 
@@ -215,9 +205,10 @@ export function WorkflowLibrary() {
                                 <h3 className="text-[1.75rem] font-outfit font-semibold text-[#050505] mb-4 leading-[1.2]">
                                     {cat.title}
                                 </h3>
-                                <p className="text-gray-500 text-[1rem] leading-[1.6] font-light [&>strong]:text-[#050505] [&>strong]:font-medium">
-                                    {cat.description}
-                                </p>
+                                <p
+                                    className="text-gray-500 text-[1rem] leading-[1.6] font-light [&>strong]:text-[#050505] [&>strong]:font-medium"
+                                    dangerouslySetInnerHTML={{ __html: cat.description }}
+                                />
                             </div>
                         </div>
                     ))}
@@ -244,6 +235,7 @@ export function WorkflowLibrary() {
                         cat={cat}
                         index={index}
                         scrollYProgress={scrollYProgress}
+                        total={TOTAL}
                     />
                 ))}
             </div>

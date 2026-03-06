@@ -2,29 +2,30 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
-const agents = [
+const getAgents = (t: (key: string) => string) => [
     {
-        title: "Call Center Agent",
-        subtitle: "Your AI receptionist answers every call, books appointments, checks availability, and updates your CRM — all in real-time. Never miss a lead again.",
+        title: t('executiveTeam.agents.0.title'),
+        subtitle: t('executiveTeam.agents.0.subtitle'),
         image: "/images/tirionapp/retro/5_resultado.webp",
         isComingSoon: false,
     },
     {
-        title: "SDR Agent",
-        subtitle: "Finds and qualifies leads from your existing contacts, sends personalized follow-ups, and books meetings on your calendar — automatically.",
+        title: t('executiveTeam.agents.1.title'),
+        subtitle: t('executiveTeam.agents.1.subtitle'),
         image: "/images/tirionapp/retro/6_resultado.webp",
         isComingSoon: true,
     },
     {
-        title: "Marketing Agent",
-        subtitle: "Creates and distributes content across your channels, optimized for each platform. Grows your pipeline without hiring a marketing team.",
+        title: t('executiveTeam.agents.2.title'),
+        subtitle: t('executiveTeam.agents.2.subtitle'),
         image: "/images/tirionapp/retro/7_resultado.webp",
         isComingSoon: true,
     },
     {
-        title: "CFO Agent",
-        subtitle: "Tracks invoices, monitors cash flow, and alerts you to financial risks before they become problems. Board-ready reports on demand.",
+        title: t('executiveTeam.agents.3.title'),
+        subtitle: t('executiveTeam.agents.3.subtitle'),
         image: "/images/tirionapp/retro/8_resultado.webp",
         isComingSoon: true,
     },
@@ -148,6 +149,7 @@ function AgentImage({ agent, index, progress, exitProgress, isLast, isFirst, bor
 }
 
 function AgentText({ agent, index, progress, isLast, isFirst, isMobile }: { agent: any; index: number; progress: MotionValue<number>; isLast: boolean; isFirst: boolean; isMobile: boolean }) {
+    const { t } = useLanguage();
     // Text opacity bounds purely inside the image dwell phase [index - 0.2, index + 0.2]
     // index - 0.2 -> fades in right when image stops
     // index - 0.1 -> fully visible
@@ -185,7 +187,7 @@ function AgentText({ agent, index, progress, isLast, isFirst, isMobile }: { agen
                 {agent.isComingSoon && (
                     <div className="absolute top-[-36px] left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0">
                         <span className="relative overflow-hidden flex items-center justify-center text-[0.75rem] font-bold px-4 py-1 rounded-full text-agency-text-main/80 uppercase tracking-widest whitespace-nowrap border border-black/10 shadow-[0_4px_24px_rgba(0,0,0,0.06),inset_0_1px_1px_rgba(255,255,255,0.8)] bg-white/40 backdrop-blur-lg">
-                            <span className="relative z-10">Coming Next</span>
+                            <span className="relative z-10">{t('executiveTeam.comingNext')}</span>
                             {/* Glass static highlight (top rim) */}
                             <div className="absolute top-0 left-0 w-full h-[50%] bg-gradient-to-b from-white/60 to-transparent pointer-events-none" />
                             {/* Animated shimmering light sweep */}
@@ -209,6 +211,8 @@ function AgentText({ agent, index, progress, isLast, isFirst, isMobile }: { agen
 }
 
 export function ExecutiveTeam() {
+    const { t } = useLanguage();
+    const agents = getAgents(t);
     const containerRef = useRef<HTMLDivElement>(null);
     const [isMobile, setIsMobile] = useState(false);
 

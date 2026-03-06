@@ -3,42 +3,43 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import SplitText from '@/components/ui/SplitText';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
-const steps = [
+const getSteps = (t: (key: string) => string) => [
     {
         num: "01",
-        title: "Audit The Revenue Leaks",
-        desc: "Every missed call is revenue handed to your competition. We connect to your existing tools and calculate exactly where you're losing hours and revenue — then deploy a system to recover it instantly.",
+        title: t('howItWorks.steps.0.title'),
+        desc: t('howItWorks.steps.0.desc'),
         image: "/images/tirionapp/retro/9_resultado.webp",
         bgColor: "#E8DDD3",
-        highlights: ["No software to configure", "Works with your existing tools", "See ROI immediately"],
+        highlights: t('howItWorks.steps.0.highlights') as unknown as string[],
 
     },
     {
         num: "02",
-        title: "Tell Us What You Need",
-        desc: "No complicated drag-and-drop builders. Just describe what you need in plain English. Our system dynamically routes your request to the optimal AI model.",
+        title: t('howItWorks.steps.1.title'),
+        desc: t('howItWorks.steps.1.desc'),
         image: "/images/tirionapp/retro/10_resultado.webp",
         bgColor: "#D3DEE8",
-        highlights: ["Plain English setup", "Multi-LLM architecture", "Ready in minutes"],
+        highlights: t('howItWorks.steps.1.highlights') as unknown as string[],
 
     },
     {
         num: "03",
-        title: "We Test Everything First",
-        desc: "Before anything goes live, our dedicated SecOps AI Agent audits your new workflow for risks (like data leaks or mass emails). You review the sandbox results, approve with one click, and deploy securely.",
+        title: t('howItWorks.steps.2.title'),
+        desc: t('howItWorks.steps.2.desc'),
         image: "/images/tirionapp/retro/11_resultado.webp",
         bgColor: "#D8E8D3",
-        highlights: ["AI Security Auditing", "Safe sandbox testing", "One-click deployment"],
+        highlights: t('howItWorks.steps.2.highlights') as unknown as string[],
 
     },
     {
         num: "04",
-        title: "Your Business Runs Itself",
-        desc: "Your agents start working 24/7 — answering calls, qualifying leads, booking appointments, and sending you a daily summary. You focus on what matters while TirionApp handles the rest.",
+        title: t('howItWorks.steps.3.title'),
+        desc: t('howItWorks.steps.3.desc'),
         image: "/images/tirionapp/retro/12_resultado.webp",
         bgColor: "#E3D3E8",
-        highlights: ["24/7 autonomous operation", "Daily executive summaries", "Always in control"],
+        highlights: t('howItWorks.steps.3.highlights') as unknown as string[],
 
     }
 ];
@@ -143,6 +144,8 @@ function StepItem({ step, index, setActiveIndex }: { step: StepData; index: numb
     );
 }
 export function HowItWorks() {
+    const { t } = useLanguage();
+    const steps = getSteps(t);
     const [activeIndex, setActiveIndex] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
@@ -169,13 +172,13 @@ export function HowItWorks() {
                 {/* Header Section */}
                 <div className="mb-[8vh] border-b border-agency-border-light pb-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
                     <div>
-                        <div className="text-[0.75rem] text-black/60 font-semibold tracking-[0.2em] mb-4 uppercase font-outfit">Implementation</div>
+                        <div className="text-[0.75rem] text-black/60 font-semibold tracking-[0.2em] mb-4 uppercase font-outfit">{t('howItWorks.tagline')}</div>
                         <h2 className="text-[clamp(3.5rem,6vw,5.5rem)] font-outfit text-agency-text-main font-medium leading-[1] tracking-[-0.02em] max-w-[800px]">
-                            How We Give Your Time Back.
+                            {t('howItWorks.title')}
                         </h2>
                     </div>
                     <p className="text-[1.3rem] text-agency-text-muted max-w-[400px] font-light leading-[1.6]">
-                        We don't give you software to figure out. We deploy a fully autonomous agency tailored to your business in under 48 hours.
+                        {t('howItWorks.description')}
                     </p>
                 </div>
 

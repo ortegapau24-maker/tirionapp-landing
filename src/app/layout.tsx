@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { CookieConsent } from "@/components/ui/CookieConsent";
 import { GtmScript } from "@/components/ui/GtmScript";
+import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 import "./globals.css";
 
 const TITLE = "TirionApp — AI Automation Platform";
 const DESCRIPTION = "The cinematic operating system for the AI-first agency. Deploy autonomous workflows in minutes. Connect your CRM, scale execution, and recover lost time.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.tirionapp.com'),
   title: TITLE,
   description: DESCRIPTION,
   keywords: ["AI automation", "autonomous agency", "workflow orchestration", "AI agents", "business automation"],
@@ -84,14 +86,16 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        {children}
-        {/* Inject JSON-LD Scripts for SEO/GEO */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <GtmScript />
-        <CookieConsent />
+        <LanguageProvider>
+          {children}
+          {/* Inject JSON-LD Scripts for SEO/GEO */}
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+          <GtmScript />
+          <CookieConsent />
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import dynamic from 'next/dynamic';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 const PricingParticles = dynamic(() => import('./PricingParticles'), { ssr: false });
 
@@ -15,6 +16,7 @@ const Check = () => (
 );
 
 export function Pricing() {
+    const { t } = useLanguage();
     const [hoveredTier, setHoveredTier] = useState<string | null>(null);
     const [isAnnual, setIsAnnual] = useState(false);
 
@@ -27,9 +29,9 @@ export function Pricing() {
         <div className="py-24 md:py-[clamp(6rem,10vw,10rem)] px-4 md:px-10 bg-agency-bg-dark relative overflow-hidden" id="pricing">
             <PricingParticles activeColor={activeColor} />
             <div className="text-center mb-16 md:mb-[clamp(3.5rem,5vw,5rem)] relative z-10 pointer-events-auto flex flex-col items-center max-w-[1200px] mx-auto">
-                <h2 className="text-[clamp(3rem,5vw,5rem)] font-outfit font-medium tracking-[-0.02em] mb-6 text-agency-text-main pointer-events-none">Architect your scale.</h2>
+                <h2 className="text-[clamp(3rem,5vw,5rem)] font-outfit font-medium tracking-[-0.02em] mb-6 text-agency-text-main pointer-events-none">{t('pricing.title')}</h2>
                 <p className="text-[1.125rem] text-agency-text-muted max-w-[640px] mb-8 pointer-events-none leading-[1.65]">
-                    Subscription + credits included. Buy extra when you need them. Always know what you&apos;ll pay.
+                    {t('pricing.subtitle')}
                 </p>
 
                 {/* Billing Toggle */}
@@ -45,7 +47,7 @@ export function Pricing() {
                                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
                             />
                         )}
-                        <span className="relative z-20">Monthly</span>
+                        <span className="relative z-20">{t('pricing.monthly')}</span>
                     </button>
 
                     <button
@@ -59,8 +61,8 @@ export function Pricing() {
                                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
                             />
                         )}
-                        <span className="relative z-20">Annually</span>
-                        <span className={`relative z-20 text-[0.65rem] px-2 py-0.5 rounded-full font-bold transition-colors ${isAnnual ? 'bg-white/20 text-white' : 'bg-green-500/10 text-green-600'}`}>Save 10%</span>
+                        <span className="relative z-20">{t('pricing.annually')}</span>
+                        <span className={`relative z-20 text-[0.65rem] px-2 py-0.5 rounded-full font-bold transition-colors ${isAnnual ? 'bg-white/20 text-white' : 'bg-green-500/10 text-green-600'}`}>{t('pricing.save10')}</span>
                     </button>
                 </div>
             </div>
@@ -74,29 +76,25 @@ export function Pricing() {
                 >
                     <div className="relative z-10 pointer-events-none flex flex-col h-full">
                         <div className="flex items-center gap-2 mb-2">
-                            <div className="text-[1.5rem] font-semibold font-outfit text-agency-text-main">Free Trial</div>
-                            <span className="text-[0.65rem] px-2 py-0.5 rounded-full font-bold bg-white/10 text-agency-text-muted uppercase tracking-wider">14 Days</span>
+                            <div className="text-[1.5rem] font-semibold font-outfit text-agency-text-main">{t('pricing.freeTrial.name')}</div>
+                            <span className="text-[0.65rem] px-2 py-0.5 rounded-full font-bold bg-white/10 text-agency-text-muted uppercase tracking-wider">{t('pricing.days14')}</span>
                         </div>
-                        <p className="text-agency-text-muted text-[0.85rem] mb-4 leading-snug">Try the platform with no commitment.</p>
+                        <p className="text-agency-text-muted text-[0.85rem] mb-4 leading-snug">{t('pricing.freeTrial.desc')}</p>
                         <div className="flex items-baseline gap-1 mb-2">
                             <div className="text-[4rem] font-bold leading-none font-outfit tracking-[-0.04em] text-agency-text-main">
                                 $0
                             </div>
                         </div>
-                        <div className="text-agency-text-muted mb-8">for 14 days</div>
+                        <div className="text-agency-text-muted mb-8">{t('pricing.for14Days')}</div>
                         <ul className="list-none mb-12 space-y-4 text-agency-text-main">
-                            <li className="flex items-start gap-3 mb-4 text-[0.95rem]">
-                                <Check /> 1 Active Automation
-                            </li>
-                            <li className="flex items-start gap-3 mb-4 text-[0.95rem]">
-                                <Check /> <span><strong>200 credits</strong> included</span>
-                            </li>
-                            <li className="flex items-start gap-3 mb-4 text-[0.95rem]">
-                                <Check /> Limited platform access
-                            </li>
+                            {(t('pricing.freeTrial.features') as unknown as string[]).map((feature, idx) => (
+                                <li key={idx} className="flex items-start gap-3 mb-4 text-[0.95rem]">
+                                    <Check /> <span dangerouslySetInnerHTML={{ __html: feature }} />
+                                </li>
+                            ))}
                         </ul>
                         <a href={APP_URL} className="mt-auto block w-full text-center py-4 rounded-full font-semibold text-[1.1rem] transition-all duration-300 border border-agency-border-light text-agency-text-muted hover:text-agency-text-main pointer-events-auto">
-                            Start Free Trial
+                            {t('pricing.freeTrial.button')}
                         </a>
                     </div>
                 </div>
@@ -108,30 +106,23 @@ export function Pricing() {
                     onMouseLeave={() => setHoveredTier(null)}
                 >
                     <div className="relative z-10 pointer-events-none flex flex-col h-full">
-                        <div className="text-[1.5rem] font-semibold mb-2 font-outfit text-agency-text-main">Starter</div>
-                        <p className="text-agency-text-muted text-[0.85rem] mb-4 leading-snug">Single-location businesses with basic operations.</p>
+                        <div className="text-[1.5rem] font-semibold mb-2 font-outfit text-agency-text-main">{t('pricing.starter.name')}</div>
+                        <p className="text-agency-text-muted text-[0.85rem] mb-4 leading-snug">{t('pricing.starter.desc')}</p>
                         <div className="flex items-baseline gap-1 mb-2">
                             <div className="text-[4rem] font-bold leading-none font-outfit tracking-[-0.04em] text-agency-text-main">
                                 ${isAnnual ? Math.round(149 * 0.9) : 149}
                             </div>
                         </div>
-                        <div className="text-agency-text-muted mb-8">per month {isAnnual && <span className="text-agency-accent-solid text-sm font-medium ml-1">(billed annually)</span>}</div>
+                        <div className="text-agency-text-muted mb-8">{t('pricing.perMonth')} {isAnnual && <span className="text-agency-accent-solid text-sm font-medium ml-1">{t('pricing.billedAnnually')}</span>}</div>
                         <ul className="list-none mb-12 space-y-4 text-agency-text-main">
-                            <li className="flex items-start gap-3 mb-4 text-[0.95rem]">
-                                <Check /> 3 Active Automations
-                            </li>
-                            <li className="flex items-start gap-3 mb-4 text-[0.95rem]">
-                                <Check /> <span><strong>1,000 credits</strong> included / month</span>
-                            </li>
-                            <li className="flex items-start gap-3 mb-4 text-[0.95rem]">
-                                <Check /> Extra credits at $0.05 each
-                            </li>
-                            <li className="flex items-start gap-3 mb-4 text-[0.95rem]">
-                                <Check /> Standard Support
-                            </li>
+                            {(t('pricing.starter.features') as unknown as string[]).map((feature, idx) => (
+                                <li key={idx} className="flex items-start gap-3 mb-4 text-[0.95rem]">
+                                    <Check /> <span dangerouslySetInnerHTML={{ __html: feature }} />
+                                </li>
+                            ))}
                         </ul>
                         <a href={APP_URL} className="mt-auto block w-full text-center py-4 rounded-full font-semibold text-[1.1rem] transition-all duration-300 bg-[#0032A0] text-white hover:bg-[#002880] pointer-events-auto">
-                            Begin Setup
+                            {t('pricing.starter.button')}
                         </a>
                     </div>
                 </div>
@@ -143,30 +134,23 @@ export function Pricing() {
                     onMouseLeave={() => setHoveredTier(null)}
                 >
                     <div className="relative z-10 pointer-events-none flex flex-col h-full">
-                        <div className="text-[1.5rem] font-semibold mb-2 font-outfit text-agency-text-main">Growth</div>
-                        <p className="text-agency-text-muted text-[0.85rem] mb-4 leading-snug">Scaling businesses with multiple teams or channels.</p>
+                        <div className="text-[1.5rem] font-semibold mb-2 font-outfit text-agency-text-main">{t('pricing.growth.name')}</div>
+                        <p className="text-agency-text-muted text-[0.85rem] mb-4 leading-snug">{t('pricing.growth.desc')}</p>
                         <div className="flex items-baseline gap-1 mb-2">
                             <div className="text-[4rem] font-bold leading-none font-outfit tracking-[-0.04em] text-agency-text-main">
                                 ${isAnnual ? Math.round(299 * 0.9) : 299}
                             </div>
                         </div>
-                        <div className="text-agency-text-muted mb-8">per month {isAnnual && <span className="text-agency-accent-solid text-sm font-medium ml-1">(billed annually)</span>}</div>
+                        <div className="text-agency-text-muted mb-8">{t('pricing.perMonth')} {isAnnual && <span className="text-agency-accent-solid text-sm font-medium ml-1">{t('pricing.billedAnnually')}</span>}</div>
                         <ul className="list-none mb-12 space-y-4 text-agency-text-main">
-                            <li className="flex items-start gap-3 mb-4 text-[0.95rem]">
-                                <Check /> 10 Active Automations
-                            </li>
-                            <li className="flex items-start gap-3 mb-4 text-[0.95rem]">
-                                <Check /> <span><strong>5,000 credits</strong> included / month</span>
-                            </li>
-                            <li className="flex items-start gap-3 mb-4 text-[0.95rem]">
-                                <Check /> Extra credits at $0.03 each
-                            </li>
-                            <li className="flex items-start gap-3 mb-4 text-[0.95rem]">
-                                <Check /> Priority Support
-                            </li>
+                            {(t('pricing.growth.features') as unknown as string[]).map((feature, idx) => (
+                                <li key={idx} className="flex items-start gap-3 mb-4 text-[0.95rem]">
+                                    <Check /> <span dangerouslySetInnerHTML={{ __html: feature }} />
+                                </li>
+                            ))}
                         </ul>
                         <a href={APP_URL} className="mt-auto block w-full text-center py-4 rounded-full font-semibold text-[1.1rem] transition-all duration-300 border border-agency-border-light text-agency-text-muted hover:text-agency-text-main pointer-events-auto">
-                            Get Started
+                            {t('pricing.growth.button')}
                         </a>
                     </div>
                 </div>
@@ -178,30 +162,23 @@ export function Pricing() {
                     onMouseLeave={() => setHoveredTier(null)}
                 >
                     <div className="relative z-10 pointer-events-none flex flex-col h-full">
-                        <div className="text-[1.5rem] font-semibold mb-2 font-outfit text-agency-text-main">Scale</div>
-                        <p className="text-agency-text-muted text-[0.85rem] mb-4 leading-snug">Agencies and groups running high-volume automation.</p>
+                        <div className="text-[1.5rem] font-semibold mb-2 font-outfit text-agency-text-main">{t('pricing.scale.name')}</div>
+                        <p className="text-agency-text-muted text-[0.85rem] mb-4 leading-snug">{t('pricing.scale.desc')}</p>
                         <div className="flex items-baseline gap-1 mb-2">
                             <div className="text-[4rem] font-bold leading-none font-outfit tracking-[-0.04em] text-agency-text-main">
                                 ${isAnnual ? Math.round(599 * 0.9) : 599}
                             </div>
                         </div>
-                        <div className="text-agency-text-muted mb-8">per month {isAnnual && <span className="text-agency-accent-solid text-sm font-medium ml-1">(billed annually)</span>}</div>
+                        <div className="text-agency-text-muted mb-8">{t('pricing.perMonth')} {isAnnual && <span className="text-agency-accent-solid text-sm font-medium ml-1">{t('pricing.billedAnnually')}</span>}</div>
                         <ul className="list-none mb-12 space-y-4 text-agency-text-main">
-                            <li className="flex items-start gap-3 mb-4 text-[0.95rem]">
-                                <Check /> Unlimited Active Automations
-                            </li>
-                            <li className="flex items-start gap-3 mb-4 text-[0.95rem]">
-                                <Check /> <span><strong>20,000 credits</strong> included / month</span>
-                            </li>
-                            <li className="flex items-start gap-3 mb-4 text-[0.95rem]">
-                                <Check /> Extra credits at $0.02 each
-                            </li>
-                            <li className="flex items-start gap-3 mb-4 text-[0.95rem]">
-                                <Check /> Dedicated Hardware Instance
-                            </li>
+                            {(t('pricing.scale.features') as unknown as string[]).map((feature, idx) => (
+                                <li key={idx} className="flex items-start gap-3 mb-4 text-[0.95rem]">
+                                    <Check /> <span dangerouslySetInnerHTML={{ __html: feature }} />
+                                </li>
+                            ))}
                         </ul>
                         <a href={APP_URL} className="mt-auto block w-full text-center py-4 rounded-full font-semibold text-[1.1rem] transition-all duration-300 border border-agency-border-light text-agency-text-main hover:bg-[#050505] hover:text-white pointer-events-auto">
-                            Contact Sales
+                            {t('pricing.scale.button')}
                         </a>
                     </div>
                 </div>

@@ -3,40 +3,11 @@
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SplitText from '@/components/ui/SplitText';
-
-const faqs = [
-    {
-        question: "How does TirionApp work with the tools I already use?",
-        answer: "TirionApp connects to your existing CRM, email, calendar, and communication platforms through standard integrations. You don't need to migrate anything — we work on top of what you already have."
-    },
-    {
-        question: "Is my business data safe?",
-        answer: "Yes. Every workflow is audited by a dedicated Security AI Agent before deployment to prevent data leaks or bad actions. We also employ strict Guardrails to prevent prompt-injection attacks. Your data is encrypted, never shared, and never used to train our models."
-    },
-    {
-        question: "What happens if an automation doesn't know how to handle something?",
-        answer: "It stops immediately and sends you a notification with full context. You're always in control — no automation will ever make a decision it's not confident about."
-    },
-    {
-        question: "How quickly can I get started?",
-        answer: "Most businesses have their first automation running within 48 hours. Our AI interviews you about your needs and builds the solution — no technical setup required on your end."
-    },
-
-    {
-        question: "Is there a free trial?",
-        answer: "Yes! 14 days free with 200 credits and 1 active automation — no credit card required. That's enough to fully experience how TirionApp can transform your operations."
-    },
-    {
-        question: "Am I locked into a specific AI provider?",
-        answer: "No. TirionApp dynamically routes your task to the best model in the market — Claude Opus for complex reasoning, GPT-4 for code generation, and Gemini Flash for rapid validations. We manage the infra so you just focus on the results."
-    },
-    {
-        question: "Can I use TirionApp if I have a larger team or enterprise needs?",
-        answer: "Absolutely. Our Scale plan includes dedicated infrastructure, unlimited automations, and priority support. Contact our sales team for custom solutions."
-    }
-];
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export function FAQs() {
+    const { t } = useLanguage();
+    const faqs = t('faqsComponent.list') as unknown as { question: string; answer: string }[];
     const [openIndex, setOpenIndex] = useState<number | null>(null);
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
@@ -52,10 +23,10 @@ export function FAQs() {
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
                     <div className="flex-1">
                         <div className="text-[0.75rem] uppercase tracking-[0.2em] text-agency-text-muted/60 font-semibold mb-5 font-inter">
-                            FAQ
+                            {t('faqsComponent.tagline')}
                         </div>
                         <SplitText
-                            text="Common Questions"
+                            text={t('faqsComponent.title')}
                             className="text-[clamp(3rem,5vw,5rem)] font-outfit font-medium leading-[1.05] tracking-[-0.02em] text-white"
                             delay={25}
                             duration={1}
@@ -70,7 +41,7 @@ export function FAQs() {
                         />
                     </div>
                     <p className="text-[1.125rem] text-agency-text-muted max-w-[340px] font-light leading-[1.65]">
-                        Quick answers to help you evaluate if TirionApp is the right fit for your operation.
+                        {t('faqsComponent.description')}
                     </p>
                 </div>
 
@@ -140,9 +111,9 @@ export function FAQs() {
                 {/* Bottom CTA */}
                 <div className="flex items-center justify-center pt-4">
                     <p className="text-agency-text-muted/60 text-[0.95rem] font-light">
-                        Still have questions?{' '}
+                        {t('faqsComponent.stillQuestions')}{' '}
                         <a href="mailto:pau@tirionapp.com" className="text-white/80 hover:text-white underline underline-offset-4 decoration-white/20 hover:decoration-white/50 transition-all duration-300">
-                            Talk to our team
+                            {t('faqsComponent.talkToTeam')}
                         </a>
                     </p>
                 </div>

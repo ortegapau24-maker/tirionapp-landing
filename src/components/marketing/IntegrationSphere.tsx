@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { hexToRgb, debounce } from '@/lib/utils';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 interface Integration {
     name: string;
@@ -54,6 +55,7 @@ function SphereCanvas({
     isCenter: boolean;
     startIndex: number;
 }) {
+    const { t } = useLanguage();
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [currentIndex, setCurrentIndex] = useState(startIndex);
     const currentIndexRef = useRef(startIndex);
@@ -312,7 +314,7 @@ function SphereCanvas({
                 </AnimatePresence>
                 {isCenter && (
                     <span className="text-agency-text-muted text-[1rem] mt-2 font-light">
-                        and {integrations.length - 1} more
+                        {t('integrationSphere.andMore').replace('{count}', String(integrations.length - 1))}
                     </span>
                 )}
             </div>
@@ -321,6 +323,7 @@ function SphereCanvas({
 }
 
 export default function IntegrationSphere() {
+    const { t } = useLanguage();
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -334,7 +337,7 @@ export default function IntegrationSphere() {
         <div className="w-full my-8 md:my-24 px-4 md:px-0">
             <div className="bg-agency-bg-surface rounded-[2.5rem] md:rounded-[6rem] py-12 md:py-24 flex flex-col items-center relative z-10 w-full overflow-hidden">
                 <div className="text-[0.8rem] md:text-[0.9rem] uppercase tracking-[0.15em] text-agency-text-muted mb-8 font-semibold text-center font-inter relative z-20">
-                    Native Integrations
+                    {t('integrationSphere.title')}
                 </div>
 
                 <div className="flex flex-col md:flex-row items-center justify-center w-full gap-8 md:gap-4 lg:gap-8 xl:gap-8">

@@ -3,8 +3,10 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export function Footer() {
+    const { t, language, setLanguage } = useLanguage();
     const containerRef = useRef<HTMLElement>(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -32,36 +34,53 @@ export function Footer() {
                         <span className="font-outfit">TirionApp</span>
                     </div>
                     <p className="text-agency-text-muted text-base max-w-sm">
-                        AI automation for service businesses. Recover lost leads and run your business 24/7.
+                        {t('footer.tagline')}
                     </p>
                 </div>
 
                 <div className="flex flex-col">
-                    <h4 className="font-outfit font-semibold text-[1.1rem] mb-6 text-agency-text-main">Platform</h4>
+                    <h4 className="font-outfit font-semibold text-[1.1rem] mb-6 text-agency-text-main">{t('footer.platform')}</h4>
                     <ul className="space-y-4">
-                        <li><a href="#features" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">Features</a></li>
-                        <li><a href="#agents" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">Agents</a></li>
-                        <li><a href="#library" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">Workflows</a></li>
-                        <li><a href="#pricing" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">Pricing</a></li>
+                        <li><a href="#features" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">{t('nav.features')}</a></li>
+                        <li><a href="#agents" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">{t('nav.agents')}</a></li>
+                        <li><a href="#library" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">{t('nav.workflows')}</a></li>
+                        <li><a href="#pricing" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">{t('nav.pricing')}</a></li>
                     </ul>
                 </div>
 
                 <div className="flex flex-col">
-                    <h4 className="font-outfit font-semibold text-[1.1rem] mb-6 text-agency-text-main">Company</h4>
+                    <h4 className="font-outfit font-semibold text-[1.1rem] mb-6 text-agency-text-main">{t('footer.company')}</h4>
                     <ul className="space-y-4">
-                        <li><a href="/about" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">About</a></li>
-                        <li><a href="/customers" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">Customers</a></li>
-                        <li><a href="/careers" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">Careers</a></li>
-                        <li><a href="/changelog" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">Changelog</a></li>
+                        <li><a href="/about" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">{t('footer.about')}</a></li>
+                        <li><a href="/customers" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">{t('footer.customers')}</a></li>
+                        <li><a href="/careers" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">{t('footer.careers')}</a></li>
+                        <li><a href="/changelog" className="text-agency-text-muted hover:text-agency-accent-solid transition-colors">{t('footer.changelog')}</a></li>
                     </ul>
                 </div>
             </div>
 
-            <div className="border-t border-agency-border-light max-w-[1200px] mx-auto px-10 pt-8 pb-10 flex flex-col md:flex-row justify-between text-agency-text-muted text-sm gap-4">
-                <div>© 2026 TirionApp. All rights reserved.</div>
-                <div className="flex gap-6">
-                    <Link href="/legal/privacy" className="hover:text-agency-accent-solid transition-colors">Privacy</Link>
-                    <Link href="/legal/terms" className="hover:text-agency-accent-solid transition-colors">Terms</Link>
+            <div className="border-t border-agency-border-light max-w-[1200px] mx-auto px-10 pt-8 pb-10 flex flex-col md:flex-row justify-between text-agency-text-muted text-sm gap-4 items-center">
+                <div>{t('footer.copyright')}</div>
+                <div className="flex items-center gap-6">
+                    <div className="flex gap-4 mr-4">
+                        <Link href="/legal/privacy" className="hover:text-agency-accent-solid transition-colors">{t('footer.privacy')}</Link>
+                        <Link href="/legal/terms" className="hover:text-agency-accent-solid transition-colors">{t('footer.terms')}</Link>
+                    </div>
+                    {/* EN/ES Toggle */}
+                    <div className="flex items-center gap-1 bg-black/5 rounded-full p-1 border border-black/5">
+                        <button
+                            onClick={() => setLanguage('en')}
+                            className={`text-[0.7rem] font-medium px-2.5 py-1 rounded-full transition-colors ${language === 'en' ? 'bg-white text-black shadow-sm' : 'text-black/50 hover:text-black'}`}
+                        >
+                            EN
+                        </button>
+                        <button
+                            onClick={() => setLanguage('es')}
+                            className={`text-[0.7rem] font-medium px-2.5 py-1 rounded-full transition-colors ${language === 'es' ? 'bg-white text-black shadow-sm' : 'text-black/50 hover:text-black'}`}
+                        >
+                            ES
+                        </button>
+                    </div>
                 </div>
             </div>
 

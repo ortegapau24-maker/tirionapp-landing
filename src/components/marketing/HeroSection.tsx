@@ -5,14 +5,17 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import SplitText from '@/components/ui/SplitText';
 import { ArrowUp, Paperclip, Stethoscope, Wrench, Utensils, Home } from 'lucide-react';
 
-const QUICK_PROMPTS = [
-    { text: 'Dental', icon: Stethoscope },
-    { text: 'Plumbing/HVAC', icon: Wrench },
-    { text: 'Restaurant', icon: Utensils },
-    { text: 'Real Estate', icon: Home },
-];
+import { useLanguage } from '@/lib/i18n/LanguageContext';
 
 export function HeroSection() {
+    const { t } = useLanguage();
+
+    const QUICK_PROMPTS = [
+        { text: t('hero.prompts.dental'), icon: Stethoscope },
+        { text: t('hero.prompts.plumbing'), icon: Wrench },
+        { text: t('hero.prompts.restaurant'), icon: Utensils },
+        { text: t('hero.prompts.realEstate'), icon: Home },
+    ];
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -90,7 +93,7 @@ export function HeroSection() {
                 className="hidden md:flex absolute left-0 bottom-[calc(50%-120px)] w-[clamp(200px,18vw,280px)] px-6 md:px-10 z-20 pointer-events-none"
             >
                 <SplitText
-                    text="Your 24/7 autonomous agency. We don't sell software, we return your time."
+                    text={(t('hero.subtitle') as string).split(' || ')[0]}
                     className="text-[1.05rem] text-[#0032A0] font-medium leading-[1.7]"
                     delay={15}
                     duration={0.8}
@@ -111,7 +114,7 @@ export function HeroSection() {
                 className="hidden md:flex absolute right-0 bottom-[calc(50%-120px)] w-[clamp(200px,18vw,280px)] px-6 md:px-10 z-20 pointer-events-none"
             >
                 <SplitText
-                    text="Recover lost leads and operate your business while you sleep."
+                    text={(t('hero.subtitle') as string).split(' || ')[1]}
                     className="text-[1.05rem] text-[#0032A0] font-medium leading-[1.7]"
                     delay={15}
                     duration={0.8}
@@ -131,7 +134,7 @@ export function HeroSection() {
                 {/* Mobile text above chatbox */}
                 <div className="block md:hidden mb-6 text-center">
                     <SplitText
-                        text="Your 24/7 autonomous agency. We don't sell software, we return your time. Recover lost leads and operate your business while you sleep."
+                        text={(t('hero.subtitle') as string).replace(' || ', ' ')}
                         className="text-[1rem] text-[#0032A0] font-medium leading-[1.65]"
                         delay={15}
                         duration={0.8}
@@ -165,7 +168,7 @@ export function HeroSection() {
                                     handleSend();
                                 }
                             }}
-                            placeholder="Tell me about your business..."
+                            placeholder={t('hero.placeholder')}
                             className="flex-1 bg-transparent px-3 py-2 text-[16px] text-[#050505] placeholder:text-black/40 focus:outline-none resize-none"
                         />
                         <div className="flex items-center justify-between mt-auto px-1">
@@ -206,8 +209,8 @@ export function HeroSection() {
                 style={{ y: titleY }}
                 className="absolute bottom-0 md:-bottom-[1vw] left-0 w-full m-0 p-0 text-[18vw] md:text-[9.5vw] font-extrabold leading-none md:leading-[0.85] tracking-[-0.04em] whitespace-normal md:whitespace-nowrap text-center z-10 font-outfit text-[#050505]"
             >
-                Automate<br className="block md:hidden" />
-                <span className="md:inline hidden"> </span>Everything.
+                {t('hero.tagline').split(' ')[0]}<br className="block md:hidden" />
+                <span className="md:inline hidden"> </span>{t('hero.tagline').split(' ').slice(1).join(' ')}
             </motion.div>
         </div>
     );

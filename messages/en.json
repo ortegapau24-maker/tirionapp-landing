@@ -1,6 +1,6 @@
 {
   "hero": {
-    "subtitle": "Your 24/7 autonomous agency. We don't sell software — we return your time. Recover lost leads and run your business while you sleep.",
+    "subtitle": "Your 24/7 autonomous agency. We don't sell software we return your time. || Recover lost leads and run your business while you sleep.",
     "placeholder": "Tell me about your business...",
     "tagline": "Automate Everything.",
     "prompts": {
@@ -11,31 +11,47 @@
     }
   },
   "howItWorks": {
-    "label": "Implementation",
+    "tagline": "Implementation",
     "title": "How We Give Your Time Back.",
-    "subtitle": "We don't give you software to figure out. We set up a fully automated system tailored to your business in under 48 hours.",
-    "steps": {
-      "01": {
+    "description": "We don't give you software to figure out. We deploy a fully autonomous agency tailored to your business in under 48 hours.",
+    "steps": [
+      {
         "title": "Audit The Revenue Leaks",
-        "desc": "Every missed call and forgotten follow-up costs you money. We connect to your existing tools — calculating exactly where you're losing hours and revenue — and deploy a system to recover it instantly.",
-        "highlights": ["No software to configure", "Works with your existing tools", "See results in 48 hours"]
+        "desc": "Every missed call is revenue handed to your competition. We connect to your existing tools and calculate exactly where you're losing hours and revenue — then deploy a system to recover it instantly.",
+        "highlights": [
+          "No software to configure",
+          "Works with your existing tools",
+          "See ROI immediately"
+        ]
       },
-      "02": {
+      {
         "title": "Tell Us What You Need",
-        "desc": "No complex setup screens or visual editors. Just tell our AI what your business does, what's not working, and what you want automated. It interviews you, understands your needs, and builds the solution.",
-        "highlights": ["Plain English setup", "Automated solution design", "Ready in minutes, not weeks"]
+        "desc": "No complicated drag-and-drop builders. Just describe what you need in plain English. Our system dynamically routes your request to the optimal AI model.",
+        "highlights": [
+          "Plain English setup",
+          "Multi-LLM architecture",
+          "Ready in minutes"
+        ]
       },
-      "03": {
-        "title": "Test Everything First",
-        "desc": "We don't go live until you're confident. Your automations run through a sandbox simulation against real scenarios. Review the results, adjust if needed, and deploy with one click.",
-        "highlights": ["Safe sandbox testing", "Human approval before going live", "Thousands of simulated scenarios"]
+      {
+        "title": "We Test Everything First",
+        "desc": "Before anything goes live, our dedicated SecOps AI Agent audits your new workflow for risks (like data leaks or mass emails). You review the sandbox results, approve with one click, and deploy securely.",
+        "highlights": [
+          "AI Security Auditing",
+          "Safe sandbox testing",
+          "One-click deployment"
+        ]
       },
-      "04": {
+      {
         "title": "Your Business Runs Itself",
-        "desc": "Once live, your automations handle calls, qualify leads, follow up with prospects, and resolve common requests — all while sending you a clear daily summary of everything that happened.",
-        "highlights": ["24/7 autonomous operation", "Scales with your business", "Daily executive summaries"]
+        "desc": "Your agents start working 24/7 — answering calls, qualifying leads, booking appointments, and sending you a daily summary. You focus on what matters while TirionApp handles the rest.",
+        "highlights": [
+          "24/7 autonomous operation",
+          "Daily executive summaries",
+          "Always in control"
+        ]
       }
-    }
+    ]
   },
   "agents": {
     "title": "The Autonomous Executive Team.",
@@ -63,38 +79,56 @@
   },
   "pricing": {
     "title": "Architect your scale.",
-    "subtitle": "Start free. Upgrade when you're ready. Every plan includes credits for AI workflow executions — buy more only if you need them.",
+    "subtitle": "Subscription + credits included. Buy extra when you need them. Always know what you'll pay.",
     "monthly": "Monthly",
     "annually": "Annually",
-    "save": "Save 10%",
-    "billedAnnually": "(billed annually)",
+    "save10": "Save 10%",
     "perMonth": "per month",
-    "noCardRequired": "no credit card required",
-    "trial": {
+    "billedAnnually": "(billed annually)",
+    "for14Days": "for 14 days",
+    "days14": "14 Days",
+    "freeTrial": {
       "name": "Free Trial",
-      "badge": "14 days",
-      "features": ["1 Active Automation", "200 credits included", "Full platform access"],
-      "cta": "Start Free — No Card"
+      "desc": "Try the platform with no commitment.",
+      "features": [
+        "1 Active Automation",
+        "<strong>200 credits</strong> included",
+        "Limited platform access"
+      ],
+      "button": "Start Free Trial"
     },
     "starter": {
       "name": "Starter",
-      "features": ["3 Active Automations", "1,000 credits included / month", "Extra credits at $0.05 each", "Standard Support"],
-      "cta": "Get Started"
+      "desc": "Single-location businesses with basic operations.",
+      "features": [
+        "3 Active Automations",
+        "<strong>1,000 credits</strong> included / month",
+        "Extra credits at $0.05 each",
+        "Standard Support"
+      ],
+      "button": "Begin Setup"
     },
     "growth": {
       "name": "Growth",
-      "features": ["10 Active Automations", "5,000 credits included / month", "Extra credits at $0.03 each", "Priority Support"],
-      "cta": "Get Started"
+      "desc": "Scaling businesses with multiple teams or channels.",
+      "features": [
+        "10 Active Automations",
+        "<strong>5,000 credits</strong> included / month",
+        "Extra credits at $0.03 each",
+        "Priority Support"
+      ],
+      "button": "Get Started"
     },
     "scale": {
       "name": "Scale",
-      "features": ["Unlimited Active Automations", "20,000 credits included / month", "Extra credits at $0.02 each", "Dedicated Infrastructure"],
-      "cta": "Contact Sales"
-    },
-    "creditExplainer": {
-      "title": "What is a credit?",
-      "description": "1 credit = 1 AI workflow execution. Every time your automation processes an email, qualifies a lead, answers a phone call, or runs any task — it uses 1 credit. Your plan includes credits each month. If you run out, buy more at a discount.",
-      "usageLabel": "Typical monthly usage by business type"
+      "desc": "Agencies and groups running high-volume automation.",
+      "features": [
+        "Unlimited Active Automations",
+        "<strong>20,000 credits</strong> included / month",
+        "Extra credits at $0.02 each",
+        "Dedicated Hardware Instance"
+      ],
+      "button": "Contact Sales"
     }
   },
   "faqs": {
@@ -114,13 +148,115 @@
     "tagline": "AI automation for service businesses. Recover lost leads and run your business 24/7.",
     "platform": "Platform",
     "company": "Company",
+    "about": "About",
+    "customers": "Customers",
+    "careers": "Careers",
+    "changelog": "Changelog",
+    "privacy": "Privacy",
+    "terms": "Terms",
     "copyright": "© 2026 TirionApp. All rights reserved."
   },
   "nav": {
     "features": "Features",
     "library": "Library",
+    "workflows": "Workflows",
     "agents": "Agents",
+    "howItWorks": "How it Works",
     "pricing": "Pricing",
     "startBuilding": "Start Building"
+  },
+  "workflowLibrary": {
+    "sales": {
+      "title": "Sales & Payments",
+      "description": "Every interaction is a chance to close — and get paid. TirionApp handles <strong>lead qualification</strong> the moment a prospect reaches out, sends personalized <strong>follow-up sequences</strong> that feel human, and manages <strong>contracts</strong> from draft to signature. Once the deal closes, <strong>automated billing</strong> triggers instantly, professional <strong>invoices</strong> go out after every job, and intelligent <strong>recovery</strong> workflows recapture revenue you would have otherwise lost."
+    },
+    "operations": {
+      "title": "Operations",
+      "description": "The invisible backbone of your business, running on autopilot. Your <strong>meetings</strong> schedule themselves around everyone's availability, <strong>reports</strong> compile overnight and land in your inbox by morning, <strong>support tickets</strong> are triaged and resolved before they pile up, and new client <strong>onboarding</strong> flows happen without a single manual step."
+    },
+    "communication": {
+      "title": "Communication & Content",
+      "description": "Be everywhere your customers are, without being tied to a screen. <strong>AI phone calls</strong> answer and qualify leads 24/7, <strong>WhatsApp</strong> converts inquiries into bookings, <strong>emails</strong> nurture relationships at scale, and <strong>web chat</strong> captures visitors instantly. Meanwhile, your best moments become <strong>social media</strong> posts that feel authentic, long-form content gets <strong>repurposed</strong> into shorts and stories, and a smart <strong>scheduling</strong> engine posts when your audience is most active."
+    },
+    "reputation": {
+      "title": "Reputation & Retention",
+      "description": "Your online presence, protected and growing on its own. Satisfied clients receive gentle nudges to leave <strong>reviews</strong> right after service, every review gets a thoughtful <strong>response</strong>, and continuous <strong>monitoring</strong> alerts you when your brand is mentioned. Predictive models flag <strong>churn risk</strong> before a customer thinks about leaving, personalized <strong>referral</strong> programs turn happy clients into your best salespeople, and <strong>loyalty</strong> rewards make staying with you the obvious choice."
+    }
+  },
+  "integrationSphere": {
+    "title": "Native Integrations",
+    "andMore": "and {count} more"
+  },
+  "agentGeneratorChat": {
+    "copilot": "TirionApp Copilot",
+    "userMsg1": "Build a workflow that checks info@myagency.com for urgent tickets. If urgent, create a Zendesk ticket AND ping Slack. Otherwise, log it to Postgres.",
+    "analyzing": "Analyzing branching logic...",
+    "aiMsg1": "Understood. I'll need access to <strong>Slack</strong>, <strong>Zendesk</strong>, and the <strong>PostgreSQL</strong> instance. Use existing credentials?",
+    "userMsg2": "Yes, proceed.",
+    "scaffolding": "Scaffolding workflow nodes...",
+    "wiring": "Wiring parallel branches...",
+    "testing": "Testing logic gates...",
+    "active": "Branching Agent active",
+    "live": "Live",
+    "deployed": "Deployed! The visual logic map to the right shows your real-time data flow.",
+    "placeholder": "Modify this workflow..."
+  },
+  "executiveTeam": {
+    "comingNext": "Coming Next",
+    "agents": [
+      {
+        "title": "Call Center Agent",
+        "subtitle": "Your AI receptionist answers every call, books appointments, checks availability, and updates your CRM — all in real-time. Never miss a lead again."
+      },
+      {
+        "title": "SDR Agent",
+        "subtitle": "Finds and qualifies leads from your existing contacts, sends personalized follow-ups, and books meetings on your calendar — automatically."
+      },
+      {
+        "title": "Marketing Agent",
+        "subtitle": "Creates and distributes content across your channels, optimized for each platform. Grows your pipeline without hiring a marketing team."
+      },
+      {
+        "title": "CFO Agent",
+        "subtitle": "Tracks invoices, monitors cash flow, and alerts you to financial risks before they become problems. Board-ready reports on demand."
+      }
+    ]
+  },
+  "faqsComponent": {
+    "tagline": "FAQ",
+    "title": "Common Questions",
+    "description": "Quick answers to help you evaluate if TirionApp is the right fit for your operation.",
+    "stillQuestions": "Still have questions?",
+    "talkToTeam": "Talk to our team",
+    "list": [
+      {
+        "question": "How does TirionApp work with the tools I already use?",
+        "answer": "TirionApp connects to your existing CRM, email, calendar, and communication platforms through standard integrations. You don't need to migrate anything — we work on top of what you already have."
+      },
+      {
+        "question": "Is my business data safe?",
+        "answer": "Yes. Every workflow is audited by a dedicated Security AI Agent before deployment to prevent data leaks or bad actions. We also employ strict Guardrails to prevent prompt-injection attacks. Your data is encrypted, never shared, and never used to train our models."
+      },
+      {
+        "question": "What happens if an automation doesn't know how to handle something?",
+        "answer": "It stops immediately and sends you a notification with full context. You're always in control — no automation will ever make a decision it's not confident about."
+      },
+      {
+        "question": "How quickly can I get started?",
+        "answer": "Most businesses have their first automation running within 48 hours. Our AI interviews you about your needs and builds the solution — no technical setup required on your end."
+      },
+      {
+        "question": "Is there a free trial?",
+        "answer": "Yes! 14 days free with 200 credits and 1 active automation — no credit card required. That's enough to fully experience how TirionApp can transform your operations."
+      },
+      {
+        "question": "Am I locked into a specific AI provider?",
+        "answer": "No. TirionApp dynamically routes your task to the best model in the market — Claude Opus for complex reasoning, GPT-4 for code generation, and Gemini Flash for rapid validations. We manage the infra so you just focus on the results."
+      },
+      {
+        "question": "Can I use TirionApp if I have a larger team or enterprise needs?",
+        "answer": "Absolutely. Our Scale plan includes dedicated infrastructure, unlimited automations, and priority support. Contact our sales team for custom solutions."
+      }
+    ]
   }
 }

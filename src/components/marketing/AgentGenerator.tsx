@@ -5,8 +5,9 @@ import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import PricingParticles from './PricingParticles';
 import SplitText from '@/components/ui/SplitText';
-import dynamic from 'next/dynamic';
 import { ErrorBoundary } from 'react-error-boundary';
+import { useLanguage } from '@/lib/i18n/LanguageContext';
+import dynamic from 'next/dynamic';
 
 const WorkflowDemo = dynamic(() => import('./WorkflowDemo').then(mod => mod.WorkflowDemo), {
     ssr: false,
@@ -15,6 +16,7 @@ const WorkflowDemo = dynamic(() => import('./WorkflowDemo').then(mod => mod.Work
 
 
 export function AgentGenerator() {
+    const { t } = useLanguage();
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -84,7 +86,7 @@ export function AgentGenerator() {
                     {/* Left Side: "Need something bespoke?" */}
                     <div className="w-full lg:w-1/3 flex justify-start">
                         <SplitText
-                            text="Need something bespoke?"
+                            text={t('agentGenerator.title').split('?')[0] + '?'}
                             className="text-[clamp(3rem,4vw,5rem)] font-outfit font-medium leading-[1.05] tracking-[-0.02em] text-agency-text-main text-left"
                             delay={25}
                             duration={1}
@@ -103,7 +105,7 @@ export function AgentGenerator() {
                     <div className="w-full lg:w-1/3 flex justify-center order-3 lg:order-none mt-8 lg:mt-0">
                         <div className="max-w-[450px]">
                             <SplitText
-                                text="Forget complex visual editors. TirionApp AI builds and deploys autonomous agents based solely on your description. Conversational. Instant. Scalable."
+                                text={t('agentGenerator.subtitle')}
                                 className="text-[1.1rem] md:text-[1.2rem] text-agency-text-muted leading-[1.4] text-center"
                                 delay={10}
                                 duration={0.8}
@@ -122,7 +124,7 @@ export function AgentGenerator() {
                     {/* Right Side: "Just ask in chat." */}
                     <div className="w-full lg:w-1/3 flex justify-end order-2 lg:order-none">
                         <SplitText
-                            text="Just ask in chat."
+                            text={t('agentGenerator.title').split('?')[1]?.trim() || ''}
                             className="text-[clamp(3rem,4vw,5rem)] font-outfit font-medium leading-[1.05] tracking-[-0.02em] text-agency-text-main text-left lg:text-right"
                             delay={35}
                             duration={1}
@@ -167,7 +169,7 @@ export function AgentGenerator() {
                                 {/* Chat Header */}
                                 <div className="w-full p-4 bg-white/50 backdrop-blur-sm flex items-center justify-between border-b border-white/20">
                                     <div className="flex items-center gap-3">
-                                        <span className="font-outfit font-semibold text-black text-[0.95rem]">TirionApp Copilot</span>
+                                        <span className="font-outfit font-semibold text-black text-[0.95rem]">{t('agentGeneratorChat.copilot')}</span>
                                     </div>
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
                                 </div>
@@ -177,7 +179,7 @@ export function AgentGenerator() {
                                     {/* Step 1: User Msg */}
                                     <div className={cn("flex gap-3 justify-end transition-all duration-700 ease-out shrink-0", step >= 1 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}>
                                         <div className="max-w-[85%] bg-[#f0f0f0] text-black rounded-t-[20px] rounded-bl-[20px] rounded-br-sm p-4 text-[0.95rem] leading-[1.5] relative">
-                                            &quot;Build a workflow that checks info@myagency.com for urgent tickets. If urgent, create a Zendesk ticket AND ping Slack. Otherwise, log it to Postgres.&quot;
+                                            &quot;{t('agentGeneratorChat.userMsg1')}&quot;
                                         </div>
                                         <div className="w-[36px] h-[36px] rounded-full bg-red-500 text-white flex items-center justify-center font-bold flex-shrink-0 font-outfit text-sm">
                                             U
@@ -194,14 +196,15 @@ export function AgentGenerator() {
                                         <div className="w-full max-w-[85%] bg-[#f0f0f0] rounded-t-[20px] rounded-br-[20px] rounded-bl-sm p-4 text-[0.95rem] text-black leading-[1.5] relative">
                                             {step === 2 && (
                                                 <span className="text-black font-medium font-inter flex items-center gap-2 animate-pulse">
-                                                    Analyzing branching logic...
+                                                    {t('agentGeneratorChat.analyzing')}
                                                 </span>
                                             )}
 
                                             {step >= 3 && (
-                                                <div className="animate-[floatUp_0.4s_ease-out_forwards]">
-                                                    Understood. I&apos;ll need access to <strong>Slack</strong>, <strong>Zendesk</strong>, and the <strong>PostgreSQL</strong> instance. Use existing credentials?
-                                                </div>
+                                                <div
+                                                    className="animate-[floatUp_0.4s_ease-out_forwards]"
+                                                    dangerouslySetInnerHTML={{ __html: t('agentGeneratorChat.aiMsg1') }}
+                                                />
                                             )}
                                         </div>
                                     </div>
@@ -209,7 +212,7 @@ export function AgentGenerator() {
                                     {/* Step 4: User Msg 2 */}
                                     <div className={cn("flex gap-3 justify-end transition-all duration-700 ease-out shrink-0", step >= 4 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8 hidden")}>
                                         <div className="max-w-[85%] bg-[#f0f0f0] text-black rounded-t-[20px] rounded-bl-[20px] rounded-br-sm p-4 text-[0.95rem] leading-[1.5] relative">
-                                            &quot;Yes, proceed.&quot;
+                                            &quot;{t('agentGeneratorChat.userMsg2')}&quot;
                                         </div>
                                         <div className="w-[36px] h-[36px] rounded-full bg-red-500 text-white flex items-center justify-center font-bold flex-shrink-0 font-outfit text-sm">
                                             U
@@ -226,9 +229,9 @@ export function AgentGenerator() {
                                         <div className="w-full max-w-[88%] bg-[#f0f0f0] rounded-t-[20px] rounded-br-[20px] rounded-bl-sm p-4 text-[0.95rem] text-black leading-[1.5] relative">
                                             {step >= 5 && step < 8 && (
                                                 <span className="text-black font-medium font-inter flex items-center gap-2 animate-pulse">
-                                                    {step === 5 && "Scaffolding workflow nodes..."}
-                                                    {step === 6 && "Wiring parallel branches..."}
-                                                    {step === 7 && "Testing logic gates..."}
+                                                    {step === 5 && t('agentGeneratorChat.scaffolding')}
+                                                    {step === 6 && t('agentGeneratorChat.wiring')}
+                                                    {step === 7 && t('agentGeneratorChat.testing')}
                                                 </span>
                                             )}
 
@@ -236,13 +239,13 @@ export function AgentGenerator() {
                                                 <>
                                                     <div className="bg-white border border-green-500 rounded-[12px] overflow-hidden mb-3 shadow-sm">
                                                         <div className="bg-green-50 px-4 py-2 border-b border-green-200 flex justify-between items-center text-[0.85rem]">
-                                                            <strong className="font-outfit text-green-900">Branching Agent active</strong>
-                                                            <span className="bg-green-500 text-white px-2 py-0.5 rounded-full text-[0.6rem] font-bold tracking-wide uppercase">Live</span>
+                                                            <strong className="font-outfit text-green-900">{t('agentGeneratorChat.active')}</strong>
+                                                            <span className="bg-green-500 text-white px-2 py-0.5 rounded-full text-[0.6rem] font-bold tracking-wide uppercase">{t('agentGeneratorChat.live')}</span>
                                                         </div>
                                                     </div>
                                                     {step >= 9 && (
                                                         <p className="m-0 text-black font-medium animate-[floatUp_0.4s_ease-out_forwards]">
-                                                            Deployed! The visual logic map to the right shows your real-time data flow.
+                                                            {t('agentGeneratorChat.deployed')}
                                                         </p>
                                                     )}
                                                 </>
@@ -254,7 +257,7 @@ export function AgentGenerator() {
                                 {/* Chat Input Placeholder */}
                                 <div className="w-full p-4 bg-white/50 backdrop-blur-sm border-t border-white/20">
                                     <div className="w-full h-[44px] rounded-full border border-gray-300 bg-gray-50 flex items-center px-4 text-sm text-gray-400 font-inter">
-                                        Modify this workflow...
+                                        {t('agentGeneratorChat.placeholder')}
                                     </div>
                                 </div>
                             </div>

@@ -3,25 +3,52 @@
 import { useState, useEffect } from 'react';
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 
+import { useLanguage } from '@/lib/i18n/LanguageContext';
+
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://app.tirionapp.com';
 
-const navLinks = [
-    { href: '/#library', label: 'Library' },
-    { href: '/#agents', label: 'Agents' },
-    { href: '/#how-it-works', label: 'How it Works' },
-    { href: '/#pricing', label: 'Pricing' },
-];
-
 export function Navbar() {
+    const { t, language, setLanguage } = useLanguage();
     const { scrollY } = useScroll();
     const [hidden, setHidden] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
+    const [showTempLang, setShowTempLang] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setShowTempLang(false), 5000);
+        return () => clearTimeout(timer);
+    }, []);
+
+    // Helper component for the language toggle
+    const LangToggle = ({ className = "" }: { className?: string }) => (
+        <div className={`flex items-center gap-1 bg-black/5 rounded-full p-1 border border-black/5 ${className}`}>
+            <button
+                onClick={(e) => { e.stopPropagation(); setLanguage('en'); setShowTempLang(false); }}
+                className={`text-[0.7rem] font-medium px-2.5 py-1 rounded-full transition-colors ${language === 'en' ? 'bg-white text-black shadow-sm' : 'text-black/50 hover:text-black'}`}
+            >
+                EN
+            </button>
+            <button
+                onClick={(e) => { e.stopPropagation(); setLanguage('es'); setShowTempLang(false); }}
+                className={`text-[0.7rem] font-medium px-2.5 py-1 rounded-full transition-colors ${language === 'es' ? 'bg-white text-black shadow-sm' : 'text-black/50 hover:text-black'}`}
+            >
+                ES
+            </button>
+        </div>
+    );
 
     useMotionValueEvent(scrollY, "change", (latest) => {
         const previous = scrollY.getPrevious() ?? 0;
         if (latest > previous && latest > 150 && !menuOpen) setHidden(true);
         else if (latest < previous) setHidden(false);
     });
+
+    const navLinks = [
+        { href: '/#library', label: t('nav.library') },
+        { href: '/#agents', label: t('nav.agents') },
+        { href: '/#how-it-works', label: t('nav.howItWorks') },
+        { href: '/#pricing', label: t('nav.pricing') },
+    ];
 
     const pill = "pointer-events-auto rounded-full border border-black/5 bg-white/70 backdrop-blur-[24px] saturate-[150%] shadow-[0_8px_32px_rgba(0,0,0,0.06)] flex items-center";
 
@@ -48,8 +75,11 @@ export function Navbar() {
                     className={`${pill} h-[56px] px-4 pl-6 gap-4 hidden md:flex`}
                 >
                     <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="font-outfit font-semibold text-[1.4rem] tracking-tight text-[#050505] no-underline whitespace-nowrap cursor-pointer">TirionApp</a>
+
+                    {/* Temp EN/ES Toggle when Brand is alone on the left (Wait, Brand+CTA left pill usually didn't have the expanding menu, the expanding menu is a separate pill in the middle/right) */}
+
                     <a href={`${APP_URL}`} className="bg-[#050505] text-white rounded-full font-medium text-sm px-6 py-2.5 transition-all duration-300 hover:bg-[#222] hover:scale-105 whitespace-nowrap text-center no-underline">
-                        Start Building
+                        {t('nav.startBuilding')}
                     </a>
                 </motion.nav>
 
@@ -59,7 +89,7 @@ export function Navbar() {
                     animate={{
                         y: hidden ? -100 : 0,
                         opacity: hidden ? 0 : 1,
-                        width: menuOpen ? 400 : 56,
+                        width: menuOpen ? "auto" : 56, // Auto width to fit localized text
                     }}
                     transition={{
                         y: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
@@ -116,28 +146,55 @@ export function Navbar() {
                                 {item.label}
                             </motion.a>
                         ))}
+
+                        {/* Persistent Language Toggle inside Desktop Menu */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: menuOpen ? 1 : 0 }}
+                            transition={{ duration: 0.35, delay: menuOpen ? 0.25 : 0 }}
+                            className="ml-4 pl-4 border-l border-black/10"
+                        >
+                            <LangToggle className="px-1 py-0.5" />
+                        </motion.div>
                     </motion.div>
                 </motion.nav>
 
-                {/* Mobile Menu Toggle Button (Right) */}
-                <motion.button
-                    layoutId="mobileMenuBackground"
-                    initial={{ y: -100, opacity: 0 }}
-                    animate={{ y: hidden && !menuOpen ? -100 : 0, opacity: hidden && !menuOpen ? 0 : (menuOpen ? 0 : 1) }}
-                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    onClick={() => setMenuOpen(true)}
-                    whileTap={{ scale: 0.9 }}
-                    className={`${pill} h-[56px] w-[56px] justify-center md:hidden cursor-pointer relative z-[1001]`}
-                    style={{ borderRadius: 28 }}
-                >
-                    <div className="flex items-center justify-center w-full h-full">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#050505" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <line x1="4" y1="7" x2="20" y2="7" />
-                            <line x1="4" y1="12" x2="20" y2="12" />
-                            <line x1="4" y1="17" x2="20" y2="17" />
-                        </svg>
-                    </div>
-                </motion.button>
+                {/* Desktop/Mobile Right Side - Menu Toggle & Temporary Lang */}
+                <div className="flex items-center gap-2 relative z-[1001]">
+                    <AnimatePresence>
+                        {showTempLang && !menuOpen && (
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.8, x: 20 }}
+                                animate={{ opacity: 1, scale: 1, x: 0 }}
+                                exit={{ opacity: 0, scale: 0.8, x: 20, filter: "blur(4px)" }}
+                                transition={{ duration: 0.4, ease: "easeInOut" }}
+                                className={`${pill} h-[56px] px-2 relative z-[-1]`}
+                            >
+                                <LangToggle className="px-1 py-0.5" />
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+
+                    {/* Mobile Menu Toggle Button */}
+                    <motion.button
+                        layoutId="mobileMenuBackground"
+                        initial={{ y: -100, opacity: 0 }}
+                        animate={{ y: hidden && !menuOpen ? -100 : 0, opacity: hidden && !menuOpen ? 0 : (menuOpen ? 0 : 1) }}
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                        onClick={() => setMenuOpen(true)}
+                        whileTap={{ scale: 0.9 }}
+                        className={`${pill} h-[56px] w-[56px] justify-center md:hidden cursor-pointer`}
+                        style={{ borderRadius: 28 }}
+                    >
+                        <div className="flex items-center justify-center w-full h-full">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#050505" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="4" y1="7" x2="20" y2="7" />
+                                <line x1="4" y1="12" x2="20" y2="12" />
+                                <line x1="4" y1="17" x2="20" y2="17" />
+                            </svg>
+                        </div>
+                    </motion.button>
+                </div>
             </div>
 
             {/* Mobile Menu Fullscreen Overlay */}
@@ -198,10 +255,31 @@ export function Navbar() {
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: 10 }}
                                     transition={{ duration: 0.3, delay: 0.4, ease: "easeOut" }}
-                                    className="mt-8 w-full max-w-[300px]"
+                                    className="mt-6 flex bg-black/5 rounded-full p-2 border border-black/5 gap-2"
+                                >
+                                    <button
+                                        onClick={() => setLanguage('en')}
+                                        className={`text-[1.2rem] font-medium px-8 py-3 rounded-full transition-colors ${language === 'en' ? 'bg-white text-black shadow-sm' : 'text-black/50 hover:text-black'}`}
+                                    >
+                                        EN
+                                    </button>
+                                    <button
+                                        onClick={() => setLanguage('es')}
+                                        className={`text-[1.2rem] font-medium px-8 py-3 rounded-full transition-colors ${language === 'es' ? 'bg-white text-black shadow-sm' : 'text-black/50 hover:text-black'}`}
+                                    >
+                                        ES
+                                    </button>
+                                </motion.div>
+
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: 10 }}
+                                    transition={{ duration: 0.3, delay: 0.45, ease: "easeOut" }}
+                                    className="mt-4 w-full max-w-[300px]"
                                 >
                                     <a href={`${APP_URL}`} className="flex justify-center w-full bg-[#050505] text-white rounded-full font-medium text-[1.1rem] px-8 py-4 transition-all duration-300 hover:scale-105 no-underline">
-                                        Start Building
+                                        {t('nav.startBuilding')}
                                     </a>
                                 </motion.div>
                             </div>

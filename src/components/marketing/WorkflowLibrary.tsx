@@ -108,7 +108,7 @@ function WorkflowCard({
 
     return (
         <motion.div
-            className="absolute inset-0 flex items-center justify-center"
+            className="absolute inset-0 flex items-center justify-center z-10"
             style={{
                 scale,
                 translateZ: z,
@@ -179,10 +179,18 @@ export function WorkflowLibrary() {
         offset: ["start start", "end end"],
     });
 
+    const bgY1 = useTransform(scrollYProgress, [0, 1], ["0%", "-30%"]);
+    const bgY2 = useTransform(scrollYProgress, [0, 1], ["10%", "-50%"]);
+
     if (isMobile) {
         return (
-            <section id="library" className="relative w-full bg-white text-agency-text-main py-24 px-4">
-                <div className="w-full max-w-[1100px] mx-auto flex flex-col gap-24">
+            <section id="library" className="relative w-full bg-white text-agency-text-main py-24 px-4 overflow-hidden">
+                {/* Mobile static background (or simple parallax) */}
+                <div className="absolute inset-0 pointer-events-none z-0">
+                    <img src="/images/parallax/19_resultado.webp" className="absolute top-0 left-0 w-full h-[120%] object-cover object-top opacity-80" alt="" />
+                    <img src="/images/parallax/20_resultado.webp" className="absolute top-[20%] left-0 w-full h-[120%] object-cover object-top opacity-80" alt="" />
+                </div>
+                <div className="w-full max-w-[1100px] mx-auto flex flex-col gap-24 relative z-10">
                     {categories.map((cat, index) => (
                         <div key={index} className="flex flex-col gap-8 items-center bg-gray-50/50 p-6 rounded-3xl border border-gray-100">
                             {/* Image */}
@@ -229,6 +237,20 @@ export function WorkflowLibrary() {
                 className="sticky top-0 h-screen w-full overflow-hidden"
                 style={{ perspective: '1200px' }}
             >
+                {/* Parallax Background */}
+                <motion.div
+                    className="absolute inset-0 w-full h-[150%] pointer-events-none z-0"
+                    style={{ y: bgY1 }}
+                >
+                    <img src="/images/parallax/19_resultado.webp" className="w-full h-full object-cover" alt="" />
+                </motion.div>
+                <motion.div
+                    className="absolute inset-0 w-full h-[150%] pointer-events-none z-0"
+                    style={{ y: bgY2 }}
+                >
+                    <img src="/images/parallax/20_resultado.webp" className="w-full h-full object-cover" alt="" />
+                </motion.div>
+
                 {categories.map((cat, index) => (
                     <WorkflowCard
                         key={index}
